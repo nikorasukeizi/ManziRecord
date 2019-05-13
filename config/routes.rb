@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'items#top'
+
   #ArtistsLabelsGenresコントローラルーティング
   get 'artists_labels_genres/new'
   get 'artists_labels_genres/index'
