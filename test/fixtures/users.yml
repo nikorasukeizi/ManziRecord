@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  rubi_first_name: MyString
+  rubi_last_name: MyString
+  postcord: MyString
+  address: MyText
+  tel: MyString
+  email: MyString
+  password: MyString
+  birthdate: 2019-05-13
+  status: false
+  admin: false
+
+two:
+  first_name: MyString
+  last_name: MyString
+  rubi_first_name: MyString
+  rubi_last_name: MyString
+  postcord: MyString
+  address: MyText
+  tel: MyString
+  email: MyString
+  password: MyString
+  birthdate: 2019-05-13
+  status: false
+  admin: false
