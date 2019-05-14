@@ -10,33 +10,71 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbarEexample8">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
           </button>
-          <a class="navbar-brand" href="#">
-            タイトル
-          </a>
+          <%= link_to "卍Record", root_path, class: "navbar-brand 卍header" %>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbarEexample8">
-          <ul class="nav navbar-nav">
-            <li><a href="#">メニューＡ</a></li>
-            <li class="active"><a href="#">メニューＢ</a></li>
-            <li><a href="#">メニューＣ</a></li>
-          </ul>
-          <p class="navbar-text navbar-right">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん。</p>
+        <form class="navbar-form navbar-left " role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="検索キーワードを入れてください">
+        </div>
+        <button type="submit" class="btn btn-default">検索</button>
+      </form>
+
+        <div class="collapse navbar-collapse" id="navbarEexample">
+          <% if 1 == 1 %><!-- ゲストユーザのとき -->
+          <div class="nav navbar-nav navbar-right nav-menu">
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", "/users/sign_up" %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", "/users/sign_in" %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", "/users/cart" %></button><!--ゲストユーザ用カートのルーティング要検討-->
+          </div>
+
+          <% elsif user == admin %> <!--adminのとき-->
+              <div class="nav navbar-nav navbar-right nav-menu">
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", "/users/:id" %></button>
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", "/users/sign_out" %></button>
+              </div>
+
+          <% else %><!--ユーザがログインしたとき-->
+            <div class="nav navbar-nav navbar-right nav-menu">
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", "/users/:id" %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", "/users/sign_out" %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", "/users/:id/cart" %></button>
+            </div>
+          <% end %>
         </div>
       </div>
     </nav>
 
 
     <%= yield %>
+
+      <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="row container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbarfooter">
+            </button>
+            <%= link_to "卍Record", root_path, class: "navbar-brand 卍footer" %>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbarfooter">
+
+            <div class="footer-terms">
+                <a>利用規約</a>
+                <span>|</span>
+                <a>プライバシー規約</a>
+            </div>
+
+            <span class="navbar-text navbar-right welcome-message">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん。</span>
+
+            <!-- devise導入後、ログインユーザ名が表示されるようにする予定 -->
+          </div>
+        </div>
+      </nav>
+
   </body>
 </html>
