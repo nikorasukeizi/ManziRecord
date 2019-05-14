@@ -36,13 +36,13 @@
           <% elsif user == admin %> <!--adminのとき-->
               <div class="nav navbar-nav navbar-right nav-menu">
               <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", "/users/:id" %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", "/users/sign_out" %></button>
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path %></button>
               </div>
 
           <% else %><!--ユーザがログインしたとき-->
             <div class="nav navbar-nav navbar-right nav-menu">
             <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", "/users/:id" %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", "/users/sign_out" %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path %></button>
             <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", "/users/:id/cart" %></button>
             </div>
           <% end %>
