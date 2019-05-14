@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_042614) do
+ActiveRecord::Schema.define(version: 2019_05_14_064903) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_042614) do
     t.string "postcode"
     t.text "address"
     t.string "tel"
-    t.date "barthdate"
+    t.date "birthdate"
     t.boolean "status"
     t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
