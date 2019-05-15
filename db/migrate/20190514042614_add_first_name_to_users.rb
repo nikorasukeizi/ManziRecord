@@ -8,7 +8,7 @@ class AddFirstNameToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :address, :text
     add_column :users, :tel, :string
     add_column :users, :barthdate, :date
-    add_column :users, :status, :boolean
-    add_column :users, :admin, :boolean
+    add_column :users, :status, :boolean, default: true
+    add_column :users, :admin, :boolean, default: false
   end
 end

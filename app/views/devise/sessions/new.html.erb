@@ -1,36 +1,63 @@
-<h2>ログイン</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-<ul>
-  <li>
-    <div class="field">
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, autocomplete: "email" %>
-    </div>
-  </li>
+  <div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    
+      <fieldset>
 
-  <li>
-    <div class="field">
-      <%= f.label :password, "パスワード" %><% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+
+      <h2>ログイン</h2>
+
+      <div class="form-group">
+
+        <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+      <hr class="colorgraph">
+
+      <ul>
+
+        <li>
+          <div class="form_group form-inline">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, autocomplete: "email", class:"form-control" %>
+          </div>
+        </li>
+
+        <li>
+          <div class="form_group form-inline">
+            <%= f.label :password, "パスワード" %><% if @minimum_password_length %>
+            <em>(半角英数<%= @minimum_password_length %>文字以上)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+          </div>
+        </li>
+
+      </ul>
+
+      <hr class="colorgraph">
+
+      <div class="row">
+        <div class="actions col-md-8 col-md-offset-2">
+          <%= f.submit "ログイン", class:"btn btn-square btn-lg" %>
+        </div>
+      </div>
+
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
-  </li>
-</ul>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="row">
+        <div class="col-md-offset-8 col-md-4 form-inline">
+
+        <span class="signup-guide">新規アカウントの作成は⬇︎</span>
+        <%= link_to "新規登録", new_user_registration_path, class:"btn btn-sm btn-success btn-block" %>
+        </div>
+
+      </div>
+      </fieldset>
+    
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
 
-<%= render "devise/shared/links" %>

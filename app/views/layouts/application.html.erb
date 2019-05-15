@@ -26,14 +26,16 @@
       </form>
 
         <div class="collapse navbar-collapse" id="navbarEexample">
-          <% if 1 == 1 %><!-- ゲストユーザのとき -->
+          <% if user_signed_in? && current_user.admin == false%><!--ユーザがログインしたとき-->
           <div class="nav navbar-nav navbar-right nav-menu">
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", new_user_registration_path %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_user_session_path %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", guest_cart_path %></button><!--ゲストユーザ用カートのルーティング要検討-->
-          </div>
 
-          <% elsif user == admin %> <!--adminのとき-->
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", user_cart_path(current_user.id) %></button>
+
+            </div>
+
+          <% elsif user_signed_in? && current_user.admin == true%> <!--adminのとき-->
               <div class="nav navbar-nav navbar-right nav-menu">
 
               <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
@@ -41,14 +43,13 @@
 
               </div>
 
-          <% else %><!--ユーザがログインしたとき-->
+          <% else %><!-- ゲストユーザのとき -->
             <div class="nav navbar-nav navbar-right nav-menu">
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", new_user_registration_path %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_user_session_path %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", guest_cart_path %></button><!--ゲストユーザ用カートのルーティング要検討-->
+          </div>
 
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", user_cart_path(current_user.id) %></button>
-
-            </div>
           <% end %>
         </div>
       </div>

@@ -1,2 +1,32 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-10 col-xs-offset-1">
+		<table class="table userinfo-table">
+			<tr>
+				<th class="info" colspan="2">登録情報</th>
+			</tr>
+			<tr>
+				<td class="table-left">名前：<%= current_user.first_name %><%= current_user.last_name %></td>
+				<td class="table-right">フリガナ：<%= current_user.rubi_first_name %><%= current_user.rubi_last_name %></td>
+			</tr>
+			<tr>
+				<td class="table-left">〒：<%= current_user.postcode %></td>
+				<td class="table-right">住所：<%= current_user.address %></td>
+			</tr>
+			<tr>
+				<td class="table-left">TEL：<%= current_user.tel %></td>
+				<td class="table-right">Email：<%= current_user.email %></td>
+			</tr>
+			<tr>
+				<td class="table-join" colspan="2">生年月日：<%= current_user.birthdate %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-offset-5 col-xs-2">
+		<%= link_to "登録情報の変更", edit_user_path(current_user.id), class:"btn btn-info btn-block" %>
+	</div>
+</div>
