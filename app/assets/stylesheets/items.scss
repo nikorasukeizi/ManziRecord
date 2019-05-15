@@ -1,3 +1,161 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main_visual {
+	background-image: image-url("manzi.jpeg");
+	background-size: cover;
+}
+.headline h1 {
+	padding-top: 20px;
+	color: deeppink;
+}
+
+/* ランキング表示レイアウト調整用 */
+
+.headline {
+	width: 100%;
+	text-align: center;
+}
+
+.top-ranking {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.clearfix:after {
+  content:"";
+  clear: both;
+  display: block;
+}
+
+#tab-menu li {
+  float: left;
+  list-style-type: none;
+  width: 14.28%;
+}
+
+#tab-menu a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents .tab {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+}
+
+.rank {
+	width: 300px;
+	height: 300px;
+	border: 1px solid #000;
+	text-align: center;
+	margin-left: 5%;
+	display: inline-block;
+}
+.rank h1 {
+	margin: 5px 0;
+}
+
+.jacket_image {
+	width: 200px;
+	height: 200px;
+	margin: 10px auto 0 auto;
+}
+
+.see_more {
+	margin-left: 10%;
+}
+
+/* 下段コンテンツのレイアウト調整 */
+.container {
+	width: 100%;
+}
+
+
+.bottom-contents {
+	width: 100%;
+	margin-top: 40px;
+}
+.items_link {
+	height: 400px;
+	border: 1px solid #000;
+	margin-left: 1%;
+	background-color: white;
+}
+.item_contents {
+	display: block;
+	font-size: 35px;
+}
+.item_genres {
+	font-size: 30px;
+}
+.item_genres li {
+	margin-left: 20%;
+}
+
+.new_items {
+	height: 400px;
+	border: 1px solid #000;
+	margin: 0 3%;
+	background-color: white;
+}
+.new_item_info {
+	width: 250px;
+	height: 250px;
+	border: 1px solid #000;
+	text-align: center;
+	margin-left: 5%;
+	margin-top: 20px;
+	display: inline-block;
+}
+.new_item_image {
+	width: 150px;
+	height: 150px;
+	margin: 30px auto 0 auto;
+}
+
+
+.store_info {
+	height: 400px;
+	border: 1px solid #000;
+	background-color: white;
+}
+.store_image {
+	width: 200px;
+	height: 200px;
+	margin-left: 5%;
+	margin-bottom: 10px;
+	border: 1px solid #000;
+}
+.map_image {
+	width: 200px;
+	height: 200px;
+	margin-left: 5%;
+	margin-bottom: 10px;
+	border: 1px solid #000;
+}
+.store_info p {
+	font-size: 20px;
+	margin-left: 10%;
+}

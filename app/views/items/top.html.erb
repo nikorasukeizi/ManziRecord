@@ -1,2 +1,96 @@
-<h1>Items#top</h1>
-<p>Find me in app/views/items/top.html.erb</p>
+<div class="main_visual">
+    <div class="headline">
+      <h1>~ Monthly Ranking ~</h1>
+    </div>
+    <div class="top-ranking">
+      <ul id="tab-menu" class="clearfix">
+        <li><a href="#tab1" class="active bg-primary">総合</a></li>
+        <li><a href="#tab2" class="bg-success">JPOP</a></li>
+        <li><a href="#tab3" class="bg-info">ROCK</a></li>
+        <li><a href="#tab4" class="bg-warning">K-POP</a></li>
+        <li><a href="#tab5" class="bg-danger">アニソン</a></li>
+        <li><a href="#tab6" class="bg-primary">洋楽</a></li>
+        <li><a href="#tab7" class="bg-success">卍</a></li>
+      </ul>
+
+      <div id="tab-contents" class="clearfix">
+        <div id="tab1" class="tab">
+          <!-- ランキングに必要な売り上げ数を与えてやるように後で修正します -->
+          <%= render 'layouts/all_ranking' %>
+        </div>
+
+        <div id="tab2" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+
+        <div id="tab3" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+
+        <div id="tab4" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+
+        <div id="tab5" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+
+        <div id="tab6" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+
+        <div id="tab7" class="tab">
+          <%= render 'layouts/genres_ranking' %>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bottom-contents">
+      <div class="row">
+        <div class="items_link col-md-2">
+          <%= link_to "商品一覧", items_path, class: "item_contents" %>
+          <h2>ジャンル</h2>
+          <ul class="item_genres">
+            <li><%= link_to "洋楽", "/genres/:id" %></li>
+            <li><%= link_to "ROCK", "/genres/:id" %></li>
+            <li><%= link_to "K-POP", "/genres/:id" %></li>
+            <li><%= link_to "アニソン", "/genres/:id" %></li>
+            <li><%= link_to "J-POP", "/genres/:id" %></li>
+            <li><%= link_to "卍", "/genres/:id" %></li>
+          </ul>
+          <!-- ジャンルURLは要編集 -->
+        </div>
+        <div class="new_items col-md-5">
+          <h2>新商品入荷！卍</h2>
+          <div class="new_item_info">
+            <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+            <%= image_tag 'sample4.jpg', class: "new_item_image" %>
+            <p>
+              cd_title <br>
+              cd_artist_name
+            </p>
+          </div>
+          <div class="new_item_info">
+            <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+            <%= image_tag 'sample.jpg', class: "new_item_image" %>
+            <p>
+              cd_title <br>
+              cd_artist_name
+            </p>
+          </div>
+        </div>
+        <div class="store_info col-md-4">
+          <h2>店舗情報</h2>
+          <%= image_tag 'store.jpg', class: "store_image" %>
+          <%= image_tag 'map.png', class: "map_image" %>
+          <P>住所：長野県長野市〇〇町△△-卍卍</P>
+          <P>TEL：〇〇〇-△△△-卍卍卍卍</P>
+          <P>FAX：〇〇-△△△△-卍卍卍卍</P>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- javascriptファイルを読み込みます -->
+<%= javascript_include_tag "items_top.js" %>

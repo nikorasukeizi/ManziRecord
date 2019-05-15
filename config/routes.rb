@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   #Genresコントローラルーティング
   resources :genres, only: [:edit, :update, :destroy]
-  get 'genres/ranking'
+  get 'genres/:id/ranking' => 'genres#ranking', as: 'genres_ranking'
 
   #Buy_infosコントローラルーティング
   resources :buy_infos, only: [:index, :show, :edit, :update, :destroy]
