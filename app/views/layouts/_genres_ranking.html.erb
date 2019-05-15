@@ -1,0 +1,31 @@
+
+<div class="rank">
+  <h1>Rank.1</h1>
+  <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+  <%= image_tag 'sample3.jpg', class: "jacket_image" %>
+  <p>
+    cd_title <br>
+    cd_artist_name
+  </p>
+</div>
+        <div class="rank">
+  <h1>Rank.2</h1>
+  <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+  <%= image_tag 'sample2.jpg', class: "jacket_image" %>
+  <p>
+    cd_title <br>
+    cd_artist_name
+  </p>
+</div>
+        <div class="rank">
+  <h1>Rank.3</h1>
+  <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+  <%= image_tag 'sample.jpg', class: "jacket_image" %>
+  <p>
+    cd_title <br>
+    cd_artist_name
+  </p>
+</div>
+<!-- 表示したいランキングのジャンルidを引数で渡してあげる予定です↓↓ -->
+<%= link_to "more", "genres/:id/ranking", class:"btn btn-success see_more " %>
+<!-- ランキング実装時、「genres_ranking_path()」に変更する予定↑↑↑ -->
