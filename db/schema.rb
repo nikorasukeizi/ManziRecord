@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_064903) do
+ActiveRecord::Schema.define(version: 2019_05_14_093212) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 2019_05_14_064903) do
     t.text "address"
     t.string "tel"
     t.date "birthdate"
-    t.boolean "status"
-    t.boolean "admin"
+    t.boolean "status", default: true
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
