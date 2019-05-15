@@ -84,7 +84,7 @@
 }
 
 .see_more {
-	margin-left: 10%;
+	margin-left: 5%;
 }
 
 /* 下段コンテンツのレイアウト調整 */
@@ -108,7 +108,7 @@
 	font-size: 35px;
 }
 .item_genres {
-	font-size: 30px;
+	font-size: 20px;
 }
 .item_genres li {
 	margin-left: 20%;
@@ -142,18 +142,24 @@
 	background-color: white;
 }
 .store_image {
-	width: 200px;
-	height: 200px;
+	width: 40%;
+	padding-top: 40%;
 	margin-left: 5%;
 	margin-bottom: 10px;
 	border: 1px solid #000;
+	background-image: image-url("store.jpeg");
+	background-size: cover;
+	display: inline-block;
 }
 .map_image {
-	width: 200px;
-	height: 200px;
+	width: 40%;
+	padding-top: 40%;
 	margin-left: 5%;
 	margin-bottom: 10px;
 	border: 1px solid #000;
+	background-image: image-url("map.png");
+	background-size: cover;
+	display: inline-block;
 }
 .store_info p {
 	font-size: 20px;
