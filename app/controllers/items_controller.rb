@@ -15,12 +15,17 @@ class ItemsController < ApplicationController
   end
 
   def new
+      @item = Item.new
+      @item.discs.build
   end
 
   def edit
   end
 
   def create
+      item = Item.new(item_params)
+      item.save
+      redirect_to item_path(@item.id)
   end
 
   def update
