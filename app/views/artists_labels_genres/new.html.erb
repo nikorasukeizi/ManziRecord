@@ -2,3 +2,28 @@
 <div class="container">
 	<div class="row">
 <p>新たに登録したいもの全てに入力してください</p>
+
+<%= form_for @artist, url: artists_labels_genres_new_path do |f| %>
+  <%= f.label 'アーティスト名' %>
+  <%= f.text_field :name %>
+
+    <!-- 関連性のない別のモデルを入れ込む表示 -->
+    <%= fields_for @label, artists_labels_genres_new_path do |c| %>
+      <%= c.label 'レーベル名' %>
+      <%= c.text_field :name %>
+    <% end %>
+
+    <!-- 関連性のない別のモデルを入れ込む表示 -->
+    <%= fields_for @genre, artists_labels_genres_new_path do |a| %>
+      <%= a.label 'ジャンル名' %>
+      <%= a.text_field :name %>
+    <% end %>
+
+  <%= f.submit '新規登録'%>
+
+<% end %>
+
+
+
+</div>
+</div>
