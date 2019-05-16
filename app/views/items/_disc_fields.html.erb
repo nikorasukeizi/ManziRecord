@@ -1,0 +1,19 @@
+<!-- 必ず nested-fields　というクラスをつける　削除機能に必須　-->
+<div class="nested-fields">
+
+    <div class="form-group">
+    <%= f.label 'Disc名' %><br>
+    <%= f.text_field :name %>
+    <!-- このフォームを削除する -->
+    <%= link_to_remove_association "Discを削除", f %>
+    </div>
+
+    <div class="songs">
+      <%= f.fields_for :songs do |song| %>
+        <%= render 'song_fields', f: song %>
+      <% end %>
+
+      <%= link_to_add_association "add song", f, :songs %>
+      <br><br>
+    </div>
+</div>
