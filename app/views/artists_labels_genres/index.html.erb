@@ -1,11 +1,16 @@
 <h1>アーティスト・レーベル・ジャンル一覧</h1>
 
+
+<table class="table">
+
+
+
 <% @artists.each do |artist| %>
 
   <%= artist.name %>
 
   <%= link_to '編集', edit_artist_path(artist.id) %>
-  <%= link_to '削除', artist_path(artist.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %>
+  <%= link_to '削除', artist_path(artist.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
 
 <% end %>
 
@@ -18,7 +23,7 @@
   <%= label.name %>
 
   <%= link_to '編集', edit_label_path(label.id) %>
-  <%= link_to '削除', label_path(label.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %>
+  <%= link_to '削除', label_path(label.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
 
 <% end %>
 
@@ -31,6 +36,6 @@
   <%= genre.name %>
 
   <%= link_to '編集', edit_genre_path(genre.id) %>
-  <%= link_to '削除', genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %>
+  <%= link_to '削除', genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
 
 <% end %>
