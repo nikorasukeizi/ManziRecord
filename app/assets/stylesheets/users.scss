@@ -1,3 +1,35 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/*  カート詳細画面レイアウト編集用  */
+.cart_items {
+	padding: 10px;
+	border: 1px solid #000;
+	margin-bottom: 100px;
+}
+.cart_item_image {
+	width: 20%;
+	float: left;
+}
+.cd_info {
+	margin: 3rem 10rem 0 10rem;
+	float: left;
+}
+.cd_info p {
+	margin-bottom: 2rem;
+}
+
+
+/*  購入画面レイアウト調整用  */
+.delivery_address {
+	height: 500px;
+}
+
