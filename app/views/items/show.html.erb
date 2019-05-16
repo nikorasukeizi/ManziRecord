@@ -1,2 +1,21 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<h1>商品詳細ページ</h1>
+<%= attachment_image_tag @item, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %><br>
+
+<p>シングル/アルバム名
+<%= @item.name %></p>
+<p>アーティスト
+<%= @artist.name %></p>
+<p>レーベル
+<%= @label.name %></p>
+<p>ジャンル
+<%= @genre.name %></p>
+
+<p>ディスク名
+<% @discs.each do |disc| %>
+<%= disc.name %></p>
+<% end %>
+
+<p>曲名
+<% @songs.each do |song| %>
+<%= song.name %></p>
+<% end %>
