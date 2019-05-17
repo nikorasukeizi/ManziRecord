@@ -13,14 +13,24 @@ class ArtistsLabelsGenresController < ApplicationController
 
   def create
   	  artist = Artist.new(artist_params)
+  	  if artist.name.present?
   	  artist.save
+      end
 
   	  label = Label.new(label_params)
+  	  if label.name.present?
   	  label.save
+      end
 
   	  genre = Genre.new(genre_params)
+  	  if genre.name.present?
   	  genre.save
-  	  redirect_to artists_labels_genres_index_path
+      end
+      if artist.name.present? or label.name.present? or genre.name.present?
+      redirect_to artists_labels_genres_index_path
+      else
+      redirect_to artists_labels_genres_new_path
+      end
   end
 
 
@@ -39,7 +49,5 @@ class ArtistsLabelsGenresController < ApplicationController
       def genre_params
       	  params.require(:genre).permit(:name)
       end
-
-
 
 end

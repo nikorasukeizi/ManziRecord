@@ -1,2 +1,47 @@
 <h1>商品新規登録</h1>
-<p>Find me in app/views/items/new.html.erb</p>
+
+<%= form_for(@item)do |f| %>
+
+  <%= f.label 'ジャケット写真' %>
+  <%= f.attachment_field :image %>
+  <%= f.label :artist_id, 'アーティスト' %>
+  <%= f.collection_select :artist_id, @artists, :id, :name %>
+
+  <%= f.label :label_id, 'レーベル' %>
+  <%= f.collection_select :label_id, @labels, :id, :name %>
+
+  <%= f.label :genre_id, 'ジャンル' %>
+  <%= f.collection_select :genre_id, @genres, :id, :name %>
+  <%= link_to '新規登録', artists_labels_genres_new_path %>
+
+  <%= f.label 'シングル/アルバム名' %>
+  <%= f.text_field :name %>
+
+  <div class='disc-form'>
+    <!-- 子のモデルを指定 -->
+    <%= f.fields_for :discs do |builder| %>
+      <!-- フォーム欄を別で用意しrenderで指定　モデル名_fields -->
+      <%= render 'disc_fields', f: builder %>
+    <% end %>
+
+      <!-- 子モデルのフォームを追加する -->
+      <div id="links">
+      <%= link_to_add_association "add discs", f, :discs %><br/>
+      </div>
+
+  </div>
+
+
+   <%= f.label '価格（税別）' %>
+   <%= f.text_field :price %>
+
+   <%= f.label '在庫数' %>
+   <%= f.text_field :stock %>
+
+   <%= f.label '商品ステータス' %>
+   <%= f.text_field :status %>
+
+
+  <%= f.submit '商品登録' %>
+
+<% end %>
