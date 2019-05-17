@@ -1,2 +1,48 @@
-<h1>Users#withdraw_view</h1>
-<p>Find me in app/views/users/withdraw_view.html.erb</p>
+<div class="container">
+
+  <div class="row" style="margin-top:20px">
+    <div class="col-xs-6 col-xs-offset-3">
+
+      <fieldset>
+
+
+      <h2>退会</h2>
+      <h3>退会について</h3>
+      <p>退会にはパスワードが必要です。</p>
+      <p><strong>退会されるとこちらのアカウントでのログインができなくなります。</strong></p>
+
+      <div class="form">
+
+        <%= form_for(current_user, url:user_withdraw_path(current_user.id)) do |f| %>
+
+      <hr class="colorgraph">
+
+      <ul>
+
+        <li>
+          <div class="form-group form-inline">
+            <%= f.label :password_confirmation, "パスワード" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+          </div>
+        </li>
+
+      </ul>
+
+      <hr class="colorgraph">
+
+      <div class="row">
+        <div class="actions col-xs-8 col-xs-offset-2">
+          <%= f.submit "退会", class:"btn btn-danger btn-lg" %>
+        </div>
+      </div>
+
+      <% end %>
+      </div>
+
+      </fieldset>
+    
+    </div>
+  </div>
+</div>
+
+

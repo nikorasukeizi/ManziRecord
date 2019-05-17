@@ -65,6 +65,7 @@ body {
 }
 
 .btn-square{
+    width: 100%;
 	display: inline-block;
 	padding: 0.5em 1em;
 	text-decoration: none;
@@ -93,8 +94,13 @@ body {
 	font-size: 9px;
 }
 
-li{
+.form li{
 	margin-top: 12px;
+	margin-left: 36px;
+}
+
+.form-group{
+	margin-left: 36px;
 }
 
 .userinfo-table{
@@ -102,7 +108,7 @@ li{
 	border-spacing: 0;
 	table-layout: fixed;
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 60px;
 }
 
 .userinfo-table th{
@@ -135,4 +141,46 @@ li{
   border-left:solid 1px #ddd;
   border-bottom:solid 1px #ddd;
   width: 100%;
+}
+
+.withdraw-btn{
+	width: 100%;
+	height: 100px;
+	padding: none;
+	font-size: 20px;
+	text-align: center;
+	line-height: 94px;
+	color: #fff;
+	background-color: #fff;
+	border: none;
+	border-radius: 50px;
+}
+
+.withdraw-btn:hover{
+	background-color: #dc143c;
+	color: #fff;
+}
+
+.withdraw-btn:action{
+	background-color: #800000;
+}
+
+.admin-mypage h3{
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.first-box{
+	text-align: center;
+}
+
+.second-box{
+    text-align: center;
+	margin-top: 60px;
+}
+
+.btn-admin{
+	height: 45px;
+	line-height: 30px;
 }
