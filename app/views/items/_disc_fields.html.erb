@@ -2,10 +2,10 @@
 <div class="nested-fields">
 
     <div class="form-group">
-    <%= f.label 'Disc名' %><br>
-    <%= f.text_field :name %>
-    <!-- このフォームを削除する -->
-    <%= link_to_remove_association "Discを削除", f %>
+      <%= f.label 'Disc名' %><br>
+      <%= f.text_field :name %>
+      <!-- このフォームを削除する -->
+        <%= link_to_remove_association "Discを削除", f, class: "btn btn-danger btn-xs" %>
     </div>
 
     <div class="songs">
@@ -13,7 +13,7 @@
         <%= render 'song_fields', f: song %>
       <% end %>
 
-      <%= link_to_add_association "add song", f, :songs %>
+      <%= link_to_add_association "曲を追加", f, :songs, class: "btn btn-primary btn-xs" %>
       <br><br>
     </div>
 </div>
