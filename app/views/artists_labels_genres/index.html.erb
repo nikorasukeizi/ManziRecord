@@ -1,41 +1,87 @@
+<div class="page_title">
 <h1>アーティスト・レーベル・ジャンル一覧</h1>
+</div>
+
+<div class="container">
+<div class="row">
+
+	<div class="col-lg-4">
+
+		 <table class="table">
+		  	   <thead>
+		  	   	      <tr>
+		  	   	      	  <th>アーティスト名</th>
+		  	   	      	  <th>編集</th>
+		  	   	      	  <th>削除</th>
+		  	   	      </tr>
+		  	   </thead>
+
+	        <% @artists.each do |artist| %>
+		  	   <tbody>
+		  	   	      <tr>
+		  	   	      	  <th><%= artist.name %></th>
+		  	   	      	  <th> <%= link_to '編集', edit_artist_path(artist.id), class: "btn btn-success btn-xs" %></th>
+		  	   	      	  <th><%= link_to '削除', artist_path(artist.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %></th>
+		  	   	      </tr>
+		  	   </tbody>
+	   		<% end %>
+	     </table>
+
+	</div>
 
 
-<table class="table">
+	<div class="col-lg-4">
+
+			 <table class="table">
+			  	   <thead>
+			  	   	      <tr>
+			  	   	      	  <th>レーベル名</th>
+			  	   	      	  <th>編集</th>
+			  	   	      	  <th>削除</th>
+			  	   	      </tr>
+			  	   </thead>
+
+		        <% @labels.each do |label| %>
+			  	   <tbody>
+			  	   	      <tr>
+			  	   	      	  <th><%= label.name %></th>
+			  	   	      	  <th> <%= link_to '編集', edit_label_path(label.id), class: "btn btn-success btn-xs" %></th>
+			  	   	      	  <th><%= link_to '削除', label_path(label.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %></th>
+			  	   	      </tr>
+			  	   </tbody>
+		   		<% end %>
+		     </table>
+
+	</div>
 
 
 
-<% @artists.each do |artist| %>
-
-  <%= artist.name %>
-
-  <%= link_to '編集', edit_artist_path(artist.id) %>
-  <%= link_to '削除', artist_path(artist.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
-
-<% end %>
 
 
 
 
+	<div class="col-lg-4">
 
-<% @labels.each do |label| %>
+			 <table class="table">
+			  	   <thead>
+			  	   	      <tr>
+			  	   	      	  <th>ジャンル名</th>
+			  	   	      	  <th>編集</th>
+			  	   	      	  <th>削除</th>
+			  	   	      </tr>
+			  	   </thead>
 
-  <%= label.name %>
+		        <% @genres.each do |genre| %>
+			  	   <tbody>
+			  	   	      <tr>
+			  	   	      	  <th><%= genre.name %></th>
+			  	   	      	  <th> <%= link_to '編集', edit_genre_path(genre.id), class: "btn btn-success btn-xs" %></th>
+			  	   	      	  <th><%= link_to '削除', genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %></th>
+			  	   	      </tr>
+			  	   </tbody>
+		   		<% end %>
+		     </table>
+		</div>
 
-  <%= link_to '編集', edit_label_path(label.id) %>
-  <%= link_to '削除', label_path(label.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
-
-<% end %>
-
-
-
-
-
-<% @genres.each do |genre| %>
-
-  <%= genre.name %>
-
-  <%= link_to '編集', edit_genre_path(genre.id) %>
-  <%= link_to '削除', genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。" %><br>
-
-<% end %>
+</div>
+</div>
