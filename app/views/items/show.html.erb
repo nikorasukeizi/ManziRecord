@@ -1,19 +1,102 @@
-<h1>商品詳細ページ</h1>
-<%= attachment_image_tag @item, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %><br>
+<div class="page_title">
+<h1>商品詳細</h1>
+</div>
 
-<p>シングル/アルバム名
-<%= @item.name %></p>
-<p>アーティスト
-<%= @artist.name %></p>
-<p>レーベル
-<%= @label.name %></p>
-<p>ジャンル
-<%= @genre.name %></p>
+<div class="container">
+<div class="row">
 
-<p>ディスク名
-<% @discs.each do |disc| %>
-<%= disc.name %></p>
-  <% disc.songs.each do |song| %>
-  <%= song.name %></p>
-  <% end %>
-<% end %>
+	<div class="col-lg-2">
+	</div>
+
+	<div class="col-lg-3">
+	  <%= attachment_image_tag @item, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg" %><br>
+
+      <ul class="list-group">
+
+	     <li class="list-group-item" style="text-align: center; font-weight: bold;">
+			  カートに入れる</li>
+
+	     <%= form_for(@cart) do |f| %>
+
+           <li class="list-group-item" style="font-weight: bold; text-align: center;">
+	       数量  <%= f.number_field :buy_count %>
+
+
+	       <%= f.submit 'カートに入れる', class: "btn btn-success" %></li>
+
+
+
+	     <% end %>
+
+      </ul>
+
+
+           <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success btn-xs" %>
+	       <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %>
+
+	</div>
+
+	<div class="col-lg-1">
+	</div>
+
+	<div class="col-lg-4">
+
+		<ul class="list-group">
+
+			<li class="list-group-item" style="text-align: center; font-weight: bold;">
+			  商品情報</li>
+
+			<li class="list-group-item" style="font-weight: bold;">
+			  シングル/アルバム名：<%= @item.name %></li>
+
+            <li class="list-group-item" style="font-weight: bold;">
+			  アーティスト：<%= @artist.name %></li>
+
+            <li class="list-group-item" style="font-weight: bold;">
+			  レーベル：<%= @label.name %></li>
+
+			<li class="list-group-item" style="font-weight: bold;">
+			  ジャンル：<%= @genre.name %></li>
+
+
+            <% @discs.each do |disc| %>
+            <li class="list-group-item" style="font-weight: bold;">
+			  ディスク名：<%= disc.name %>
+
+               <table class="table">
+
+
+		                     <% disc.songs.each do |song| %>
+
+		                     <tbody>
+		                     	   <tr>
+		                     	   	  <th><%= song.number %></th>
+                                      <th> <%= song.name %></th>
+                                   </tr>
+                             </tbody>
+
+                             <% end %>
+               </table>
+
+		     </li>
+		     <% end %>
+
+		     <li class="list-group-item" style="font-weight: bold;">
+			  価格（税込）：<%= @item.price %></li>
+
+             <li class="list-group-item" style="font-weight: bold;">
+			  ステータス：<%= @item.status %></li>
+
+			  <li class="list-group-item" style="font-weight: bold;">
+			  在庫数：<%= @item.stock %></li>
+
+
+		</ul>
+
+
+
+	<div class="col-lg-2">
+	</div>
+
+</div>
+</div>

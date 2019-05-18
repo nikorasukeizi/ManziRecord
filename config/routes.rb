@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   post '/artists_labels_genres/new' => 'artists_labels_genres#create'
 
   #Itemsコントローラルーティング
+  resources :items do
+    resource :cart_items, only: [:create, :destroy, :update] #cart_itemsをネスト
+  end
   get 'items/top'
   get 'items/search_result'
   get 'items/ranking'
-  resources :items
+
+  #Cart_itemsコントローラルーティング
 
   #Artistsコントローラルーティング
   resources :artists, only: [:edit, :update, :destroy]
@@ -31,15 +35,12 @@ Rails.application.routes.draw do
   # Usersコントローラルーティング
 
   get 'users/:id/buy_history' => 'users#buy_history', as: 'user_buy_history'
+  get 'users/buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
-  get 'users/:id/cart' => 'users#cart_show'
   get 'users/buy'
   get 'users/buy_confirm'
-  get 'users/cart', as: 'guest_cart'
+  get 'users/cart_show', as: 'users_cart'
   patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
-  patch '/users/:id/cart' => 'users#cart_update', as: 'user_cart'
-  delete '/users/:id/cart' => 'users#cart_destroy'
   resources :users, only: [:index, :show, :edit, :update]
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
