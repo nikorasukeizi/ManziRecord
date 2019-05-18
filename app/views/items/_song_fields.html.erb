@@ -1,8 +1,12 @@
 <div class="nested-fields">
   <div class="form-group">
+
+    <%= f.label '曲順' %>
+    <%= f.number_field :number %>
     <%= f.label '曲名' %>
     <%= f.text_field :name %>
      <!-- このフォームを削除する -->
-    <%= link_to_remove_association "曲を削除", f %>
+    <%= link_to_remove_association "曲を削除", f, class: "btn btn-default btn-xs" %>
+
   </div>
 </div>
