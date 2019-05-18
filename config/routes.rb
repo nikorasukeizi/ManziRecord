@@ -32,10 +32,11 @@ Rails.application.routes.draw do
 
   get 'users/buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
-  get 'users/:id/cart' => 'users#cart_show'
+  get 'users/:id/cart' => 'users#cart_show', as: 'cart_show'
   get 'users/buy'
   get 'users/buy_confirm'
   get 'users/cart', as: 'guest_cart'
+  post 'cart_items' => 'users#cart_create'
   patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
   patch '/users/:id/cart' => 'users#cart_update', as: 'user_cart'
   delete '/users/:id/cart' => 'users#cart_destroy'

@@ -1,2 +1,115 @@
-<h1>Items#edit</h1>
-<p>Find me in app/views/items/edit.html.erb</p>
+<div class="page_title">
+<h1>商品編集</h1>
+</div>
+
+<div class="container">
+
+
+
+<%= form_for(@item)do |f| %>
+
+  <div class="row" style="margin-top: 10px;">
+    <%= f.label 'ジャケット写真' %>
+    <%= f.attachment_field :image %>
+  </div>
+
+
+  <div class="row" style="margin-top: 40px;">
+    
+
+    <div class="col-lg-6">
+        <p>アーティスト・レーベル・ジャンルを選択してください。<br>
+           選択肢にない場合は新規登録を行ってください。</p>
+
+
+      <div class="row" style="margin-top: 5px;">
+        <%= f.label :artist_id, 'アーティスト' %><br>
+        <%= f.collection_select :artist_id, @artists, :id, :name %>
+        <%= link_to '新規登録', artists_labels_genres_new_path, class: "btn btn-success btn-xs"%>
+      </div>
+
+
+      <div class="row" style="margin-top: 10px;">
+        <%= f.label :label_id, 'レーベル' %><br>
+        <%= f.collection_select :label_id, @labels, :id, :name %>
+        <%= link_to '新規登録', artists_labels_genres_new_path, class: "btn btn-success btn-xs"%>
+      </div>
+
+
+      <div class="row" style="margin-top: 10px;">
+        <%= f.label :genre_id, 'ジャンル' %><br>
+        <%= f.collection_select :genre_id, @genres, :id, :name %>
+        <%= link_to '新規登録', artists_labels_genres_new_path, class: "btn btn-success btn-xs"%>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-6">
+        
+
+        <div class="row" style="margin-top: 60px;">
+          <%= f.label '価格（税別）' %><br>
+          <%= f.text_field :price %>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+          <%= f.label '在庫数' %><br>
+          <%= f.text_field :stock %>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+          <%= f.label '商品ステータス' %><br>
+          <%= f.text_field :status %>
+        </div>
+    </div>
+
+ </div>
+
+
+  <div class="row" style="margin-top: 20px;">
+
+    <div class="col-lg-3">
+
+      <div class="row" style="margin-top: 10px;">
+          <%= f.label 'シングル/アルバム名' %><br>
+          <%= f.text_field :name %>
+        </div>
+
+
+      <div class='disc-form'>
+        <!-- 子のモデルを指定 -->
+        <%= f.fields_for :discs do |builder| %>
+          <!-- フォーム欄を別で用意しrenderで指定　モデル名_fields -->
+
+           <div class="row" style="margin-top: 10px;">
+             <%= render 'disc_fields', f: builder %>
+           </div>
+
+        <% end %>
+
+          <!-- 子モデルのフォームを追加する -->
+          <div class="row" style="margin-top: 10px;">
+            <div id="links">
+            <%= link_to_add_association "Discを追加", f, :discs, class: "btn btn-warning btn-xs"%><br/>
+       　    </div>
+           </div>
+
+      </div>
+    </div>
+
+
+     <div class="col-lg-9">
+     </div>
+
+  </div>
+
+
+  <div class="row" style="margin-top: 30px; text-align: center;">
+    <%= f.submit '商品情報編集', class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+
+</div>
