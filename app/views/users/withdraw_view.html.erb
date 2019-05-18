@@ -21,8 +21,8 @@
 
         <li>
           <div class="form-group form-inline">
-            <%= f.label :password_confirmation, "パスワード" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
           </div>
         </li>
 
@@ -32,7 +32,7 @@
 
       <div class="row">
         <div class="actions col-xs-8 col-xs-offset-2">
-          <%= f.submit "退会", class:"btn btn-danger btn-lg" %>
+          <%= f.submit "退会", class:"btn btn-danger btn-lg", data:{confirm:"本当に退会しますか?"} %>
         </div>
       </div>
 

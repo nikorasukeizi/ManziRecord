@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   # Usersコントローラルーティング
 
-  get 'users/buy_history'
+  get 'users/:id/buy_history' => 'users#buy_history', as: 'user_buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
   get 'users/:id/cart' => 'users#cart_show'
   get 'users/buy'
