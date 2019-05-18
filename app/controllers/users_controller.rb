@@ -50,6 +50,14 @@ class UsersController < ApplicationController
 
   end
 
+  def cart_create
+      cart = CartItem.new
+      cart.user_id = current_user.id
+      cart.item_id = Item.find(params[:id])
+      cart.save
+      redirect_to cart_show_path(user.id)
+  end
+
   def cart_update
   end
 

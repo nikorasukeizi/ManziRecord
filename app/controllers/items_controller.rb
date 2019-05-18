@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
       @genre = @item.genre
       @discs = @item.discs
       @songs = @item.songs
+      @cart = CartItem.new
   end
 
   def index
@@ -31,6 +32,11 @@ class ItemsController < ApplicationController
 
   def edit
       @item = Item.find(params[:id])
+      @item.discs.build
+      # @discs.songs.build
+      @artists = Artist.all
+      @labels = Label.all
+      @genres = Genre.all
   end
 
   def create
@@ -40,6 +46,9 @@ class ItemsController < ApplicationController
   end
 
   def update
+      item = Item.find(params[:id])
+      item.update
+      redirect_to item_path(item.id)
   end
 
   private
