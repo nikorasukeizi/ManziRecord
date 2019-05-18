@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 	belongs_to :genre
 
 	has_many :cart_items, dependent: :destroy
-	has_many :buy_items, dependent: :destroy
+	has_many :buy_items
 	has_many :discs, dependent: :destroy
 	has_many :users, through: :cart_items
 

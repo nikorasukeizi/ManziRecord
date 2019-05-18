@@ -1,27 +1,63 @@
 <div class="container-fluid">
-	<div class="row">
+	<div class="row cart_main_visual">
 		<h1>カート商品一覧</h1>
+
 		<% if user_signed_in? %>
 
-		<%# if @user.items == nil || [] %>
-			<h1 class="text-center">カート内に商品はまだありません。</h1>
+			<% if @user.items == nil  %>
+				<h1 class="text-center">カート内に商品はまだありません。</h1>
+			<% else %>
+				<% @user.items.each do |item| %>
+					<div class="cart_items col-md-8 col-md-offset-2 clearfix">
+						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<div class="cd_info ">
+							<p>CDタイトル：<%= item.name %></p>
+							<p>アーティスト名：<%= item.artist.name %></p>
+							<p>レーベル名：<%= item.label.name %></p>
+							<p>価格：<%= item.price %>円</p>
+						</div>
+						<%= link_to "削除する", item_cart_items_path(item.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger delete_btn" %>
+						<div class="subtotal">
+							<%= form_for CartItem.find_by(user_id: @user.id, item_id: item.id), url: item_cart_items_path(item.id) do |f| %>
+								<%= f.label :buy_count, "数量：" %>
+								<%= f.number_field :buy_count, class: "num_field"%>
+								<%= f.submit "変更する", class:"btn btn-success" %>
+							<% end %>
+							<p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+			<% end %>
+
 		<% else %>
-			<div class="cart_items col-md-8 col-md-offset-2 clearfix">
-				<%= image_tag 'sample.jpg', class: "cart_item_image" %>
-				<div class="cd_info ">
-					<p>CDタイトル：ぶっ生き返す</p>
-					<p>アーティスト名：マキシマム ザ ホルモン</p>
-					<p>レーベル名：バップ</p>
-					<p>価格：1000円</p>
-				</div>
-				<div class="subtotal">
-					<p>数量： 10枚</p>
-					<p>小計： 10000円(税込)</p>
-				</div>
-			</div>
-			<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+
+			<% if session[:cart] == nil  %>    <!-- 未完成 -->
+				<h1 class="text-center">カート内に商品はまだありません。</h1>
+			<% else %>
+				<% session[:cart].each do |item| %>
+					<div class="cart_items col-md-8 col-md-offset-2 clearfix">
+						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<div class="cd_info ">
+							<p>CDタイトル：<%= item.name %></p>
+							<p>アーティスト名：<%= item.artist.name %></p>
+							<p>レーベル名：<%= item.label.name %></p>
+							<p>価格：<%= item.price %>円</p>
+						</div>
+						<%= link_to "削除する", item_cart_items_path(item.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger delete_btn" %>
+						<div class="subtotal">
+							<%= form_for CartItem.find_by(user_id: @user.id, item_id: item.id), url: item_cart_items_path(item.id) do |f| %>
+								<%= f.label :buy_count, "数量：" %>
+								<%= f.number_field :buy_count, class: "num_field"%>
+								<%= f.submit "変更する", class:"btn btn-success" %>
+							<% end %>
+							<p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+			<% end %>
+
 		<% end %>
 	</div>
 </div>
-
-

@@ -1,32 +1,106 @@
-<div class="container">
 
-<div class="row">
-	<div class="col-xs-offset-1 col-xs-10 col-xs-offset-1">
-		<table class="table userinfo-table">
-			<tr>
-				<th class="info" colspan="2">登録情報</th>
-			</tr>
-			<tr>
-				<td class="table-left">名前：<%= current_user.first_name %><%= current_user.last_name %></td>
-				<td class="table-right">フリガナ：<%= current_user.rubi_first_name %><%= current_user.rubi_last_name %></td>
-			</tr>
-			<tr>
-				<td class="table-left">〒：<%= current_user.postcode %></td>
-				<td class="table-right">住所：<%= current_user.address %></td>
-			</tr>
-			<tr>
-				<td class="table-left">TEL：<%= current_user.tel %></td>
-				<td class="table-right">Email：<%= current_user.email %></td>
-			</tr>
-			<tr>
-				<td class="table-join" colspan="2">生年月日：<%= current_user.birthdate %></td>
-			</tr>
-		</table>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-xs-offset-5 col-xs-2">
-		<%= link_to "登録情報の変更", edit_user_path(current_user.id), class:"btn btn-info btn-block" %>
+<% if current_user.admin == false %>
+
+	<div class="container">
+
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-10">
+			<table class="table userinfo-table">
+				<tr>
+					<th class="info" colspan="2">登録情報</th>
+				</tr>
+				<tr>
+					<td class="table-left">名前：<%= current_user.first_name %><%= current_user.last_name %></td>
+					<td class="table-right">フリガナ：<%= current_user.rubi_first_name %><%= current_user.rubi_last_name %></td>
+				</tr>
+				<tr>
+					<td class="table-left">〒：<%= current_user.postcode %></td>
+					<td class="table-right">住所：<%= current_user.address %></td>
+				</tr>
+				<tr>
+					<td class="table-left">TEL：<%= current_user.tel %></td>
+					<td class="table-right">Email：<%= current_user.email %></td>
+				</tr>
+				<tr>
+					<td class="table-join" colspan="2">生年月日：<%= current_user.birthdate %></td>
+				</tr>
+			</table>
+		</div>
 	</div>
-</div>
+
+	<div class="row">
+		<div class="col-xs-offset-5 col-xs-2">
+			<%= link_to "登録情報の変更", edit_user_path(current_user.id), class:"btn btn-info btn-block" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<h3>購入履歴</h3>
+		<div class="col-xs-9">
+			<% if current_user.buy_infos.present? %>
+				<h4>購入日<%= current_user.buy_infos.order(:created_at).last.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d') %>
+				</h4>
+		    </div>
+		    <div class="col-xs-3">
+		    	<%= link_to "全ての購入履歴", buy_infos_path, class:"btn btn-success btn-block" %>
+		    </div>
+
+			<div class="col-xs-12">
+				<% current_user.buy_infos.order(:created_at).last.buy_items.each do |buy_item| %>
+				<!-- refileを適用できるようにする -->
+	            
+				<%= buy_item.item.artist.name %>
+				<%= buy_item.item.name %>
+			    <% end %>
+			<% else %>
+			    <h4>購入履歴はありません</h4>
+			<% end %>
+	    </div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xs-offset-10 col-xs-2">
+			<%= link_to "退会するの...?", users_withdraw_view_path, class:"withdraw-btn btn btn-block" %>
+		</div>
+	</div>
+
+	</div>
+
+
+<% else %>
+
+	<div class="admin-mypage">
+
+		<h3>管理者マイページ</h3>
+
+	<div class="container">
+		<div class="row first-box">
+			<div class="col-xs-3">
+				<%= link_to "商品新規登録", new_item_path, class:"btn btn-primary btn-admin" %>
+			</div>
+			<div class="col-xs-3">
+				<%= link_to "商品一覧", items_path, class:"btn btn-primary btn-admin" %>
+			</div>
+			<div class="col-xs-3">
+				<%= link_to "ユーザ一覧", users_path, class:"btn btn-primary btn-admin" %>
+			</div>
+			<div class="col-xs-3">
+				<%= link_to "受注情報一覧", buy_infos_path, class:"btn btn-primary btn-admin" %>
+			</div>
+		</div>
+		<div class="row second-box">
+			<div class="col-xs-3">
+				<%= link_to "アーティスト・レーベル・ジャンル登録", artists_labels_genres_new_path, class:"btn btn-primary btn-admin" %>
+			</div>
+			<div class="col-xs-3">
+				<%= link_to "アーティスト・レーベル・ジャンル一覧", artists_labels_genres_index_path, class:"btn btn-primary btn-admin" %>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+<% end %>
+

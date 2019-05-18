@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
+
   def top
+    if session[:cart] == nil
+        session[:cart] == {}
+    end
   end
 
   def show
@@ -30,6 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+      @item = Item.find(params[:id])
   end
 
   def create

@@ -27,7 +27,7 @@ class ArtistsLabelsGenresController < ApplicationController
   	  genre.save
       end
       if artist.name.present? or label.name.present? or genre.name.present?
-      redirect_to artists_labels_genres_index_path
+      redirect_to new_item_path
       else
       redirect_to artists_labels_genres_new_path
       end

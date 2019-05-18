@@ -1,17 +1,35 @@
 class CartItemsController < ApplicationController
 
   def create
-  	cart_item = curent_user.cart_items.build(item_id: params[:item_id])
-  	cart_item.save
-  	redirect_to user_cart_path(current_user)
+    if user_signed_in?
+    	cart_item = curent_user.cart_items.build(item_id: params[:item_id])
+    	cart_item.save
+    	redirect_to user_cart_path(current_user)
+    else
+      session[:carts] = {}
+      session[:cart]
+    end
   end
 
-  def edit
+  def update
+    cart_item = CartItem.find_by(user_id: current_user, item_id: params[:item_id])
+    cart_item.update(cart_item_params)
+    redirect_to users_cart_path
   end
 
   def destroy
-  	cart_item = Cart_item.find_by(item_id: params[:item_id], user_id: current_user.id)
+  	cart_item = CartItem.find_by(item_id: params[:item_id], user_id: current_user.id)
   	cart_item.destroy
-  	redirect_to user_cart_path(current_user)
+  	redirect_to users_cart_path
   end
+
+
+
+  private
+
+
+  def cart_item_params
+    params.require(:cart_item).permit(:user_id, :item_id, :buy_count)
+  end
+
 end

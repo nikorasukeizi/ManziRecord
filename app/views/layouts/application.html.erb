@@ -26,7 +26,7 @@
       </form>
 
         <div class="collapse navbar-collapse" id="navbarEexample">
-          <% if user_signed_in? && current_user.admin == false%><!--ユーザがログインしたとき-->
+          <% if user_signed_in? && current_user.admin == false %><!--ユーザがログインしたとき-->
           <div class="nav navbar-nav navbar-right nav-menu">
 
             <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
@@ -35,7 +35,7 @@
 
             </div>
 
-          <% elsif user_signed_in? && current_user.admin == true%> <!--adminのとき-->
+          <% elsif user_signed_in? && current_user.admin == true %> <!--adminのとき-->
               <div class="nav navbar-nav navbar-right nav-menu">
 
               <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
