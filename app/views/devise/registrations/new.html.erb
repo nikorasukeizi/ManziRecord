@@ -15,20 +15,20 @@
 
       <ul>
 
-        <li><%= f.label :first_name, "名前" %></li>
+        <li><%= f.label :last_name, "名前" %></li>
 
           <div class="form-group form-inline">
-              <%= f.label :first_name, "氏名", class:"form-inline" %>
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"姓", class:"form-control" %>
+              <%= f.label :last_name, "氏名", class:"form-inline" %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"姓", class:"form-control" %>
 
-              <%= f.text_field :last_name, autocomplete: "last_name", placeholder:"名", class:"form-control" %>
+              <%= f.text_field :first_name, autocomplete: "first_name", placeholder:"名", class:"form-control" %>
           </div>
 
           <div class="form-group form-inline">
-            <%= f.label :rubi_first_name, "フリガナ", class:"form-inline" %>
-            <%= f.text_field :rubi_first_name, autocomplete: "rubi_first_name", placeholder:"セイ", class:"form-control" %>
+            <%= f.label :rubi_last_name, "フリガナ", class:"form-inline" %>
+            <%= f.text_field :rubi_last_name, autocomplete: "rubi_last_name", placeholder:"セイ", class:"form-control" %>
 
-            <%= f.text_field :rubi_last_name, autocomplete: "rubi_last_name", placeholder:"メイ", class:"form-control" %>
+            <%= f.text_field :rubi_first_name, autocomplete: "rubi_first_name", placeholder:"メイ", class:"form-control" %>
           </div>
 
         <li>
@@ -88,7 +88,7 @@
 
       <div class="row">
         <div class="actions col-xs-offset-2 col-xs-8">
-          <%= f.submit "登録", class:"btn btn-square btn-lg" %>
+          <%= f.submit "登録", class:"btn-square btn-lg" %>
         </div>
       </div>
 

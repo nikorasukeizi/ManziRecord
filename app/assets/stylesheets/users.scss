@@ -3,6 +3,164 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.colorgraph {
+	height: 5px;
+	border-top: 0;
+	background: #c4e17f;
+	border-radius: 5px;
+	background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.form-address .form-control{
+	width: 80%;
+}
+
+.btn-square{
+    width: 100%;
+	display: inline-block;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	background: #ff8c00;
+	color: #fff;
+	border-bottom: solid 4px #d2691e;
+	border-radius: 8px;
+}
+
+.btn-square:hover{
+	color: #ffe4c4;
+}
+
+.btn-square:active{
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px);/*下に動く*/
+	border-bottom: none;/*線を消す*/
+	color: #fff;
+}
+
+.login-guide{
+	font-size: 10px;
+}
+
+.signup-guide{
+	font-size: 9px;
+}
+
+.form li{
+	margin-top: 12px;
+	margin-left: 36px;
+}
+
+.form-group{
+	margin-left: 36px;
+}
+
+.userinfo-table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	width: 100%;
+	margin-top: 60px;
+}
+
+.userinfo-table th{
+	text-align: center;
+	padding: 7px 0;
+	border-right:solid 1px #ddd;
+	border-left:solid 1px #ddd;
+}
+
+.userinfo-table .table-left{
+  text-align: left;
+  padding: 7px;
+  border-left:solid 1px #ddd;
+  border-bottom:solid 1px #ddd;
+  width: 100%;
+}
+
+.userinfo-table .table-right{
+  text-align: left;
+  padding: 7px;
+  border-right:solid 1px #ddd;
+  border-bottom:solid 1px #ddd;
+  width: 100%;
+}
+
+.userinfo-table .table-join{
+  text-align: left;
+  padding: 7px;
+  border-right:solid 1px #ddd;
+  border-left:solid 1px #ddd;
+  border-bottom:solid 1px #ddd;
+  width: 100%;
+}
+
+.withdraw-btn{
+	width: 10%;
+	height: 26px;
+	padding: none;
+	font-size: 5px;
+	text-align: center;
+	line-height: 13px;
+	color: #fff;
+	background-color: #ffc0cb;
+	border: none;
+	border-radius: 10px;
+	margin: 20px;
+}
+
+.withdraw-btn:hover{
+	background-color: #dc143c;
+	color: #fff;
+}
+
+.withdraw-btn:action{
+	background-color: #800000;
+}
+
+.admin-mypage h3{
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.first-box{
+	text-align: center;
+}
+
+.second-box{
+    text-align: center;
+	margin-top: 60px;
+}
+
+.btn-admin{
+	height: 45px;
+	line-height: 30px;
+}
+
+.buyitem-block{
+	cursor: pointer;
+	display: inline-block;
+	margin: 10px;
+}
+
+.buyitem-artist{
+	margin-top: 15px;
+	text-align: center;
+}
+
+.buyitem-name{
+	text-align: center;
+}
+
 .clearfix::after {
 	content: "";
 	display: block;
