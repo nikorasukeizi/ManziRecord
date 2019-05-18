@@ -2,6 +2,7 @@
 <div class="nested-fields">
 
     <div class="form-group">
+
       <%= f.label 'Disc名' %><br>
       <%= f.text_field :name %>
       <!-- このフォームを削除する -->
@@ -14,6 +15,7 @@
       <% end %>
 
       <%= link_to_add_association "曲を追加", f, :songs, class: "btn btn-primary btn-xs" %>
+
       <br><br>
     </div>
 </div>

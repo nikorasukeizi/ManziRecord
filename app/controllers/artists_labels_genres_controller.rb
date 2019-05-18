@@ -28,6 +28,7 @@ class ArtistsLabelsGenresController < ApplicationController
       end
       if artist.name.present? or label.name.present? or genre.name.present?
       redirect_to new_item_path
+
       else
       redirect_to artists_labels_genres_new_path
       end

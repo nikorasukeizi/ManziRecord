@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
   end
 
   def cart_show
@@ -53,14 +54,22 @@ class UsersController < ApplicationController
 
   def withdraw
     if current_user.password_confirmation == current_user.password
-       current_user.status = 'false'
-       current_user.update(user_params)
-       current_user.save
-       redirect_to root_path
+      current_user.status = 'false'
+      current_user.update(user_params)
+      current_user.save
+      redirect_to root_path
     else
-       render :withdraw_view
+      render :withdraw_view
     end
 
+  end
+
+  def cart_create
+      cart = CartItem.new
+      cart.user_id = current_user.id
+      cart.item_id = Item.find(params[:id])
+      cart.save
+      redirect_to cart_show_path(user.id)
   end
 
   def cart_update

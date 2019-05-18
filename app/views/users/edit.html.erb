@@ -4,98 +4,96 @@
     <div class="col-xs-6 col-xs-offset-3">
       <fieldset>
 
+        <h2>ユーザー情報編集</h2>
+        <hr class="colorgraph"><!-- カラフル横ライン -->
 
-      <h2>ユーザー情報編集</h2>
-      <hr class="colorgraph">
+        <%= form_for @user, :url => {:action => 'update'}, class:"from" do |f| %>
 
-      <div class="form">
+        <ul>
 
-        <%= form_for @user, :url => {:action => 'update'} do |f| %>
-
-      <ul>
-
-        <li><%= f.label :first_name, "名前" %></li>
+          <li><%= f.label :last_name, "名前" %></li>
 
           <div class="form-group form-inline">
-              <%= f.label :first_name, "氏名", class:"form-inline" %>
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"姓", class:"form-control" %>
+              <%= f.label :last_name, "氏名", class:"form-inline" %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"姓", class:"form-control" %>
 
-              <%= f.text_field :last_name, autocomplete: "last_name", placeholder:"名", class:"form-control" %>
+              <%= f.text_field :first_name, autocomplete: "first_name", placeholder:"名", class:"form-control" %>
           </div>
 
           <div class="form-group form-inline">
-            <%= f.label :rubi_first_name, "フリガナ", class:"form-inline" %>
-            <%= f.text_field :rubi_first_name, autocomplete: "rubi_first_name", placeholder:"セイ", class:"form-control" %>
+            <%= f.label :rubi_last_name, "フリガナ", class:"form-inline" %>
+            <%= f.text_field :rubi_last_name, autocomplete: "rubi_first_name", placeholder:"セイ", class:"form-control" %>
 
-            <%= f.text_field :rubi_last_name, autocomplete: "rubi_last_name", placeholder:"メイ", class:"form-control" %>
+            <%= f.text_field :rubi_first_name, autocomplete: "rubi_first_name", placeholder:"メイ", class:"form-control" %>
           </div>
 
-        <li>
-          <div class="from-group">
-            <%= f.label :birthdate, "生年月日" %>
-            <%= raw sprintf(
-              f.date_select(
-                :birthdate, use_month_numbers: true, start_year: 1930, end_year:(Time.now.year), default: Date.new(2000, 1, 1), date_separator: '%s'), '年', '月') + '日' %>
+          <li>
+            <div class="from-group">
+              <%= f.label :birthdate, "生年月日" %>
+              <%= raw sprintf(
+                f.date_select(
+                  :birthdate, use_month_numbers: true, start_year: 1930, end_year:(Time.now.year), default: Date.new(2000, 1, 1), date_separator: '%s'), '年', '月') + '日' %>
+            </div>
+          </li>
+
+          <li><%= f.label :postcode, "住所" %></li>
+            <div class="form-group form-inline">
+              <%= f.label :postcode, "郵便番号" %>
+              <%= f.text_field :postcode, autocomplete: "postcode", placeholder:"ハイフンなし", class:"form-control" %>
+            </div>
+
+            <div class="form-group form-inline">
+              <%= f.label :address, "住所" %>
+              <span class="form-address">
+              <%= f.text_field :address, autocomplete: "address", class:"form-control" %>
+              </span>
+            </div>
+
+          <li>
+            <div class="form-group-another form-inline">
+              <%= f.label :tel, "電話番号" %>
+              <%= f.text_field :tel, autocomplete: "tel", placeholder:"ハイフンなし", class:"form-control" %>
+            </div>
+          </li>
+
+          <li>
+            <div class="form-group-another form-inline">
+              <%= f.label :email, "メールアドレス" %>
+              <%= f.email_field :email, autocomplete: "email", class:"form-control" %>
+            </div>
+          </li>
+
+          <li>
+            <div class="form-group-another form-inline">
+              <%= f.label :password, "パスワード" %><% if @minimum_password_length %>
+              <em>(半角<%= @minimum_password_length %>文字以上)</em>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+            </div>
+          </li>
+
+          <li>
+            <div class="form-group-another form-inline">
+              <%= f.label :password_confirmation, "パスワード確認" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+            </div>
+          </li>
+
+        </ul>
+
+        <hr class="colorgraph"><!-- カラフル横ライン -->
+
+        <div class="row">
+          <div class="actions col-xs-offset-2 col-xs-8">
+            <%= f.submit "登録", class:"btn btn-square btn-lg" %>
           </div>
-        </li>
-
-        <li><%= f.label :postcode, "住所" %></li>
-          <div class="form-group form-inline">
-            <%= f.label :postcode, "郵便番号" %>
-            <%= f.text_field :postcode, autocomplete: "postcode", placeholder:"ハイフンなし", class:"form-control" %>
-          </div>
-
-          <div class="form-group form-inline">
-            <%= f.label :address, "住所" %>
-            <span class="form-address">
-            <%= f.text_field :address, autocomplete: "address", class:"form-control" %>
-            </span>
-          </div>
-
-        <li>
-          <div class="form-group-another form-inline">
-            <%= f.label :tel, "電話番号" %>
-            <%= f.text_field :tel, autocomplete: "tel", placeholder:"ハイフンなし", class:"form-control" %>
-          </div>
-        </li>
-
-        <li>
-          <div class="form-group-another form-inline">
-            <%= f.label :email, "メールアドレス" %>
-            <%= f.email_field :email, autocomplete: "email", class:"form-control" %>
-          </div>
-        </li>
-
-        <li>
-          <div class="form-group-another form-inline">
-            <%= f.label :password, "パスワード" %><% if @minimum_password_length %>
-            <em>(半角<%= @minimum_password_length %>文字以上)</em>
-            <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-          </div>
-        </li>
-
-        <li>
-          <div class="form-group-another form-inline">
-            <%= f.label :password_confirmation, "パスワード確認" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-          </div>
-        </li>
-      </ul>
-
-      <hr class="colorgraph">
-
-      <div class="row">
-        <div class="actions col-xs-offset-2 col-xs-8">
-          <%= f.submit "登録", class:"btn btn-square btn-lg" %>
         </div>
-      </div>
 
         <% end %>
-      </div>
 
       </fieldset>
     </div>
   </div>
+
 </div>
 
