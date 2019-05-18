@@ -20,12 +20,26 @@ class UsersController < ApplicationController
   end
 
   def cart_show
+    if user_signed_in?
+        @user = current_user
+    end
   end
 
   def buy
+    @select = [:select]
+    @buy_info = BuyInfo.new
   end
 
   def buy_confirm
+    if params[:select] == true
+        @buy_info = BuyInfo.new(addressee: "#{current_user.first_name}+#{current_user.last_name}", delivery_postcode: current_user.postcode, delivery_address: current_user.address)
+    else
+        @buy_info = BuyInfo.new(params[:addressee, :delivery_postcode, :delivery_address])
+    end
+    @buy_info.payments = params[:payments]
+    @buy_info.buy_status = 0 #ステータスに「受付」を代入(buy_infoモデルのenumの記述見て！)
+    @buy_info.save
+    redirect_to users_buy_confirm_path
   end
 
   def update
@@ -64,6 +78,9 @@ class UsersController < ApplicationController
   def cart_destroy
   end
 
+
+  def cart
+  end
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :rubi_first_name, :rubi_last_name, :birthdate, :postcode, :address, :tel, :password, :password_confirmation, :email, :status, :admin)

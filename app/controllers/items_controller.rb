@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
+
   def top
+    if session[:cart] == nil
+        session[:cart] == {}
+    end
   end
 
   def show
