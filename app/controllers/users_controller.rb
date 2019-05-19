@@ -77,11 +77,11 @@ before_action :require_admin, only:[:index]
   end
 
   def cart_create
-      cart = CartItem.new
+      cart = CartItem.new(cart_item_params)
       cart.user_id = current_user.id
       cart.item_id = Item.find(params[:id])
       cart.save
-      redirect_to cart_show_path(user.id)
+      redirect_to users_cart_path(user.id)
   end
 
   def cart_update
@@ -98,6 +98,10 @@ before_action :require_admin, only:[:index]
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :rubi_first_name, :rubi_last_name, :birthdate, :postcode, :address, :tel, :password, :password_confirmation, :email, :status, :admin)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:user_id, :item_id; :buy_count)
   end
 
   def update_resource(resource, params)
