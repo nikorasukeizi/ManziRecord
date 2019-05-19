@@ -12,8 +12,8 @@ before_action :require_admin, only:[:index]
   end
 
   def buy_history
-    @user = User.find(params[:id])
-    @buy_infos = @user.buy_infos.order('created_at desc')
+      @user = User.find(params[:id])
+      @buy_infos = @user.buy_infos.order('created_at desc')
   end
 
   def withdraw_view
@@ -94,7 +94,7 @@ before_action :require_admin, only:[:index]
   def cart
   end
 
-  
+
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :rubi_first_name, :rubi_last_name, :birthdate, :postcode, :address, :tel, :password, :password_confirmation, :email, :status, :admin)

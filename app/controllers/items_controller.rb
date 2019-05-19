@@ -4,6 +4,10 @@ class ItemsController < ApplicationController
     if session[:cart] == nil
         session[:cart] == {}
     end
+
+    @items_new = Item.all.order(created_at: "DESC")
+    @items_rank = Item.all.order(sales: "ASC")
+
   end
 
   def show
