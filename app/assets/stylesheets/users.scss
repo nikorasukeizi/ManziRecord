@@ -209,3 +209,33 @@
 	height: 500px;
 }
 
+.userindex-table {
+	margin: 30px;
+}
+
+.userindex-title{
+	margin: 50px;
+}
+
+.userindex-table tr{
+	border-bottom: 1px solid #000;
+}
+
+
+.userindex-table th{
+	text-align: center;
+	height: 30px;
+	width: 12%;
+}
+
+.userindex-table td{
+	text-align: center;
+	height: 30px;
+	width: 12%;
+}
+
+.userindex-table .name{
+	text-align: left;
+	height: 30px;
+	width: 12%;
+}

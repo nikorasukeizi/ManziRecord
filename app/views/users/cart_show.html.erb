@@ -4,7 +4,7 @@
 
 		<% if user_signed_in? %>
 
-			<% if @user.items == nil  %>
+			<% unless @user.items.present? %>
 				<h1 class="text-center">カート内に商品はまだありません。</h1>
 			<% else %>
 				<% @user.items.each_with_index do |item, i| %>
@@ -28,9 +28,11 @@
 							<p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p>
 						</div>
 					</div>
+
 					<% if i == @user.items.length - 1 %>
 						<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
 					<% end %>
+
 				<% end %>
 			<% end %>
 
