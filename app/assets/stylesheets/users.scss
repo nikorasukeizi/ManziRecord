@@ -105,16 +105,15 @@
 
 .withdraw-btn{
 	width: 10%;
-	height: 26px;
+	height: 30px;
 	padding: none;
 	font-size: 5px;
 	text-align: center;
-	line-height: 13px;
 	color: #fff;
 	background-color: #ffc0cb;
 	border: none;
 	border-radius: 10px;
-	margin: 20px;
+	margin-top: 300px;
 }
 
 .withdraw-btn:hover{
@@ -126,10 +125,24 @@
 	background-color: #800000;
 }
 
+.mypage h3{
+	margin-top: 50px;
+}
+
+.mypage h4{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
 .admin-mypage h3{
 	text-align: center;
 	margin-top: 60px;
 	margin-bottom: 60px;
+}
+
+.second-box .btn{
+    white-space: normal;
+    height: 70px;
 }
 
 .first-box{
@@ -143,7 +156,7 @@
 
 .btn-admin{
 	height: 45px;
-	line-height: 30px;
+	line-height: 45px;
 }
 
 .buyitem-block{
@@ -159,6 +172,14 @@
 
 .buyitem-name{
 	text-align: center;
+}
+
+.buyhistory h2{
+	margin-top: 60px;
+}
+
+.buyhistory h4{
+	margin-top: 30px;
 }
 
 .clearfix::after {

@@ -121,18 +121,20 @@
 	background-color: white;
 }
 .new_item_info {
-	width: 250px;
-	height: 250px;
-	border: 1px solid #000;
-	text-align: center;
-	margin-left: 5%;
+	margin: 5%;
 	margin-top: 20px;
-	display: inline-block;
 }
+
+.new_item_block{
+    border: 1px solid #000;
+    margin-top: 10px;
+    margin-left: 5%;
+    text-align: center;
+}
+
 .new_item_image {
-	width: 150px;
-	height: 150px;
-	margin: 30px auto 0 auto;
+	margin: 20px auto 5px auto;
+	width: 100%;
 }
 
 

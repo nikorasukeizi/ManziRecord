@@ -63,19 +63,13 @@
           <h2>新商品入荷！卍</h2>
           <div class="new_item_info">
             <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
-            <%= image_tag 'sample4.jpg', class: "new_item_image" %>
-            <p>
-              cd_title <br>
-              cd_artist_name
-            </p>
-          </div>
-          <div class="new_item_info">
-            <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
-            <%= image_tag 'sample.jpg', class: "new_item_image" %>
-            <p>
-              cd_title <br>
-              cd_artist_name
-            </p>
+            <% @items_new.first(2).each do |item| %>
+              <div class="new_item_block col-sm-5" >
+                <%= link_to item_path(item.id) do %><%= attachment_image_tag item, :image, :fill, 180, 180, format:'jpg', fallback:'no_image.jpg', class: "new_item_image" %>
+                <p><%= item.artist.name %><br>
+                <%= item.name %></p><% end %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="store_info col-md-4">
