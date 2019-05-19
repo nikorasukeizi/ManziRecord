@@ -17,6 +17,14 @@ class ItemsController < ApplicationController
   end
 
   def index
+      @genre = Genre.find(params[:id])
+
+      if @genre = nil?
+         @items = Item.all
+
+      else
+       @genreitems = @genre.item_id.all
+      end
   end
 
   def search_result
