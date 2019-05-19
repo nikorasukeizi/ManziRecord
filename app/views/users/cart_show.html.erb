@@ -7,9 +7,11 @@
 			<% unless @user.items.present? %>
 				<h1 class="text-center">カート内に商品はまだありません。</h1>
 			<% else %>
-				<% @user.items.each do |item| %>
-					<div class="cart_items col-md-8 col-md-offset-2 clearfix">
+				<% @user.items.each_with_index do |item, i| %>
+					<div class="cart_items col-md-10 col-md-offset-1 clearfix">
+						<%= link_to item_path(item.id) do %>
 						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<% end %>
 						<div class="cd_info ">
 							<p>CDタイトル：<%= item.name %></p>
 							<p>アーティスト名：<%= item.artist.name %></p>
@@ -26,7 +28,11 @@
 							<p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p>
 						</div>
 					</div>
-					<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+
+					<% if i == @user.items.length - 1 %>
+						<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+					<% end %>
+
 				<% end %>
 			<% end %>
 
@@ -36,7 +42,7 @@
 				<h1 class="text-center">カート内に商品はまだありません。</h1>
 			<% else %>
 				<% session[:cart].each do |item| %>
-					<div class="cart_items col-md-8 col-md-offset-2 clearfix">
+					<div class="cart_items col-md-10 col-md-offset-1 clearfix">
 						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
 						<div class="cd_info ">
 							<p>CDタイトル：<%= item.name %></p>
