@@ -17,14 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-      # @genre = Genre.find(params[:id])
-
-      # if @genre = nil?
-         @items = Item.all
-
-      # else
-       # @genreitems = @genre.item_id.all
-      # end
+      @items = Item.all
   end
 
   def search_result
@@ -62,6 +55,17 @@ class ItemsController < ApplicationController
       item.update
       redirect_to item_path(item.id)
   end
+
+
+ # @genre = Genre.find(params[:id])
+
+      # if @genre = nil?
+         @items = Item.all
+
+      # else
+      # @genreitems = @genre.item_id.all
+      # end
+
 
   private
       #子要素・孫要素も一緒に許可する。　idと_destroyを必ず入れる
