@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'items/top'
   get 'items/search_result'
   get 'items/ranking'
+  get 'items/:id/genre_index' => 'items#genre_index', as: 'genres_index'
 
   #Cart_itemsコントローラルーティング
 

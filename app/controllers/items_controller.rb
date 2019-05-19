@@ -20,6 +20,10 @@ class ItemsController < ApplicationController
       @items = Item.all
   end
 
+  def genre_index
+      @genre = Genre.find(params[:id])
+  end
+
   def search_result
   end
 
