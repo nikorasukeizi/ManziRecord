@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'items/top'
   get 'items/search_result'
   get 'items/ranking'
+  get 'items/:id/genre_index' => 'items#genre_index', as: 'genres_index'
 
   #Cart_itemsコントローラルーティング
 
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   get 'users/:id/buy_history' => 'users#buy_history', as: 'user_buy_history'
   get 'users/buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
+  post 'cart_items' => 'user#cart_create'
   get 'users/buy'
   get 'users/buy_confirm'
   get 'users/cart_show', as: 'users_cart'
