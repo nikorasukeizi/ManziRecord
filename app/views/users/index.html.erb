@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h2>ユーザ一覧</h2>
-			<table>
+			<h2 class="userindex-title">ユーザ一覧</h2>
+			<table class="userindex-table">
 				<thead>
 					<tr>
 						<th>ユーザID</th>
@@ -18,7 +18,7 @@
 					<% @users.each do |users| %>
 					<tr>
 						<td><%= users.id %></td>
-						<td><%= users.last_name %><%= users.first_name %></td>
+						<td class="name"><%= users.last_name %> <%= users.first_name %></td>
 						<td><% if users.status == false %>（退会済み）<% end %></td>
 						<td><%= link_to "詳細", user_path(users.id) %></td>
 						<td><%= link_to "編集", edit_user_path(users.id) %></td>
