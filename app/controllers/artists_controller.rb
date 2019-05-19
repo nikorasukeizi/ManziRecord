@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
 
   def update
   	  artist = Artist.find(params[:id])
-  	  artist.update
+  	  artist.update(artist_params)
   	  redirect_to artists_labels_genres_index_path
   end
 
@@ -14,4 +14,13 @@ class ArtistsController < ApplicationController
   	  artist.destroy
   	  redirect_to artists_labels_genres_index_path
   end
+
+
+
+    private
+
+      def artist_params
+          params.require(:artist).permit(:name)
+      end
+
 end
