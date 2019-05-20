@@ -35,11 +35,10 @@ Rails.application.routes.draw do
   resources :buy_infos, only: [:index, :show, :edit, :update, :destroy]
 
   # Usersコントローラルーティング
-
   get 'users/:id/buy_history' => 'users#buy_history', as: 'user_buy_history'
   get 'users/buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
-  post 'cart_items' => 'user#cart_create'
+  post '/cart_items' => 'users#cart_create'
   get 'users/buy', as: 'users_buy'
   get 'users/buy_confirm', as: 'users_buyconfirm'
   post 'users/buy_confirm'
