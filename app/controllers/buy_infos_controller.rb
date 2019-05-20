@@ -18,6 +18,7 @@ class BuyInfosController < ApplicationController
   end
 
   def index
+      @buyinfos = Buy_info.all
   end
 
   def show

@@ -11,30 +11,71 @@
 	<div class="col-lg-3">
 	  <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %><br>
 
-      <ul class="list-group" style="margin-top: 30px;">
-
-	     <li class="list-group-item" style="text-align: center; font-weight: bold;">
-			  カートに入れる</li>
-
-		     <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %>
-
-		           <li class="list-group-item" style="font-weight: bold; text-align: center;">
-			       数量  <%= f.number_field :buy_count %><br><br>
-
-
-			       <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm" %></li>
 
 
 
-		     <% end %>
+	       　 <!-- ログインしているユーザーのみ管理者権限の判定を行う していない場合カートボタン表示-->
+              <% if user_signed_in? %>
+    
+<!-- 		     <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %> -->
 
-      </ul>
 
-      <!-- 管理者権限・アドミンがtrueならば -->
-      <% if current_user.admin? %>
-	           <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success btn-xs" %>
-		       <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %>
-	  <% end %>
+	             <!-- 管理者権限・アドミンがtrueでないならば表示　＝管理者には表示しない -->
+	             <% unless current_user.admin? %>
+
+                        <ul class="list-group" style="margin-top: 30px;">
+
+	  　　　　             <li class="list-group-item" style="text-align: center; font-weight: bold;">
+			 　　           カートに入れる</li>
+
+
+				           <%= form_for(@cart) do |f| %>
+
+					           <li class="list-group-item" style="font-weight: bold; text-align: center;">
+						       数量  <%= f.number_field :buy_count %><br><br>
+
+
+						       <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm" %></li>
+
+				           <% end %>
+
+				        </ul>
+
+				 <% end %>
+
+			  <% else %>
+			            <ul class="list-group" style="margin-top: 30px;">
+
+			              <li class="list-group-item" style="text-align: center; font-weight: bold;">
+			 　　          カートに入れる</li>
+
+
+				           <%= form_for(@cart) do |f| %>
+
+					           <li class="list-group-item" style="font-weight: bold; text-align: center;">
+						       数量  <%= f.number_field :buy_count %><br><br>
+
+
+						       <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm" %></li>
+
+			               <% end %>
+			            </ul>
+			  <% end %>
+
+
+        <!-- ログインしているユーザーのみ管理者権限の判定を行う -->
+        <% if user_signed_in? %>
+
+	      <!-- 管理者権限・アドミンがtrueならば -->
+	      <% if current_user.admin? %>
+
+                   <div class="admin_botton" style="margin-top: 200px;">
+			           <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success btn-xs" %>
+				       <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %>
+				   </div>
+		  <% end %>
+
+		<% end %>
 
 	</div>
 
