@@ -16,7 +16,7 @@
 	     <li class="list-group-item" style="text-align: center; font-weight: bold;">
 			  カートに入れる</li>
 
-		     <%= form_for(@cart) do |f| %>
+		     <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %>
 
 		           <li class="list-group-item" style="font-weight: bold; text-align: center;">
 			       数量  <%= f.number_field :buy_count %><br><br>
