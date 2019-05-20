@@ -1,12 +1,15 @@
 class ItemsController < ApplicationController
 
+  before_action :after_login, only: [:top]
+
   def top
     if session[:cart] == nil
         session[:cart] == {}
     end
 
     @items_new = Item.all.order(created_at: "DESC")
-    @items_rank = Item.all.order(sales: "ASC")
+    @items_rankall = Item.all.order(sales: "DESC")
+    
 
   end
 
@@ -82,4 +85,11 @@ class ItemsController < ApplicationController
                                         discs_attributes: [:id, :name, :_destroy,
                                         songs_attributes: [:id, :name, :number, :_destroy]])
       end
-end
+
+      # ログイン後にユーザの年齢を登録
+      def after_login
+       if user_signed_in? && current_user.age == nil
+        current_user.update(age: (Date.today.strftime('%Y%m%d').to_i - current_user.birthdate.strftime('%Y%m%d').to_i) / 10000)
+       end
+      end
+  end
