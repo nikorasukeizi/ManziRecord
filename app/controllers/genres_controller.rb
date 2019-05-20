@@ -30,9 +30,15 @@ class GenresController < ApplicationController
       end
 
       def require_admin
-          if current_user.admin?
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
           else
-             redirect_to root_path
+            redirect_to root_path
+
           end
       end
 

@@ -16,9 +16,6 @@
 
 	       　 <!-- ログインしているユーザーのみ管理者権限の判定を行う していない場合カートボタン表示-->
               <% if user_signed_in? %>
-    
-<!-- 		     <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %> -->
-
 
 	             <!-- 管理者権限・アドミンがtrueでないならば表示　＝管理者には表示しない -->
 	             <% unless current_user.admin? %>
