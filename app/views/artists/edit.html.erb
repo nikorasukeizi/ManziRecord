@@ -8,9 +8,13 @@
 
 <%= form_for(@artist) do |f| %>
 
-  <%= f.text_field :name %><br><br><br>
+	<%= f.label 'アーティスト名' %>
+	<%= f.text_field :name %><br>
+	<%= f.label 'かな(記号不可)' %>
+	<%= f.text_field :rubi_name %>
+	<br><br><br>
 
-  <%= f.submit 'ジャンル名変更', class: "btn btn-primary" %>
+  <%= f.submit 'アーティスト名変更', class: "btn btn-primary" %>
 
 <% end %>
 
