@@ -1,0 +1,10 @@
+
+
+
+  <% flash.each do |message_type, message| %>
+    <div id="alert" class="col-xs-11 alert alert-<%= message_type %> alert-dismissible" >
+      <a class="close" data-dismiss="alert" aria-label="Close">×</a>
+      <%= message %>
+    </div>
+  <% end %>
+

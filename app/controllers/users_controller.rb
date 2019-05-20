@@ -51,6 +51,7 @@ before_action :require_admin, only:[:index]
     @user = User.find(params[:id])
     if @user.update_without_current_password(user_params)
       sign_in @user, bypass: true
+      flash[:success] = '卍 ユーザ情報を編集しました 卍'
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -64,8 +65,10 @@ before_action :require_admin, only:[:index]
       if user.valid_password?(params[:user][:password])
         current_user.status = false
         current_user.update(user_params)
+        flash[:danger] = '卍卍卍 退会しました 卍卍卍'
         redirect_to root_path
       else
+        flash.now[:warning] = '卍 入力されたパスワードが違います 卍'
         render :withdraw_view
       end
     # adminの場合の処理
