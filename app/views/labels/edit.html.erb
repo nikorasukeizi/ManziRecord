@@ -1,12 +1,21 @@
+<div class="page_title">
 <h1>レーベル名編集</h1>
+</div>
+
+<div class="container">
+<div class="row" style="text-align: center;">
 
 
 <%= form_for(@label) do |f| %>
 
-  <%= f.text_field :name %>
+  <%= f.text_field :name %><br><br><br>
 
-  <%= f.submit 'レーベル名変更' %>
+  <%= f.submit 'ジャンル名変更', class: "btn btn-primary" %>
 
 <% end %>
 
-<p></p>
+
+
+
+</div>
+</div>

@@ -1,4 +1,7 @@
 class GenresController < ApplicationController
+
+  before_action :require_admin
+
   def ranking
   end
 
@@ -18,9 +21,19 @@ class GenresController < ApplicationController
       redirect_to artists_labels_genres_index_path
   end
 
-  private
-  def genre_params
-    params.require(:genre).permit(:name)
-  end
+
+     private
+     
+
+      def genre_params
+          params.require(:genre).permit(:name)
+      end
+
+      def require_admin
+          if current_user.admin?
+          else
+             redirect_to root_path
+          end
+      end
 
 end
