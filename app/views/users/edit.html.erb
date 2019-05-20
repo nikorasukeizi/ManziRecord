@@ -11,6 +11,7 @@
       <div class="form">
 
         <%= form_for @user, :url => {:action => 'update'} do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
 
       <ul>
 
