@@ -1,2 +1,38 @@
-<h1>BuyInfos#index</h1>
-<p>Find me in app/views/buy_infos/index.html.erb</p>
+<div class="page_title">
+<h1>受注履歴一覧</h1>
+</div>
+
+<div class="container">
+<div class="row">
+
+	<% @buyinfos.each do |buyinfo| %>
+
+		<div class="col-lg-3">
+
+            <p>購入者：</p><%= buyinfo.user.name %><p>様</p>
+            <p>発注日：</p><%= buyinfo.created_at %>
+            <p>総計：</p><%= buyinfo.price %><p>円</p>
+            <p>ステータス：</p><%= buyinfo.buy_status %>
+            <%= link_to "詳細", buy_info_path(buyinfo.id), class: "btn btn-success btn-sm" %>
+
+        </div>
+
+	<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
