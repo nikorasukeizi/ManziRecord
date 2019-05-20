@@ -108,6 +108,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
+    jQuery-Validation-Engine-rails (0.0.2)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -281,6 +282,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   devise
+  jQuery-Validation-Engine-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

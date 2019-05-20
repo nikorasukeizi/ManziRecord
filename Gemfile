@@ -77,3 +77,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  gem 'bootstrap-sass'
 #ページャー作成用
  gem 'kaminari'
+#jQueryバリデーション実装用
+ gem 'jQuery-Validation-Engine-rails'
