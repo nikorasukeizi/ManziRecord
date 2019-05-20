@@ -208,6 +208,43 @@
 .delivery_address {
 	height: 500px;
 }
+.buy_items {
+	margin: 2rem;
+}
+.buy_items:nth-child(1) {
+	margin-top: 5rem;
+}
+.shipping_fee {
+	margin: 5rem 0;
+}
+.t-price span{
+	font-size: 30px;
+}
+.delivery_target {
+	border: 1px solid #000;
+}
+.payments {
+	border: 1px solid #000;
+}
+.filed {
+	margin-bottom: 2rem;
+}
+.payments div {
+	margin-bottom: 5rem;
+}
+.confirm_btn {
+	margin-top: 4rem;
+}
+
+/* 購入前確認画面用 */
+.buy_headline {
+	margin-top: 4rem;
+}
+.buy_btn {
+	margin-top: 4rem;
+}
+
+
 
 .userindex-table {
 	margin: 30px;

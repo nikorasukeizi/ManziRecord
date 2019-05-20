@@ -1,2 +1,60 @@
-<h1>Users#buy_confirm</h1>
-<p>Find me in app/views/users/buy_confirm.html.erb</p>
+<div class="container-fluid">
+	<div class="row">
+		<h1 class="text-center buy_headline">注文内容を確認してください卍</h1>
+		<% @user.items.each_with_index do |item, i| %>
+			<div class="buy_items col-md-10 col-md-offset-1 clearfix">
+				<%= link_to item_path(item.id) do %>
+				<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+				<% end %>
+				<div class="cd_info ">
+					<p>CDタイトル：<%= item.name %></p>
+					<p>アーティスト名：<%= item.artist.name %></p>
+					<p>レーベル名：<%= item.label.name %></p>
+					<p>価格：<%= item.price %>円</p>
+				</div>
+				<div class="subtotal">
+					<p>数量：<%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count %>個</p>
+					<u><p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p></u>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-9 shipping_fee ">
+			<p>+送料:500円</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-8 t-price">
+			<span><strong>総額:</strong></span>
+			<u><span><%= total_price(@user) %>円(税込)</span></u>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 delivery_target">
+			<div class="col-md-6">
+				<h2>お届け先</h2>
+				<p class="h3">宛先：<%= @buy_info.addressee %></p>
+				<p class="h3">〒<%= @buy_info.delivery_postcode.clone.insert(3, '-') %></p>
+				<p class="h3"><%= @buy_info.delivery_address %></p>
+			</div>
+			<div class="col-md-4 col-md-offset-2">
+				<h2>お支払い方法</h2>
+				<p class="h3"><%= @buy_info.payments %></p>
+			</div>
+		</div>
+	</div>
+	<div class="row buy_btn">
+		<%= link_to "購入画面に戻る", users_buy_path, class: "btn btn-success col-md-4 col-md-offset-1" %>
+		<%= form_for @buy_info_new, url:buy_infos_complete_path do |f| %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.hidden_field :payments, :value => @buy_info.payments %>
+			<%= f.hidden_field :addressee, :value => @buy_info.addressee %>
+			<%= f.hidden_field :delivery_postcode, :value => @buy_info.delivery_postcode %>
+			<%= f.hidden_field :delivery_address, :value => @buy_info.delivery_address %>
+			<%= f.hidden_field :buy_status, :value => @buy_info.buy_status %>
+			<%= f.submit "注文確定", class: "btn btn-danger col-md-4 col-md-offset-2" %>
+		<% end %>
+	</div>
+</div>

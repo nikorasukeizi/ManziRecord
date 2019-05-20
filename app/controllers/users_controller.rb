@@ -31,20 +31,25 @@ before_action :require_admin, only:[:index]
   end
 
   def buy
+    session[:buy_auth] = true
+    @user = current_user
     @select = [:select]
     @buy_info = BuyInfo.new
   end
 
   def buy_confirm
-    if params[:select] == true
-        @buy_info = BuyInfo.new(addressee: "#{current_user.first_name}+#{current_user.last_name}", delivery_postcode: current_user.postcode, delivery_address: current_user.address)
+    @user = current_user
+    if session[:buy_auth] == true
+      if params[:buy_info][:select] == "0" #登録先が選択された場合
+          @buy_info = BuyInfo.new(addressee: "#{current_user.last_name}#{current_user.first_name}", delivery_postcode: current_user.postcode, delivery_address: current_user.address, payments: params[:buy_info][:payments], user_id: current_user.id)
+      else
+          @buy_info = BuyInfo.new(buy_info_params)
+      end
+      @buy_info.buy_status = 0 #ステータスに「受付」を代入
+      @buy_info_new = BuyInfo.new
     else
-        @buy_info = BuyInfo.new(params[:addressee, :delivery_postcode, :delivery_address])
+      redirect_to root_path
     end
-    @buy_info.payments = params[:payments]
-    @buy_info.buy_status = 0 #ステータスに「受付」を代入(buy_infoモデルのenumの記述見て！)
-    @buy_info.save
-    redirect_to users_buy_confirm_path
   end
 
   def update
@@ -84,18 +89,9 @@ before_action :require_admin, only:[:index]
       redirect_to cart_show_path(user.id)
   end
 
-  def cart_update
-  end
-
-  def cart_destroy
-  end
-
-
-  def cart
-  end
-
-  
   private
+
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :rubi_first_name, :rubi_last_name, :birthdate, :postcode, :address, :tel, :password, :password_confirmation, :email, :status, :admin)
   end
@@ -115,6 +111,10 @@ before_action :require_admin, only:[:index]
     if current_user.admin == false
       redirect_to user_path(current_user.id)
     end
+  end
+
+  def buy_info_params
+    params.require(:buy_info).permit(:user_id, :payments, :addressee, :delivery_postcode, :delivery_address, :buy_status)
   end
 
 end

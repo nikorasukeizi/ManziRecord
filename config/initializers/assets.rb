@@ -13,5 +13,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-# JavaScript読み込みエラー対応で記述しています。意味は分からない。
+# JavaScript読み込みエラー対応で記述しています。
 Rails.application.config.assets.precompile += %w( items_top.js )
+Rails.application.config.assets.precompile += %w( users_buy.js )

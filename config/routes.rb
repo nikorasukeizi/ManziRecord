@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   resources :genres, only: [:edit, :update, :destroy]
 
   #Buy_infosコントローラルーティング
-  get 'buy_infos/complete'
+  get 'buy_infos/complete', as: 'buy_infos_complete'
+  post 'buy_infos/complete'
   resources :buy_infos, only: [:index, :show, :edit, :update, :destroy]
 
   # Usersコントローラルーティング
@@ -37,8 +38,9 @@ Rails.application.routes.draw do
   get 'users/:id/buy_history' => 'users#buy_history', as: 'user_buy_history'
   get 'users/buy_history'
   get 'users/withdraw_view' => 'users#withdraw_view'
-  get 'users/buy'
-  get 'users/buy_confirm'
+  get 'users/buy', as: 'users_buy'
+  get 'users/buy_confirm', as: 'users_buyconfirm'
+  post 'users/buy_confirm'
   get 'users/cart_show', as: 'users_cart'
   patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
   resources :users, only: [:index, :show, :edit, :update]
