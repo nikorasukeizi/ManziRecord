@@ -7,12 +7,11 @@ class ItemsController < ApplicationController
 
   def top
     if session[:cart] == nil
-        session[:cart] == {}
+        session[:cart] = {}
     end
 
     @items_new = Item.all.order(created_at: "DESC")
     @items_rankall = Item.all.order(sales: "DESC")
-    
 
   end
 

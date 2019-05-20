@@ -2,13 +2,19 @@ class CartItemsController < ApplicationController
 
   def create
     if user_signed_in?
-    	cart_item = current_user.cart_items.build(item_id: params[:item_id], buy_count: params[:cart_item][:buy_count])
-    	cart_item.save
-    	redirect_to users_cart_path
+      cart = CartItem.find_by(user_id: current_user.id, item_id: params[:item_id])
+      if cart
+        cart.buy_count += params[:cart_item][:buy_count].to_i
+        cart.save
+      else
+        cart_item = current_user.cart_items.build(item_id: params[:item_id], buy_count: params[:cart_item][:buy_count])
+        cart_item.save
+      end
     else
-      session[:carts] = {}
-      session[:cart]
+      session[:cart][params[:item_id]] = Item.find(params[:item_id])
+      session[:cart][params[:item_id]].store(buy_count: params[:cart_item][:buy_count])
     end
+    redirect_to users_cart_path
   end
 
   def update
