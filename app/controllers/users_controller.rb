@@ -122,3 +122,5 @@ before_action :require_admin, only:[:index]
   end
 
 end
+
+

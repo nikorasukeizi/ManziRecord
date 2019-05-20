@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+
+  before_action :after_login, only: [:top]
   before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
 
 
@@ -9,7 +11,8 @@ class ItemsController < ApplicationController
     end
 
     @items_new = Item.all.order(created_at: "DESC")
-    @items_rank = Item.all.order(sales: "ASC")
+    @items_rankall = Item.all.order(sales: "DESC")
+    
 
   end
 
@@ -109,10 +112,22 @@ class ItemsController < ApplicationController
                                         songs_attributes: [:id, :name, :number, :_destroy]])
       end
 
+
+      # ログイン後にユーザの年齢を登録
+      def after_login
+       if user_signed_in? && current_user.age == nil
+        current_user.update(age: (Date.today.strftime('%Y%m%d').to_i - current_user.birthdate.strftime('%Y%m%d').to_i) / 10000)
+       end
+      end
+
       def require_admin
           if current_user.admin?
           else
              redirect_to root_path
           end
       end
+  
+   end
+
 end
+

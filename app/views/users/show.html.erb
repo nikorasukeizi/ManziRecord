@@ -24,7 +24,8 @@
 					<td class="table-right">Email：<%= @user.email %></td>
 				</tr>
 				<tr>
-					<td class="table-join" colspan="2">生年月日：<%= @user.birthdate %></td>
+					<td class="table-left">生年月日：<%= @user.birthdate %></td>
+					<td class="table-right">年齢：<%= @user.age %>才</td>
 				</tr>
 			</table>
 		</div>
@@ -109,7 +110,7 @@
 			<div class="col-xs-3">
 				<%= link_to "アーティスト・レーベル・ジャンル登録", artists_labels_genres_new_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
-			<div class="col-xs-3 col-xs-offset-3">
+			<div class="col-xs-3">
 				<%= link_to "アーティスト・レーベル・ジャンル一覧", artists_labels_genres_index_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 		</div>
