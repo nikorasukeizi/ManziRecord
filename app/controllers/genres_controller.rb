@@ -22,7 +22,6 @@ class GenresController < ApplicationController
   end
 
 
-
      private
      
 

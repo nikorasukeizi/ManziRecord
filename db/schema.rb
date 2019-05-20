@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_052814) do
+
+ActiveRecord::Schema.define(version: 2019_05_19_102856) do
+
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -28,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_052814) do
     t.integer "buy_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "select"
   end
 
   create_table "buy_items", force: :cascade do |t|
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_052814) do
     t.date "birthdate"
     t.boolean "status", default: true
     t.boolean "admin", default: false
+    t.integer "age"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

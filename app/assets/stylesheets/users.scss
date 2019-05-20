@@ -103,18 +103,25 @@
   width: 100%;
 }
 
+.buyhistory-mypage{
+	margin-top: 20px;
+}
+
+.buyhistory-mypage .btn{
+    width: 70%;
+}
+
 .withdraw-btn{
 	width: 10%;
-	height: 26px;
+	height: 30px;
 	padding: none;
 	font-size: 5px;
 	text-align: center;
-	line-height: 13px;
 	color: #fff;
 	background-color: #ffc0cb;
 	border: none;
 	border-radius: 10px;
-	margin: 20px;
+	margin-top: 300px;
 }
 
 .withdraw-btn:hover{
@@ -126,10 +133,24 @@
 	background-color: #800000;
 }
 
+.mypage h3{
+	margin-top: 50px;
+}
+
+.mypage h4{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
 .admin-mypage h3{
 	text-align: center;
 	margin-top: 60px;
 	margin-bottom: 60px;
+}
+
+.second-box .btn{
+    white-space: normal;
+    height: 70px;
 }
 
 .first-box{
@@ -143,7 +164,7 @@
 
 .btn-admin{
 	height: 45px;
-	line-height: 30px;
+	line-height: 45px;
 }
 
 .buyitem-block{
@@ -159,6 +180,14 @@
 
 .buyitem-name{
 	text-align: center;
+}
+
+.buyhistory h2{
+	margin-top: 60px;
+}
+
+.buyhistory h4{
+	margin-top: 30px;
 }
 
 .clearfix::after {
@@ -208,6 +237,43 @@
 .delivery_address {
 	height: 500px;
 }
+.buy_items {
+	margin: 2rem;
+}
+.buy_items:nth-child(1) {
+	margin-top: 5rem;
+}
+.shipping_fee {
+	margin: 5rem 0;
+}
+.t-price span{
+	font-size: 30px;
+}
+.delivery_target {
+	border: 1px solid #000;
+}
+.payments {
+	border: 1px solid #000;
+}
+.filed {
+	margin-bottom: 2rem;
+}
+.payments div {
+	margin-bottom: 5rem;
+}
+.confirm_btn {
+	margin-top: 4rem;
+}
+
+/* 購入前確認画面用 */
+.buy_headline {
+	margin-top: 4rem;
+}
+.buy_btn {
+	margin-top: 4rem;
+}
+
+
 
 .userindex-table {
 	margin: 30px;

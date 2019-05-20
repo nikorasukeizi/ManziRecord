@@ -1,16 +1,81 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="delivery_address col-8">
-			<h2>お届け先選択</h2>
-			<%=# form_for @select do |f| %>
-			<label>
-			<%=# f.radio_button :select, true %>"登録先"
-			</label>
-			<label>
-			<%=# f.radio_button :select, false %>"登録先以外に送る"
-			</label>
-			<%#end %>
+		<% @user.items.each_with_index do |item, i| %>
+			<div class="buy_items col-md-10 col-md-offset-1 clearfix">
+				<%= link_to item_path(item.id) do %>
+				<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+				<% end %>
+				<div class="cd_info ">
+					<p>CDタイトル：<%= item.name %></p>
+					<p>アーティスト名：<%= item.artist.name %></p>
+					<p>レーベル名：<%= item.label.name %></p>
+					<p>価格：<%= item.price %>円</p>
+				</div>
+				<div class="subtotal">
+					<p>数量：<%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count %>個</p>
+					<u><p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込)</p></u>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-9 shipping_fee ">
+			<p>+送料:500円</p>
 		</div>
 	</div>
-
+	<div class="row">
+		<%= link_to "カートに戻る", users_cart_path, class: "col-md-2 col-md-offset-5 btn btn-success" %>
+		<div class="col-md-2 col-md-offset-1 t-price">
+			<span><strong>総額:</strong></span>
+			<u><span><%= total_price(@user) %>円</span></u>
+		</div>
+	</div>
+	<%= form_for @buy_info, url: users_buyconfirm_path, id: "new_buy_info" do |f| %>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-1 delivery_target">
+			<h2>お届け先選択</h2>
+				<div>
+					<label><%= f.radio_button :select, "0", id: "target_regist" %>登録先</label>
+				</div>
+				<div>
+					<span>宛先：<%= @user.last_name + @user.first_name %></span>
+				</div>
+				<div>
+					<span>住所：</span>
+					<span>〒<%= @user.postcode.insert(3, '-') %></span>
+					<span><%= @user.address %></span>
+				</div>
+				<div>
+					<label><%= f.radio_button :select, "1", id: "target_new" %>登録先以外に送る※入力してください</label>
+				</div>
+				<div class="ctrl_area">
+					<div><%= f.label :addressee, "宛名" %></div>
+					<div class="filed"><%= f.text_field :addressee, class: "form-control validate[required]" %></div>
+					<div><%= f.label :delivery_postcode, "郵便番号" %></div>
+					<div class="filed"><%= f.text_field :delivery_postcode, class: "form-control validate[required, minSize[7]]" %></div>
+					<div><%= f.label :delivery_address, "宛先住所" %></div>
+					<div class="filed"><%= f.text_field :delivery_address, :size => "60", class: "form-control validate[required]" %></div>
+				</div>
+		</div>
+		<div class="col-md-4 col-md-offset-1 payments">
+			<h2>お支払い方法選択</h2>
+			<div>
+				<label><%= f.radio_button :payments, "銀行振込", {:checked => true} %>銀行振込</label>
+			</div>
+			<div>
+				<label><%= f.radio_button :payments, "クレジットカード" %>クレジットカード</label>
+			</div>
+			<div>
+				<label><%= f.radio_button :payments, "代金引換" %>代金引換</label>
+			</div>
+		</div>
+	</div>
+	<div class="row confirm_btn">
+			<%= f.submit "注文確認画面へ", class: "btn btn-danger col-md-8 col-md-offset-2" %>
+	</div>
+	<% end %>
 </div>
+
+
+<!-- javascriptファイルを読み込みます -->
+<%= javascript_include_tag "users_buy.js" %>

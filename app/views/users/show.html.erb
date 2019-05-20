@@ -3,7 +3,7 @@
 <% if @user.admin == false %>
 
 
-<div class="container">
+<div class="mypage container">
 
     <div class="row">
 		<div class="col-xs-offset-1 col-xs-10">
@@ -12,11 +12,11 @@
 					<th class="info" colspan="2">登録情報</th>
 				</tr>
 				<tr>
-					<td class="table-left">名前：<%= @user.last_name %><%= @user.first_name %></td>
-					<td class="table-right">フリガナ：<%= @user.rubi_last_name %><%= @user.rubi_first_name %></td>
+					<td class="table-left">名前：<%= @user.last_name %> <%= @user.first_name %></td>
+					<td class="table-right">フリガナ：<%= @user.rubi_last_name %> <%= @user.rubi_first_name %></td>
 				</tr>
 				<tr>
-					<td class="table-left">〒：<%= @user.postcode %></td>
+					<td class="table-left">〒：<%= @user.postcode[0,3] %>-<%= @user.postcode[3,7] %></td>
 					<td class="table-right">住所：<%= @user.address %></td>
 				</tr>
 				<tr>
@@ -24,7 +24,8 @@
 					<td class="table-right">Email：<%= @user.email %></td>
 				</tr>
 				<tr>
-					<td class="table-join" colspan="2">生年月日：<%= @user.birthdate %></td>
+					<td class="table-left">生年月日：<%= @user.birthdate %></td>
+					<td class="table-right">年齢：<%= @user.age %>才</td>
 				</tr>
 			</table>
 		</div>
@@ -41,29 +42,30 @@
 
         <!-- 購入履歴がある場合 -->
 		<% if @user.buy_infos.present? %>
-			<div class="col-xs-9">
+			<div class="col-xs-3">
 				<h4>購入日<%= @user.buy_infos.order(:created_at).last.created_at.strftime('%Y/%m/%d') %></h4>
 			</div>
 
-	        <div class="col-xs-12">
-				<% @user.buy_infos.order(:created_at).last.buy_items.each do |buy_item| %>
-				<!-- refileを適用できるようにする -->
-				<div class="buyitem-block" %>
-	                <%= link_to item_path(buy_item.item.id) do %><%= attachment_image_tag buy_item.item, :image, :fill, 200, 200, format:'jpg', fallback: "no_image.jpg" %><% end %><br>
-					<div class="buyitem-artist"><%= link_to item_path(buy_item.item.id) do %><%= buy_item.item.artist.name %><% end%></div><br>
-					<div class="buyitem-name"><%= link_to item_path(buy_item.item.id) do %><%= buy_item.item.name %><% end %></div>
-				</div>
-		        <% end %>
-		    </div>
+			<div class="col-xs-offset-6 col-xs-3 buyhistory-mypage">
+			    <%= link_to "全ての購入履歴", user_buy_history_path(@user.id), class:"btn btn-success btn-lg btn-block" %>
+			</div>
 
-		    <div class="col-xs-offset-9 col-xs-3">
-			    <%= link_to "全ての購入履歴", user_buy_history_path(@user.id), class:"btn btn-success btn-block" %>
+	        <div class="col-xs-12">
+				<% @user.buy_infos.order(:created_at).last.buy_items.last(3).each do |buy_item| %>
+					<div class="buyitem-block" >
+		                <%= link_to item_path(buy_item.item.id) do %><%= attachment_image_tag buy_item.item, :image, :fill, 200, 200, format:'jpg', fallback: "no_image.jpg" %><br>
+						<div class="buyitem-artist"><%= buy_item.item.artist.name %></div><br>
+						<div class="buyitem-name"><%= buy_item.item.name %></div>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 
 			<!-- 購入履歴がない場合 -->
 		<% else %>
 			<h4>購入履歴はありません</h4>
 	    <% end %>
+	</div>
 
 
     <% if current_user.admin == false %>
@@ -71,14 +73,6 @@
 		<div class="row">
 			<div class="col-xs-1">
 				<%= link_to "退会?", users_withdraw_view_path, class:"withdraw-btn btn btn-block" %>
-			</div>
-		</div>
-
-	<% else %>
-
-	    <div class="row">
-			<div class="col-xs-">
-				<%= link_to "退会?", user_withdraw_path, method: :patch, class:"withdraw-btn btn btn-block", data:{confirm:"本当に退会させますか?"} %>
 			</div>
 		</div>
 
@@ -99,25 +93,25 @@
 
 		<div class="row first-box">
 			<div class="col-xs-3">
-				<%= link_to "商品新規登録", new_item_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "商品新規登録", new_item_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 			<div class="col-xs-3">
-				<%= link_to "商品一覧", items_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "商品一覧", items_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 			<div class="col-xs-3">
-				<%= link_to "ユーザ一覧", users_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "ユーザ一覧", users_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 			<div class="col-xs-3">
-				<%= link_to "受注情報一覧", buy_infos_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "受注情報一覧", buy_infos_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 		</div>
 
 		<div class="row second-box">
 			<div class="col-xs-3">
-				<%= link_to "アーティスト・レーベル・ジャンル登録", artists_labels_genres_new_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "アーティスト・レーベル・ジャンル登録", artists_labels_genres_new_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 			<div class="col-xs-3">
-				<%= link_to "アーティスト・レーベル・ジャンル一覧", artists_labels_genres_index_path, class:"btn btn-primary btn-admin" %>
+				<%= link_to "アーティスト・レーベル・ジャンル一覧", artists_labels_genres_index_path, class:"btn btn-primary btn-lg btn-admin" %>
 			</div>
 		</div>
 

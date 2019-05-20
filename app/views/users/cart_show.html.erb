@@ -30,7 +30,7 @@
 					</div>
 
 					<% if i == @user.items.length - 1 %>
-						<%= link_to "ご購入手続きへ", "/users/:id/buy", class: "btn btn-danger col-md-6 col-md-offset-3" %>
+						<%= link_to "ご購入手続きへ", users_buy_path, class: "btn btn-danger col-md-6 col-md-offset-3" %>
 					<% end %>
 
 				<% end %>

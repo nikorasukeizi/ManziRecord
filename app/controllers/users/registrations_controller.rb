@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   POST /resource
   def create
     super
+    flash[:success] = 'ログインしました'
   end
 
   GET /resource/edit
@@ -59,4 +60,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
 end
