@@ -101,7 +101,7 @@ before_action :require_admin, only:[:index]
   end
 
   def cart_item_params
-    params.require(:cart_item).permit(:user_id, :item_id; :buy_count)
+    params.require(:cart_item).permit(:user_id, :item_id, :buy_count)
   end
 
   def update_resource(resource, params)

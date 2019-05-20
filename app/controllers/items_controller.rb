@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
 
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+
+
   def top
     if session[:cart] == nil
         session[:cart] == {}
@@ -53,16 +56,39 @@ class ItemsController < ApplicationController
   end
 
   def create
-      item = Item.new(item_params)
-      item.save
-      redirect_to item_path(item.id)
+      @item = Item.new(item_params)
+      if @item.save
+         redirect_to item_path(@item.id)
+      else
+         @item.discs.build
+         # @discs.songs.build
+         @artists = Artist.all
+         @labels = Label.all
+         @genres = Genre.all
+         render :new
+      end
   end
 
   def update
-      item = Item.find(params[:id])
-      item.update(item_params)
-      redirect_to item_path(item.id)
+      @item = Item.find(params[:id])
+      if @item.update(item_params)
+         redirect_to item_path(@item.id)
+      else
+         @item.discs.build
+         # @discs.songs.build
+         @artists = Artist.all
+         @labels = Label.all
+         @genres = Genre.all
+         render :edit
+      end
   end
+
+  def destroy
+      @item = Item.find(params[:id])
+      @item.destroy
+      redirect_to user_path(current_user.id)
+  end
+
 
 
  # @genre = Genre.find(params[:id])
@@ -81,5 +107,12 @@ class ItemsController < ApplicationController
           params.require(:item).permit(:name, :artist_id, :label_id, :genre_id, :image, :price, :stock, :status, :sales,
                                         discs_attributes: [:id, :name, :_destroy,
                                         songs_attributes: [:id, :name, :number, :_destroy]])
+      end
+
+      def require_admin
+          if current_user.admin?
+          else
+             redirect_to root_path
+          end
       end
 end

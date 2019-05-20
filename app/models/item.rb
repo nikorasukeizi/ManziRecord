@@ -16,4 +16,10 @@ class Item < ApplicationRecord
 
     attachment :image
 
+
+     validates :name,   presence: true
+     validates :stock,   presence: true
+     validates :status,   presence: true
+     validates :price,   presence: true
+
 end

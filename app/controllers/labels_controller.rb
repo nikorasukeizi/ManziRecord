@@ -1,5 +1,7 @@
 class LabelsController < ApplicationController
 
+  before_action :require_admin
+
   def edit
   	  @label = Label.find(params[:id])
   end
@@ -23,5 +25,11 @@ class LabelsController < ApplicationController
           params.require(:label).permit(:name)
       end
 
+      def require_admin
+          if current_user.admin?
+          else
+             redirect_to root_path
+          end
+      end
 
 end
