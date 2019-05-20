@@ -2,9 +2,9 @@ class CartItemsController < ApplicationController
 
   def create
     if user_signed_in?
-    	cart_item = curent_user.cart_items.build(item_id: params[:item_id])
+    	cart_item = current_user.cart_items.build(item_id: params[:item_id], buy_count: params[:cart_item][:buy_count])
     	cart_item.save
-    	redirect_to user_cart_path(current_user)
+    	redirect_to users_cart_path
     else
       session[:carts] = {}
       session[:cart]

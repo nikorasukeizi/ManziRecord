@@ -92,9 +92,9 @@ before_action :require_admin, only:[:index]
       redirect_to users_cart_path(user.id)
   end
 
-  
   private
-  
+
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :rubi_first_name, :rubi_last_name, :birthdate, :postcode, :address, :tel, :password, :password_confirmation, :email, :status, :admin)
   end
