@@ -20,3 +20,5 @@
 //= require jquery.validationEngine-en
 //= require jquery.validationEngine
 //= require jquery.validationEngine-ja
+
+//= require jquery.jscroll.min.js

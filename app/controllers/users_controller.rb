@@ -21,7 +21,7 @@ before_action :require_admin, only:[:index]
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def cart_show
@@ -108,15 +108,23 @@ before_action :require_admin, only:[:index]
   end
 
   def correct_user
-    user = User.find(params[:id])
-    if user != current_user && current_user.admin == false
-      redirect_to user_path(current_user.id)
+    if user_signed_in?
+      user = User.find(params[:id])
+      if user != current_user && current_user.admin == false
+        redirect_to user_path(current_user.id)
+      end
+    else
+      redirect_to root_path
     end
   end
 
   def require_admin
-    if current_user.admin == false
-      redirect_to user_path(current_user.id)
+    if user_signed_in?
+      if current_user.admin == false
+        redirect_to user_path(current_user.id)
+      end
+    else
+      redirect_to root_path
     end
   end
 
