@@ -1,11 +1,14 @@
 class ArtistsController < ApplicationController
+
+  before_action :require_admin
+
   def edit
   	  @artist = Artist.find(params[:id])
   end
 
   def update
   	  artist = Artist.find(params[:id])
-  	  artist.update
+  	  artist.update(artist_params)
   	  redirect_to artists_labels_genres_index_path
   end
 
@@ -14,4 +17,20 @@ class ArtistsController < ApplicationController
   	  artist.destroy
   	  redirect_to artists_labels_genres_index_path
   end
+
+
+
+    private
+
+      def artist_params
+          params.require(:artist).permit(:name)
+      end
+
+      def require_admin
+          if current_user.admin?
+          else
+             redirect_to root_path
+          end
+      end
+
 end

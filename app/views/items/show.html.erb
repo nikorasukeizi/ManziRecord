@@ -9,30 +9,32 @@
 	</div>
 
 	<div class="col-lg-3">
-	  <%= attachment_image_tag @item, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg" %><br>
+	  <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %><br>
 
-      <ul class="list-group">
+      <ul class="list-group" style="margin-top: 30px;">
 
 	     <li class="list-group-item" style="text-align: center; font-weight: bold;">
 			  カートに入れる</li>
 
-	     <%= form_for(@cart) do |f| %>
+		     <%= form_for(@cart) do |f| %>
 
-           <li class="list-group-item" style="font-weight: bold; text-align: center;">
-	       数量  <%= f.number_field :buy_count %>
-
-
-	       <%= f.submit 'カートに入れる', class: "btn btn-success" %></li>
+		           <li class="list-group-item" style="font-weight: bold; text-align: center;">
+			       数量  <%= f.number_field :buy_count %><br><br>
 
 
+			       <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm" %></li>
 
-	     <% end %>
+
+
+		     <% end %>
 
       </ul>
 
-
-           <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success btn-xs" %>
-	       <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %>
+      <!-- 管理者権限・アドミンがtrueならば -->
+      <% if current_user.admin? %>
+	           <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success btn-xs" %>
+		       <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除してもいいですか。", class: "btn btn-danger btn-xs" %>
+	  <% end %>
 
 	</div>
 

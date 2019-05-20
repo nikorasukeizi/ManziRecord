@@ -6,6 +6,19 @@
 
 
 
+    <% if @item.errors.any? %>
+    　　<div id="error_explanation">
+    　　<h2><%= @item.errors.count %>件のerrorが発生しました。</h2>
+    　　<ul>
+    　　<% @item.errors.full_messages.each do |message| %>
+    　　　　<li><%= message %></li>
+    　　<% end %>
+    　　</ul>
+    　　</div>
+    <% end %>
+
+
+
 <%= form_for(@item)do |f| %>
 
   <div class="row" style="margin-top: 10px;">
