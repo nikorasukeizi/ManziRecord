@@ -12,45 +12,54 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
-          </button>
-          <%= link_to "卍Record", root_path, class: "navbar-brand 卍header" %>
-        </div>
+        <div class="row">
 
-        <form class="navbar-form navbar-left " role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="検索キーワードを入れてください">
-        </div>
-        <button type="submit" class="btn btn-default">検索</button>
-      </form>
+          <!-- ロゴ -->
+          <div class="col-sm-3 navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+            </button>
+            <%= link_to "卍Record", root_path, class: "navbar-brand 卍header" %>
+          </div>
 
-        <div class="collapse navbar-collapse" id="navbarEexample">
-          <% if user_signed_in? && current_user.admin == false %><!--ユーザがログインしたとき-->
-          <div class="nav navbar-nav navbar-right nav-menu">
+          <!-- 検索機能 -->
+          <div class="col-sm-6 search-form">
+            <%= search_form_for @search, url: items_search_result_path, class:"search" do |f| %>
+                <%= f.label :genre_id_eq, 'ジャンル', class:"search-label" %>
+                <%= f.collection_select :genre_id_eq, @genres, :id, :name, :include_blank =>'指定なし', class:"selectbox" %>
+                <%= f.label :artist_name_or_name_cont, '商品名', class:"search-label" %>
+                <%= f.search_field :artist_name_or_name_cont, class:"field" %>
+                <%= f.submit "検索", class:"btn btn-default search-btn" %>
+            <% end %>
+          </div>
 
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button>
-
-            </div>
-
-          <% elsif user_signed_in? && current_user.admin == true %> <!--adminのとき-->
-              <div class="nav navbar-nav navbar-right nav-menu">
+          <!-- 右側リンク -->
+          <div class="col-xm-3 collapse navbar-collapse" id="navbarEexample">
+            <% if user_signed_in? && current_user.admin == false %><!--ユーザがログインしたとき-->
+            <div class="nav navbar-nav navbar-right nav-menu">
 
               <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
               <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button>
 
               </div>
 
-          <% else %><!-- ゲストユーザのとき -->
-            <div class="nav navbar-nav navbar-right nav-menu">
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", new_user_registration_path %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_user_session_path %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button><!--ゲストユーザ用カートのルーティング要検討-->
-          </div>
+            <% elsif user_signed_in? && current_user.admin == true %> <!--adminのとき-->
+                <div class="nav navbar-nav navbar-right nav-menu">
 
-          <% end %>
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
+
+                </div>
+
+            <% else %><!-- ゲストユーザのとき -->
+              <div class="nav navbar-nav navbar-right nav-menu">
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", new_user_registration_path %></button>
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_user_session_path %></button>
+              <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button><!--ゲストユーザ用カートのルーティング要検討-->
+            </div>
+
+            <% end %>
+          </div>
         </div>
       </div>
 
