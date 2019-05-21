@@ -22,7 +22,7 @@ class LabelsController < ApplicationController
       private
 
       def label_params
-          params.require(:label).permit(:name)
+          params.require(:label).permit(:name, :rubi_name)
       end
 
       def require_admin

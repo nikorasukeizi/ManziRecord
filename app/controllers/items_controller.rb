@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
       @discs = @item.discs
       @songs = @item.songs
       @cart = CartItem.new
+      @stock = @item.stock
   end
 
   def index
