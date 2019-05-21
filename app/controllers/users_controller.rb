@@ -21,7 +21,7 @@ before_action :require_admin, only:[:index]
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def cart_show
@@ -56,7 +56,7 @@ before_action :require_admin, only:[:index]
     @user = User.find(params[:id])
     if @user.update_without_current_password(user_params)
       sign_in @user, bypass: true
-      flash[:success] = '卍 ユーザ情報を編集しました 卍'
+      flash[:success] = 'ユーザ情報を編集しました'
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -73,7 +73,7 @@ before_action :require_admin, only:[:index]
         flash[:danger] = '卍卍卍 退会しました 卍卍卍'
         redirect_to root_path
       else
-        flash.now[:warning] = '卍 入力されたパスワードが違います 卍'
+        flash.now[:danger] = '入力されたパスワードが違います'
         render :withdraw_view
       end
     # adminの場合の処理
@@ -108,15 +108,23 @@ before_action :require_admin, only:[:index]
   end
 
   def correct_user
-    user = User.find(params[:id])
-    if user != current_user && current_user.admin == false
-      redirect_to user_path(current_user.id)
+    if user_signed_in?
+      user = User.find(params[:id])
+      if user != current_user && current_user.admin == false
+        redirect_to user_path(current_user.id)
+      end
+    else
+      redirect_to root_path
     end
   end
 
   def require_admin
-    if current_user.admin == false
-      redirect_to user_path(current_user.id)
+    if user_signed_in?
+      if current_user.admin == false
+        redirect_to user_path(current_user.id)
+      end
+    else
+      redirect_to root_path
     end
   end
 
