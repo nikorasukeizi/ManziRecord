@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 
+// 新規登録・ログイン・ユーザ情報編集画面
 .colorgraph {
 	height: 5px;
 	border-top: 0;
@@ -47,10 +48,12 @@
 }
 
 .login-guide{
+	margin-top: 20px;
 	font-size: 10px;
 }
 
 .signup-guide{
+	margin-top: 20px;
 	font-size: 9px;
 }
 
@@ -63,6 +66,8 @@
 	margin-left: 36px;
 }
 
+
+// マイページ画面
 .userinfo-table{
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -109,6 +114,11 @@
 
 .buyhistory-mypage .btn{
     width: 70%;
+}
+
+.overcount{
+	margin-left: 10px;
+	display: inline-block;
 }
 
 .withdraw-btn{
@@ -167,18 +177,22 @@
 	line-height: 45px;
 }
 
+
+// 購入履歴表示画面
 .buyitem-block{
 	cursor: pointer;
 	display: inline-block;
 	margin: 10px;
+	margin-bottom: 30px;
 }
 
 .buyitem-artist{
-	margin-top: 15px;
+	margin-top: 10px;
 	text-align: center;
 }
 
 .buyitem-name{
+	margin-top: 5px;
 	text-align: center;
 }
 
@@ -187,7 +201,7 @@
 }
 
 .buyhistory h4{
-	margin-top: 30px;
+	margin-top: 60px;
 }
 
 .clearfix::after {

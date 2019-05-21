@@ -18,7 +18,14 @@ class BuyInfosController < ApplicationController
   end
 
   def index
-      @buyinfos = Buy_info.all
+      @buyinfos = BuyInfo.all
+
+      @buy_items = BuyInfo.BuyItems
+      @total_price = 0
+      @buy_items.each do |buy_item|
+        @total_price = @total_price + buy_item.buy_count * buy_item.total_price
+      end
+
   end
 
   def show

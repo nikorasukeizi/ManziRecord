@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
     @items_new = Item.all.order(created_at: "DESC")
     @items_rankall = Item.all.order(sales: "DESC")
 
+    young_user = User.where(age: 22..27)
+
   end
 
   def show
@@ -23,6 +25,7 @@ class ItemsController < ApplicationController
       @discs = @item.discs
       @songs = @item.songs
       @cart = CartItem.new
+      @stock = @item.stock
   end
 
   def index
@@ -34,6 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def search_result
+    @genre = Genre.all
   end
 
   def ranking
@@ -120,9 +124,15 @@ class ItemsController < ApplicationController
       end
 
       def require_admin
-          if current_user.admin?
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
           else
-             redirect_to root_path
+            redirect_to root_path
+
           end
       end
    

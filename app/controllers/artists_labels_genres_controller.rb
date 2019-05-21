@@ -10,21 +10,15 @@ class ArtistsLabelsGenresController < ApplicationController
   end
 
   def index
-      @artists = Artist.all
-      @labels = Label.all
+      @artists = Artist.all.order("rubi_name")
+      @labels = Label.all.order("rubi_name")
       @genres = Genre.all
   end
 
   def create
-  	  @artist = Artist.new(artist_params)
-  	  if @artist.name.present?
-  	     
-         if @artist.save
-         else
-            @label = Label.new
-            @genre = Genre.new
-            render :new
-         end
+  	  artist = Artist.new(artist_params)
+  	  if artist.name.present?
+      artist.save
       end
 
   	  label = Label.new(label_params)
@@ -36,7 +30,8 @@ class ArtistsLabelsGenresController < ApplicationController
   	  if genre.name.present?
   	  genre.save
       end
-      if @artist.name.present? or label.name.present? or genre.name.present?
+
+      if artist.name.present? or label.name.present? or genre.name.present?
       redirect_to new_item_path
 
       else
@@ -49,12 +44,12 @@ class ArtistsLabelsGenresController < ApplicationController
   private
 
       def artist_params
-      	  params.require(:artist).permit(:name)
+      	  params.require(:artist).permit(:name, :rubi_name)
       end
 
 
       def label_params
-      	  params.require(:label).permit(:name)
+      	  params.require(:label).permit(:name, :rubi_name)
       end
 
       def genre_params
@@ -62,10 +57,19 @@ class ArtistsLabelsGenresController < ApplicationController
       end
 
       def require_admin
-          if current_user.admin?
+
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
           else
-             redirect_to root_path
+            redirect_to root_path
           end
+        else
+          redirect_to root_path
+        end
       end
 
 end

@@ -1,6 +1,6 @@
 <div class="page_title">
   <h1>アーティスト・レーベル・ジャンル新規登録</h1>
-</div>
+</div>s
 
 
 <div class="container">
@@ -24,45 +24,47 @@
       <p>新たに登録したいもの全てに入力してください</p>
     </div>
 
-    <div class="row" style="margin-top: 20px;">  
-
-      <div class="col-lg-4">
+    <div class="row" style="margin-top: 20px; position: relative;">  
+     
       <%= form_for @artist, url: artists_labels_genres_new_path do |f| %>
-          <%= f.label 'アーティスト名' %>
-          <%= f.text_field :name %><br>
-          <%= f.label 'かな（記号不可）' %>
-          <%= f.text_field :rubi_name %>
-      </div>
-
-
-      <div class="col-lg-4">
-          <!-- 関連性のない別のモデルを入れ込む表示 -->
-          <%= fields_for @label, artists_labels_genres_new_path do |c| %>
-          <%= c.label 'レーベル名' %>
-          <%= c.text_field :name %>
-          <% end %>
-      </div>
-        
-
-      <div class="col-lg-4">
-          <!-- 関連性のない別のモデルを入れ込む表示 -->
-          <%= fields_for @genre, artists_labels_genres_new_path do |a| %>
-          <%= a.label 'ジャンル名' %>
-          <%= a.text_field :name %>
-          <% end %>
-      </div>
-
-
-          <div class="row" style="margin-top: 100px;">
-            <div class="block" style="display: block;">
-
-              <%= f.submit '新規登録', class: "btn btn-primary"%>
-
-            </div>
+           <div class="col-lg-4">
+              <%= f.label 'アーティスト名' %>
+              <%= f.text_field :name %><br>
+              <%= f.label 'かな（記号不可）' %>
+              <%= f.text_field :rubi_name %>
           </div>
-      
-        <% end %>
-      </div>
+
+
+        <div class="col-lg-4">
+            <!-- 関連性のない別のモデルを入れ込む表示 -->
+            <%= fields_for @label, artists_labels_genres_new_path do |c| %>
+            <%= c.label 'レーベル名' %>
+            <%= c.text_field :name %>
+            <%= f.label 'かな（記号不可）' %>
+            <%= f.text_field :rubi_name %>
+            <% end %>
+        </div>
+          
+
+        <div class="col-lg-4">
+            <!-- 関連性のない別のモデルを入れ込む表示 -->
+            <%= fields_for @genre, artists_labels_genres_new_path do |a| %>
+            <%= a.label 'ジャンル名' %>
+            <%= a.text_field :name %>
+            <% end %>
+        </div>
+
+
+
+         <div class="block" style="position: absolute; top: 100px; right: 50%;">
+            <%= f.submit '新規登録', class: "btn btn-primary"%>
+         </div>
+
+      <% end %>
+
+    </div>
+
+
   </div>
 
 

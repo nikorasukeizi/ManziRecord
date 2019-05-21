@@ -23,13 +23,19 @@ class ArtistsController < ApplicationController
     private
 
       def artist_params
-          params.require(:artist).permit(:name)
+          params.require(:artist).permit(:name, :rubi_name)
       end
 
       def require_admin
-          if current_user.admin?
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
           else
-             redirect_to root_path
+            redirect_to root_path
+
           end
       end
 

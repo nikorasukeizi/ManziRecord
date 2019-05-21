@@ -73,7 +73,7 @@
 
         <div class="row" style="margin-top: 10px;">
           <%= f.label '商品ステータス' %><br>
-          <%= f.number_field :status %>
+          <%= f.select :status, Item.statuses.keys %>
         </div>
     </div>
 

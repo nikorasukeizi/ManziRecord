@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   post '/artists_labels_genres/new' => 'artists_labels_genres#create'
 
   #Itemsコントローラルーティング
-  resources :items do
-    resource :cart_items, only: [:create, :destroy, :update] #cart_itemsをネスト
-  end
   get 'items/top'
   get 'items/search_result'
   get 'items/ranking'
   get 'items/:id/genre_index' => 'items#genre_index', as: 'genres_index'
+  resources :items do
+    resource :cart_items, only: [:create, :destroy, :update] #cart_itemsをネスト
+  end
 
   #Cart_itemsコントローラルーティング
 
