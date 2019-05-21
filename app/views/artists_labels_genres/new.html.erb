@@ -1,13 +1,13 @@
 <div class="page_title">
   <h1>アーティスト・レーベル・ジャンル新規登録</h1>
-</div>s
+</div>
 
 
 <div class="container">
 
 
    <% if @artist.errors.any? %>
-        <div id="error_explanation">
+        <div id="error_explanation" style="display: block;">
         <h2><%= @artist.errors.count %>件のerrorが発生しました。</h2>
         <ul>
         <% @artist.errors.full_messages.each do |message| %>
@@ -15,7 +15,18 @@
         <% end %>
         </ul>
         </div>
-    <% end %>
+   <% end %>
+
+   <% if @label.errors.any? %>
+        <div id="error_explanation" style="display: block;">
+        <h2><%= @label.errors.count %>件のerrorが発生しました。</h2>
+        <ul>
+        <% @label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+        </div>
+   <% end %>
 
 
   <div class="center" style="text-align: center;">
@@ -24,7 +35,9 @@
       <p>新たに登録したいもの全てに入力してください</p>
     </div>
 
-    <div class="row" style="margin-top: 20px; position: relative;">  
+    <div class="row" style="margin-top: 20px; position: relative;"> 
+
+
      
       <%= form_for @artist, url: artists_labels_genres_new_path do |f| %>
            <div class="col-lg-4">
@@ -40,8 +53,8 @@
             <%= fields_for @label, artists_labels_genres_new_path do |c| %>
             <%= c.label 'レーベル名' %>
             <%= c.text_field :name %>
-            <%= f.label 'かな（記号不可）' %>
-            <%= f.text_field :rubi_name %>
+            <%= c.label 'labelかな（記号不可）' %>
+            <%= c.text_field :rubi_name %>
             <% end %>
         </div>
           
