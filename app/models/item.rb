@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
 	#itemステータスをenumで管理
-	enum status: { 販売中:1, 販売中止:2 }
+	enum status: { 販売中:0, 販売中止:1 }
 
 	belongs_to :artist
 	belongs_to :label

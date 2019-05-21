@@ -62,9 +62,15 @@ class ArtistsLabelsGenresController < ApplicationController
       end
 
       def require_admin
-        if user_signed_in?
-          unless current_user.admin?
-             redirect_to root_path
+
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
+          else
+            redirect_to root_path
           end
         else
           redirect_to root_path
