@@ -16,14 +16,28 @@ class ArtistsLabelsGenresController < ApplicationController
   end
 
   def create
-  	  artist = Artist.new(artist_params)
-  	  if artist.name.present?
-      artist.save
+  	  @artist = Artist.new(artist_params)
+  	  if @artist.name.present?
+
+         if @artist.save
+         else
+            @label = Label.new
+            @genre = Genre.new
+            render :new
+            return
+         end
       end
 
-  	  label = Label.new(label_params)
-  	  if label.name.present?
-  	  label.save
+  	  @label = Label.new(label_params)
+  	  if @label.name.present?
+
+  	     if @label.save
+         else
+            @artist = Artist.new
+            @genre = Genre.new
+            render :new
+            return
+         end
       end
 
   	  genre = Genre.new(genre_params)
@@ -31,7 +45,7 @@ class ArtistsLabelsGenresController < ApplicationController
   	  genre.save
       end
 
-      if artist.name.present? or label.name.present? or genre.name.present?
+      if @artist.name.present? or @label.name.present? or genre.name.present?
       redirect_to new_item_path
 
       else
