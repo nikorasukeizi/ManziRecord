@@ -16,25 +16,38 @@ before_action :require_admin, only:[:index]
       @buy_infos = @user.buy_infos.order('created_at desc')
   end
 
-  def withdraw_view
-
-  end
-
   def index
     @users = User.all
   end
 
   def cart_show
     if user_signed_in?
-        @user = current_user
+      @user = current_user
+      unless session[:cart] == {}
+        session[:cart].each do |key, value|
+          cart = CartItem.find_by(user_id: current_user.id, item_id: key.to_i)
+          if cart
+            cart.update(buy_count: value["buy_count"])
+          else
+            cart_new = CartItem.new(user_id: current_user.id, item_id: key.to_i, buy_count: value["buy_count"])
+            cart_new.save
+          end
+        end
+        session[:cart] = {} #セッション初期化
+      end
     end
   end
 
   def buy
-    session[:buy_auth] = true
-    @user = current_user
-    @select = [:select]
-    @buy_info = BuyInfo.new
+    if user_signed_in?
+      session[:buy_auth] = true
+      @user = current_user
+      @select = [:select]
+      @buy_info = BuyInfo.new
+    else
+      flash[:danger] = '卍 購入手続きに進むには、会員登録が必要です 卍'
+      redirect_to new_user_session_path
+    end
   end
 
   def buy_confirm
@@ -84,13 +97,6 @@ before_action :require_admin, only:[:index]
     end
   end
 
-  def cart_create
-      cart = CartItem.new(cart_item_params)
-      cart.user_id = current_user.id
-      cart.item_id = Item.find(params[:id])
-      cart.save
-      redirect_to users_cart_path(user.id)
-  end
 
   private
 
