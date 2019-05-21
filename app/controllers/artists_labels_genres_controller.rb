@@ -80,8 +80,10 @@ class ArtistsLabelsGenresController < ApplicationController
               end
           else
             redirect_to root_path
-
           end
+        else
+          redirect_to root_path
+        end
       end
 
 end

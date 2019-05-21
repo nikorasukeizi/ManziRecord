@@ -1,2 +1,35 @@
-<h1>Items#search_result</h1>
-<p>Find me in app/views/items/search_result.html.erb</p>
+<div class="page_title">
+	<h1>検索結果</h1>
+		<h3>ジャンル：
+			<% if params[:q].present? && params[:q][:genre_id_eq].present? %>
+			    <%= @genre.find_by(id: params[:q][:genre_id_eq]).name %>
+	        <% else %>
+	            指定なし
+	        <% end %>
+		</h3>
+
+		<h3>検索ワード：
+            <% if params[:q].present? && params[:q][:artist_name_or_name_cont].present? %>
+			    <%= params[:q][:artist_name_or_name_cont] %>
+			<% else %>
+			    指定なし
+			<% end %>
+	    </h3>
+</div>
+
+<div class="container">
+　　<div class="row">
+
+		<% @search_items.each do |item| %>
+			<div class="CD_container col-lg-3" style="text-align: center; margin-top: 40px;">
+				<%= link_to item_path(item.id) do %>
+					<%= attachment_image_tag item, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg" %>
+					<p><%= item.name %></p>
+				<% end %>
+				<p><%= item.artist.name %></p>
+				<p>価格：<%= item.price %>円</p>
+			</div>
+	    <% end %>
+
+	</div>
+</div>

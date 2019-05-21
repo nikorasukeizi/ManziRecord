@@ -11,11 +11,9 @@
 	<div class="col-lg-3">
 	  <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %><br>
 
-
-
-
 	       　 <!-- ログインしているユーザーのみ管理者権限の判定を行う していない場合カートボタン表示-->
               <% if user_signed_in? %>
+
 
 	             <!-- 管理者権限・アドミンがtrueでないならば表示　＝管理者には表示しない -->
 	             <% unless current_user.admin? %>
@@ -26,7 +24,7 @@
 			 　　           カートに入れる</li>
 
 
-				           <%= form_for(@cart) do |f| %>
+				           <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %>
 
 					           <li class="list-group-item" style="font-weight: bold; text-align: center;">
 						       数量  <%= f.number_field :buy_count %><br><br>
@@ -47,7 +45,7 @@
 			 　　          カートに入れる</li>
 
 
-				           <%= form_for(@cart) do |f| %>
+				           <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %>
 
 					           <li class="list-group-item" style="font-weight: bold; text-align: center;">
 						       数量  <%= f.number_field :buy_count %><br><br>
