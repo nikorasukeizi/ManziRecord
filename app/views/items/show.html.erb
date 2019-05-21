@@ -14,6 +14,7 @@
 	       　 <!-- ログインしているユーザーのみ管理者権限の判定を行う していない場合カートボタン表示-->
               <% if user_signed_in? %>
 
+
 	             <!-- 管理者権限・アドミンがtrueでないならば表示　＝管理者には表示しない -->
 	             <% unless current_user.admin? %>
 
@@ -21,6 +22,7 @@
 
 	  　　　　             <li class="list-group-item" style="text-align: center; font-weight: bold;">
 			 　　           カートに入れる</li>
+
 
 				           <%= form_for @cart, url: item_cart_items_path(@item.id) do |f| %>
 
