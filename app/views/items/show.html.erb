@@ -120,7 +120,7 @@
 		     <% end %>
 
 		     <li class="list-group-item" style="font-weight: bold;">
-			  価格（税込）：<%= @item.price %></li>
+			  価格（税込）：<%= tax_included(@item.price) %></li>
 
              <li class="list-group-item" style="font-weight: bold;">
 			  ステータス：<%= @item.status %></li>

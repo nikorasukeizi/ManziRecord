@@ -16,7 +16,7 @@
 			<p>CD名：<%= item.name %></p>
 		<% end %>
 		<p>アーティスト名：<%= item.artist.name %></p>
-		<p>価格：<%= item.price %>円</p>
+		<p>価格：<%= tax_included(item.price) %>円(税込)</p>
 	</div>
 
 <% end %>
