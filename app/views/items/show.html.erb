@@ -124,9 +124,11 @@
 			  ステータス：<%= @item.status %></li>
 
 			  <li class="list-group-item" style="font-weight: bold;">
-			  在庫数：<%= @item.stock %></li>
-
-
+			    在庫数：<% case @stock
+			              when 0 %><%= "売り切れ" %>
+			             <% when 1..50 %><%= "残りわずか" %>
+			             <% else %><%= "余裕あり" %>
+			           <% end %></li>
 		</ul>
 
 
