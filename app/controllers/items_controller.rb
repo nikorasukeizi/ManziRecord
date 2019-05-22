@@ -13,10 +13,6 @@ class ItemsController < ApplicationController
     @items_new = Item.all.order(created_at: "DESC")
     @items_rankall = Item.all.order(sales: "DESC")
 
-
-      end
-    end
-
   end
 
   def show
