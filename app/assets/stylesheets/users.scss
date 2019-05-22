@@ -67,7 +67,7 @@
 }
 
 
-// マイページ画面
+// エンドユーザ側マイページ画面
 .userinfo-table{
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -152,6 +152,7 @@
 	margin-left: 20px;
 }
 
+// admin側マイページ画面
 .admin-mypage h3{
 	text-align: center;
 	margin-top: 60px;
@@ -178,12 +179,12 @@
 }
 
 
-// 購入履歴表示画面
+// 購入履歴ページ
 .buyitem-block{
 	cursor: pointer;
 	display: inline-block;
 	margin: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 
 .buyitem-artist{
@@ -200,8 +201,13 @@
 	margin-top: 60px;
 }
 
-.buyhistory h4{
+.buyhistory h3{
 	margin-top: 60px;
+}
+
+.buyhistory .buystatus{
+	font-size: 20px;
+	padding-left: 20px;
 }
 
 .clearfix::after {
@@ -288,8 +294,8 @@
 }
 
 
-
-.userindex-table {
+// ユーザ一覧画面
+.userindex {
 	margin: 30px;
 }
 
@@ -297,24 +303,24 @@
 	margin: 50px;
 }
 
-.userindex-table tr{
+.userindex tr{
 	border-bottom: 1px solid #000;
 }
 
 
-.userindex-table th{
+.userindex th{
 	text-align: center;
 	height: 30px;
 	width: 12%;
 }
 
-.userindex-table td{
+.userindex td{
 	text-align: center;
 	height: 30px;
 	width: 12%;
 }
 
-.userindex-table .name{
+.userindex .name{
 	text-align: left;
 	height: 30px;
 	width: 12%;

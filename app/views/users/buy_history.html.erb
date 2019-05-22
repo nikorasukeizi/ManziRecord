@@ -6,7 +6,7 @@
 			<% if @user.buy_infos.present? %>
 			<div class="col-xs-12">
 				<% @buy_infos.each do |buy_info| %>
-			        <h4>購入日： <%= buy_info.created_at.strftime('%Y/%m/%d %H時%M分') %></h4>
+			        <h3>購入日： <%= buy_info.created_at.strftime('%Y/%m/%d %H時%M分') %><span class="buystatus">受注情報：<%= buy_info.buy_status %></span></h3>
 
 		        <div class="col-xs-12">
 					<% buy_info.buy_items.each do |buy_item| %>

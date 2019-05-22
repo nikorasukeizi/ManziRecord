@@ -11,7 +11,7 @@
       <div class="form">
 
         <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= devise_error_messages %>
 
       <hr class="colorgraph">
 

@@ -20,7 +20,7 @@
 	font-size: 50px;
 }
 
-/* ランキング表示レイアウト調整用 */
+/* トップページのランキング表示レイアウト調整用 */
 
 .headline {
 	width: 100%;
@@ -84,14 +84,10 @@
 	margin-left: 3%;
 }
 
-/* 下段コンテンツのレイアウト調整 */
-.container {
-	width: 100%;
-}
-
+/* トップページの下段コンテンツのレイアウト調整 */
 
 .bottom-contents {
-	width: 100%;
+	width: 90%;
 	margin-top: 40px;
 }
 .items_link {
