@@ -2,6 +2,7 @@
 <h1>受注履歴一覧</h1>
 </div>
 
+
 <div class="container">
 <div class="row" style="margin-top: 50px;">
 
@@ -10,7 +11,7 @@
 		<div class="col-lg-3" style="margin-right: 30px;">
 
 			<ul class="list-group">
-　　　　　　　　　
+
 　　　　　　　　　<%= link_to user_path(buyinfo.user.id) do %>
 	            <li class="list-group-item">購入者：<%= buyinfo.user.last_name %>　<%= buyinfo.user.first_name %></li><% end %>
 
