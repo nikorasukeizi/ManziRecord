@@ -127,8 +127,8 @@
 
 			  <li class="list-group-item" style="font-weight: bold;">
 			    在庫数：<% case @stock
-			              when 0 %><%= "売り切れ" %>
-			             <% when 1..50 %><%= "残りわずか" %>
+			              when -Float::INFINITY..0 %><span class="text-danger"><%= "売り切れ" %></span>
+			             <% when 1..50 %><%= "残りわずか" %><span class="text-danger pull-right"><%= "あと#{@stock}個です！" %></span>
 			             <% else %><%= "余裕あり" %>
 			           <% end %></li>
 		</ul>
