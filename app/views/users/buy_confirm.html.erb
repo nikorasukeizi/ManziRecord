@@ -17,6 +17,11 @@
 					<u><p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p></u>
 				</div>
 			</div>
+			<div class="col-md-4 col-md-offset-8">
+				<% if CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count > item.stock %>
+					<p class="text-danger">在庫が<%= "#{CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count - item.stock}" %>個不足している為、お取り寄せ後の発送になります。</p>
+				<% end %>
+			</div>
 		<% end %>
 	</div>
 	<div class="row">
@@ -44,7 +49,9 @@
 				<p class="h3"><%= @buy_info.payments %></p>
 				<h2>発送方法</h2>
 				<p class="h3">マジ卍急便</p>
-					<p>※すべての商品を同梱して発送いたします。</p>
+				<p>すべての商品を同梱して発送いたします。</p>
+				<%  %>
+				<p></p>
 			</div>
 		</div>
 	</div>

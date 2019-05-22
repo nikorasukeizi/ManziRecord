@@ -5,13 +5,15 @@ class BuyInfosController < ApplicationController
   def complete
     if session[:buy_auth] == true
       buy_info = BuyInfo.new(buy_info_params)
-      buy_info.save
-      carts = CartItem.where(user_id: current_user.id)
-      carts.each do |cart|
-        buy_item = buy_info.buy_items.build(item_id: cart.item_id, price: cart.item.price, buy_count: cart.buy_count)
-        buy_item.save
-        carts = CartItem.where(user_id: current_user.id)
-        cart.destroy
+      buy_info.save #購入情報をDBに保存する
+      cart_items = CartItem.where(user_id: current_user.id)
+      cart_items.each do |cart_item|
+        buy_item = buy_info.buy_items.build(item_id: cart_item.item_id, price: cart_item.item.price, buy_count: cart_item.buy_count)
+        buy_item.save #カートに入っているアイテム情報を、BuyItemsテーブルに保存する
+        item = Item.find(cart_item.item_id)
+        item.stock -= cart_item.buy_count
+        item.save #購入された商品の在庫を、購入された分減算して保存
+        cart_item.destroy #購入したユーザに紐づくCartItemテーブルのレコードを全削除
       end
       session[:buy_status] = nil
     else
