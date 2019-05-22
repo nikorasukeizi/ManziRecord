@@ -36,6 +36,15 @@ class BuyInfosController < ApplicationController
   end
 
   def show
+      @buyinfo = BuyInfo.find(params[:id])
+      @user = @buyinfo.user
+      @buyitems = @buyinfo.buy_items
+  end
+
+  def update_buy_status
+      buyinfo = BuyInfo.find(params[:id])
+      buyinfo.update(buy_info_params)
+      redirect_to buy_info_path(buyinfo.id)
   end
 
   def edit
