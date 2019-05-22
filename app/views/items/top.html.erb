@@ -140,12 +140,11 @@
         <%= link_to "商品一覧", items_path, class: "item_contents" %>
         <h2>ジャンル</h2>
         <ul class="item_genres">
-          <li><%= link_to "洋楽", "/items/11/genre_index" %></li>
-          <li><%= link_to "ROCK", "/items/1/genre_index" %></li>
-          <li><%= link_to "K-POP", "/items/8/genre_index" %></li>
-          <li><%= link_to "アニソン", "/items/9/genre_index" %></li>
-          <li><%= link_to "J-POP", "/items/10/genre_index" %></li>
-          <li><%= link_to "卍", "/items/12/genre_index" %></li>
+          <li><%= link_to "J-POP", genres_index_path(1) %></li>
+          <li><%= link_to "ROCK", genres_index_path(2) %></li>
+          <li><%= link_to "K-POP", genres_index_path(3) %></li>
+          <li><%= link_to "アニソン", genres_index_path(4) %></li>
+          <li><%= link_to "洋楽", genres_index_path(5) %></li>
         </ul>
         <!-- ジャンルURLは要編集 -->
       </div>
