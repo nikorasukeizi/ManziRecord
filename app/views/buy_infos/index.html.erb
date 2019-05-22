@@ -3,35 +3,27 @@
 </div>
 
 <div class="container">
-<div class="row">
+<div class="row" style="margin-top: 50px;">
 
 	<% @buyinfos.each do |buyinfo| %>
 
-		<div class="col-lg-3">
+		<div class="col-lg-3" style="margin-right: 30px;">
 
-            <p>購入者：</p><%= buyinfo.user.name %><p>様</p>
-            <p>発注日：</p><%= buyinfo.created_at %>
-            <p>総計：</p><%= buyinfo.price %><p>円</p>
-            <p>ステータス：</p><%= buyinfo.buy_status %>
-            <%= link_to "詳細", buy_info_path(buyinfo.id), class: "btn btn-success btn-sm" %>
+			<ul class="list-group">
+　　　　　　　　　
+　　　　　　　　　<%= link_to user_path(buyinfo.user.id) do %>
+	            <li class="list-group-item">購入者：<%= buyinfo.user.last_name %>　<%= buyinfo.user.first_name %></li><% end %>
+
+	            <li class="list-group-item">発注日：<%= buyinfo.created_at %></li>
+	            <li class="list-group-item">総計：<%= buy_info_price(buyinfo) %>円</li>
+	            <li class="list-group-item">ステータス：<%= buyinfo.buy_status %></li>
+	            <li class="list-group-item"><%= link_to "詳細", buy_info_path(buyinfo.id), class: "btn btn-success btn-sm" %></li>
+
+	        </ul>
 
         </div>
 
 	<% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 </div>
