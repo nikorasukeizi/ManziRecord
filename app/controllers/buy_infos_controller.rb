@@ -11,6 +11,7 @@ class BuyInfosController < ApplicationController
         carts = CartItem.where(user_id: current_user.id)
         cart.destroy
       end
+      session[:buy_status] = nil
     else
       redirect_to root_path
     end

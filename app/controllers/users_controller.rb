@@ -53,8 +53,10 @@ before_action :require_admin, only:[:index]
   def buy_confirm
     @user = current_user
     if session[:buy_auth] == true
-      if params[:buy_info][:select] == "0" #登録先が選択された場合
-          @buy_info = BuyInfo.new(addressee: "#{current_user.last_name}#{current_user.first_name}", delivery_postcode: current_user.postcode, delivery_address: current_user.address, payments: params[:buy_info][:payments], user_id: current_user.id)
+       session[:buy_status] = params[:buy_info]  unless params[:buy_info] == nil
+      if session[:buy_status][:select] == "0" #登録先が選択された場合
+          @buy_info = BuyInfo.new(addressee: "#{current_user.last_name}#{current_user.first_name}", delivery_postcode: current_user.postcode,
+                                  delivery_address: current_user.address, payments: session[:buy_status][:payments], user_id: current_user.id)
       else
           @buy_info = BuyInfo.new(buy_info_params)
       end

@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row">
-		<h1 class="text-center buy_headline">注文内容を確認してください卍</h1>
+		<h1 class="text-center buy_headline">卍注文内容を確認してください卍</h1>
 		<% @user.items.each_with_index do |item, i| %>
 			<div class="buy_items col-md-10 col-md-offset-1 clearfix">
 				<%= link_to item_path(item.id) do %>
@@ -35,13 +35,16 @@
 		<div class="col-md-8 col-md-offset-2 delivery_target">
 			<div class="col-md-6">
 				<h2>お届け先</h2>
-				<p class="h3">宛先：<%= @buy_info.addressee %></p>
-				<p class="h3">〒<%= @buy_info.delivery_postcode.clone.insert(3, '-') %></p>
-				<p class="h3"><%= @buy_info.delivery_address %></p>
+				<p class="h4">宛先：<%= @buy_info.addressee %></p>
+				<p class="h4">〒<%= @buy_info.delivery_postcode.clone.insert(3, '-') %></p>
+				<p class="h4"><%= @buy_info.delivery_address %></p>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
 				<h2>お支払い方法</h2>
 				<p class="h3"><%= @buy_info.payments %></p>
+				<h2>発送方法</h2>
+				<p class="h3">マジ卍急便</p>
+					<p>※すべての商品を同梱して発送いたします。</p>
 			</div>
 		</div>
 	</div>
