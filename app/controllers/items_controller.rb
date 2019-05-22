@@ -96,16 +96,7 @@ class ItemsController < ApplicationController
   end
 
 
-
- # @genre = Genre.find(params[:id])
-
-      # if @genre = nil?
-         @items = Item.all
-
-      # else
-      # @genreitems = @genre.item_id.all
-      # end
-
+  
 
   private
       #子要素・孫要素も一緒に許可する。　idと_destroyを必ず入れる

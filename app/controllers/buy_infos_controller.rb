@@ -1,5 +1,7 @@
 class BuyInfosController < ApplicationController
 
+  before_action :require_admin, only: [:index, :show, :edit, :update]
+
   def complete
     if session[:buy_auth] == true
       buy_info = BuyInfo.new(buy_info_params)
@@ -20,10 +22,15 @@ class BuyInfosController < ApplicationController
   def index
       @buyinfos = BuyInfo.all
 
-      @buy_items = BuyInfo.BuyItems
+      
+      @buyinfos.each do |buyinfo|
+        @buy_items = buyinfo.buy_items
+      
+
       @total_price = 0
       @buy_items.each do |buy_item|
-        @total_price = @total_price + buy_item.buy_count * buy_item.total_price
+        @total_price = @total_price + buy_item.buy_count * buy_item.price
+      end
       end
 
   end
@@ -41,6 +48,18 @@ class BuyInfosController < ApplicationController
 
   def buy_info_params
     params.require(:buy_info).permit(:user_id, :payments, :addressee, :delivery_postcode, :delivery_address, :buy_status)
+  end
+
+  def require_admin
+          if user_signed_in?
+
+              if current_user.admin?
+              else
+                 redirect_to root_path
+              end
+          else
+            redirect_to root_path
+          end
   end
 
 end
