@@ -11,7 +11,7 @@
       <div class="form">
 
         <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= devise_error_messages %>
 
       <ul>
 
@@ -36,7 +36,7 @@
             <%= f.label :birthdate, "生年月日" %>
             <%= raw sprintf(
               f.date_select(
-                :birthdate, use_month_numbers: true, start_year: 1930, end_year:(Time.now.year), default: Date.new(2000, 1, 1), date_separator: '%s'), '年', '月') + '日' %>
+                :birthdate, use_month_numbers: true, start_year: 1930, end_year:(Time.now.year), default: Date.new(2002, 1, 1), date_separator: '%s'), '年', '月') + '日' %>
           </div>
         </li>
 
