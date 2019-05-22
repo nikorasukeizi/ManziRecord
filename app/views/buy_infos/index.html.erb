@@ -15,7 +15,7 @@
 　　　　　　　　　<%= link_to user_path(buyinfo.user.id) do %>
 	            <li class="list-group-item">購入者：<%= buyinfo.user.last_name %>　<%= buyinfo.user.first_name %></li><% end %>
 
-	            <li class="list-group-item">発注日：<%= buyinfo.created_at %></li>
+	            <li class="list-group-item">発注日：<%= buyinfo.created_at.strftime('%Y/%m/%d %H時%M分') %></li>
 	            <li class="list-group-item">総計：<%= buy_info_price(buyinfo) %>円</li>
 	            <li class="list-group-item">ステータス：<%= buyinfo.buy_status %></li>
 	            <li class="list-group-item"><%= link_to "詳細", buy_info_path(buyinfo.id), class: "btn btn-success btn-sm" %></li>

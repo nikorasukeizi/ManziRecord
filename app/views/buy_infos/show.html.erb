@@ -1,2 +1,83 @@
-<h1>BuyInfos#show</h1>
-<p>Find me in app/views/buy_infos/show.html.erb</p>
+<div class="page_title">
+<h1>受注情報詳細</h1>
+</div>
+
+<div class="container">
+<div class="row">
+
+
+	<div class="col-lg-6">
+
+		<h3>購入商品</h3>
+
+		<% @buyitems.each do |buyitem| %>
+
+            <div class=row style="margin-top: 50px;">
+
+
+            	  <div class="CD-container" style="width: 300px; text-align: center;">
+
+            	  	 <%= link_to item_path(buyitem.id) do %>
+	            
+		       		 	 <%= attachment_image_tag buyitem.item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %><br>
+
+					     <p>CD名：<%= buyitem.item.name %></br>
+
+					 <% end %>
+
+					  アーティスト名：<%= buyitem.item.artist.name %></p>
+
+
+				  </div>
+			    
+
+	       		<p>数量：<%= buyitem.buy_count %>枚<br>
+	       		   単価：<%= buyitem.price %>円（税込）<br>
+	       		   <!-- 小計：<%= buyitem.price * buyitem.buy_count %>円（税込） -->
+	       		</p>
+
+	       	</div>
+
+		<% end %>
+
+	</div>
+
+
+
+	<div class="col-lg-4">
+
+		<h3>購入情報</h3>
+
+        <ul class="list-group" style="margin-top: 50px;>
+
+             <%= link_to user_path(@user.id) do %>
+			 <li class="list-group-item">購入者：<%= @user.last_name %>　<%= @user.first_name %></li><% end %>
+			 <li class="list-group-item">合計価格：<%= buy_info_price(@buyinfo) %>　円（税込）</li>
+			 <li class="list-group-item">購入日時：<%= @buyinfo.created_at.strftime('%Y/%m/%d %H時%M分') %></li>
+			 <li class="list-group-item">送付先　　<%= @buyinfo.addressee %><br>
+			   〒　<%= @buyinfo.delivery_postcode %><br>
+			   住所：<%= @buyinfo.delivery_address %></li>
+			 <li class="list-group-item">支払方法：<%= @buyinfo.payments %></li>
+
+			 <li class="list-group-item">ステータス：
+			 	<%= form_for @buyinfo, url: edit_buy_status_path(@buyinfo.id) do |f| %>
+			 	  <%= f.select :buy_status, BuyInfo.buy_statuses.keys %>
+			 	  <%= f.submit 'ステータス変更', class: "btn btn-success btn-xs" %>
+			 	<% end %>
+			 </li>
+
+	    </ul>
+
+         <div class=row style="margin-top: 100px;">
+		   <%= link_to "受注情報変更", edit_buy_info_path(@buyinfo.id), class: "btn btn-primary" %>
+		 </div>
+
+	</div>
+
+	<div class="col-lg-2">
+	</div>
+
+
+</div>
+</div>
+

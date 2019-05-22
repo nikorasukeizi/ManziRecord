@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   #Buy_infosコントローラルーティング
   get 'buy_infos/complete', as: 'buy_infos_complete'
   post 'buy_infos/complete'
+  patch 'buy_infos/:id/edit_status' => 'buy_infos#update_buy_status', as: 'edit_buy_status'
   resources :buy_infos, only: [:index, :show, :edit, :update, :destroy]
 
   # Usersコントローラルーティング
