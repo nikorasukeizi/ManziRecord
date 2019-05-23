@@ -1,17 +1,16 @@
 
-<% @items_rankall.first(3).each_with_index do |item, i| %>
-<div class="rank">
-  <h1>Rank.<%= i+1 %></h1>
-  <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
-  <%= link_to item_path(item.id) do %>
-    <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
-    <p>
-      <%= item.name %><br>
-      <%= item.artist.name %>
-    </p>
+<% @items_rank.first(3).each_with_index do |item, i| %>
+  <div class="rank">
+    <h1>Rank.<%= i+1 %></h1>
+    <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
+    <%= link_to item_path(item.id) do %>
+      <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
+      <p>
+        <%= item.name %><br>
+        <%= item.artist.name %>
+      </p>
+    <% end %>
+  </div>
   <% end %>
-</div>
-<% end %>
-
 
 <%= link_to "more", "/items/ranking", class:"btn btn-success see_more " %>

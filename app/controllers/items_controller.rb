@@ -10,8 +10,22 @@ class ItemsController < ApplicationController
         session[:cart] = {}
     end
 
+    # 新着情報
     @items_new = Item.all.order(created_at: "DESC")
-    @items_rankall = Item.all.order(sales: "DESC")
+    # ランキング表示
+    @items_rank = Item.joins(:buy_items)
+          .where(buy_items: {created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month})
+          .group("item_id")
+          .order("sum(buy_items.buy_count) desc, items.id")
+          .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
+
+    # 卍のランキング表示
+    @items_manzirank = Item.joins({:buy_items => {:buy_info => :user}})
+          .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
+          .where(buy_items: {created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month})
+          .where('users.age':0..18)
+          .group("item_id")
+          .order("sum(buy_items.buy_count) desc, items.id")
 
   end
 
@@ -99,7 +113,16 @@ class ItemsController < ApplicationController
   end
 
 
-  
+
+ # @genre = Genre.find(params[:id])
+
+      # if @genre = nil?
+         @items = Item.all
+
+      # else
+      # @genreitems = @genre.item_id.all
+      # end
+
 
   private
       #子要素・孫要素も一緒に許可する。　idと_destroyを必ず入れる
