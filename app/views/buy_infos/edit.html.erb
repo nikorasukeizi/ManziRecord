@@ -1,2 +1,96 @@
-<h1>BuyInfos#edit</h1>
-<p>Find me in app/views/buy_infos/edit.html.erb</p>
+<div class="page_title">
+	<h1>受注情報変更</h1>
+</div>
+
+<div class="container">
+<div class="row">
+
+	<%= form_for(@buyinfo) do |f| %>
+
+		<div class="col-lg-6">
+
+			<h3>購入商品</h3>
+
+   
+			<%= f.fields_for :buy_items do |i| %>
+				<div class=row style="margin-top: 50px;">
+
+					<div class="CD-container" style="width: 300px; text-align: center;">
+						<%= link_to(item_path(i.object.item)) do %>
+							<%= attachment_image_tag i.object.item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+						<% end %>
+						<br>
+
+						<p>CD名：<%= i.object.item.name %></br>
+
+						   アーティスト名：<%= i.object.item.artist.name %></p>
+					</div>
+
+					<p>
+						
+							数量：<%= i.number_field :buy_count %>枚<br>
+							単価：<%= tax_included(i.object.price) %>円（税込）<br>
+
+					</p>
+
+				</div>
+
+			<% end %>
+
+		</div>
+
+
+		<div class="col-lg-4">
+
+				<h3>購入情報</h3>
+
+				<ul class="list-group" style="margin-top: 50px;">
+
+					<%= link_to(user_path(@buyinfo.user.id)) do %>
+					<li class="list-group-item">購入者：<%= @buyinfo.user.last_name %>　<%= @buyinfo.user.first_name %></li>
+					<% end %>
+					<li class="list-group-item">合計価格：<%= tax_included(buy_info_price(@buyinfo)) %>　円（税込）</li>
+					<li class="list-group-item">購入日時：<%= @buyinfo.created_at.strftime('%Y/%m/%d %H時%M分') %></li>
+					<li class="list-group-item">
+					
+                        <%= f.label :addressee, "宛名" %>
+						<%= f.text_field :addressee, class: "form-control validate[required]" %><br>
+						<%= f.label :delivery_postcode, "郵便番号" %>
+						<%= f.text_field :delivery_postcode, class: "form-control validate[required, minSize[7]]" %><br>
+						<%= f.label :delivery_address, "宛先住所" %>
+						<%= f.text_field :delivery_address, :size => "60", class: "form-control validate[required]" %>
+					</li>
+
+					<li class="list-group-item">
+						<h2>お支払い方法選択</h2>
+						<div>
+							<label><%= f.radio_button :payments, "銀行振込", {:checked => true} %>銀行振込</label>
+						</div>
+						<div>
+							<label><%= f.radio_button :payments, "クレジットカード" %>クレジットカード</label>
+						</div>
+						<div>
+							<label><%= f.radio_button :payments, "代金引換" %>代金引換</label>
+						</div>
+					</li>
+
+					<li class="list-group-item">ステータス：
+						<%= f.select :buy_status, BuyInfo.buy_statuses.keys %>
+					</li>
+
+
+				</ul>
+                <div class=row style="margin-top: 100px; margin-bottom: 100px;">
+				  <%= f.submit '購入情報変更', class: "btn btn-success" %>
+				</div>
+		</div>
+
+
+		<div class="col-lg-2">
+		</div>
+
+	<% end %>
+
+
+</div>
+</div>

@@ -28,6 +28,17 @@
         </div>
    <% end %>
 
+   <% if @genre.errors.any? %>
+        <div id="error_explanation" style="display: block;">
+        <h2><%= @genre.errors.count %>件のerrorが発生しました。</h2>
+        <ul>
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+        </div>
+   <% end %>
+
 
   <div class="center" style="text-align: center;">
     

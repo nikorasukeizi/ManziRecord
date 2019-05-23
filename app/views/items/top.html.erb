@@ -20,7 +20,6 @@
 
         <div id="tab-contents" class="clearfix">
           <div id="tab1" class="tab">
-            <!-- ランキングに必要な売り上げ数を与えてやるように後で修正します -->
             <%= render 'layouts/all_ranking' %>
           </div>
 
@@ -28,7 +27,6 @@
             <% @items_rank.where(genre_id:1).first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -45,7 +43,6 @@
             <% @items_rank.where(genre_id:2).first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -62,7 +59,6 @@
             <% @items_rank.where(genre_id:3).first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -79,7 +75,6 @@
             <% @items_rank.where(genre_id:4).first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -96,7 +91,6 @@
             <% @items_rank.where(genre_id:5).first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -113,7 +107,6 @@
             <% @items_manzirank.first(3).each_with_index do |item, i| %>
             <div class="rank">
               <h1>Rank.<%= i+1 %></h1>
-              <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
               <%= link_to item_path(item.id) do %>
                 <%= attachment_image_tag item, :image, :fill, 100, 100, class: "jacket_image" %>
                 <p>
@@ -140,20 +133,17 @@
         <%= link_to "商品一覧", items_path, class: "item_contents" %>
         <h2>ジャンル</h2>
         <ul class="item_genres">
-          <li><%= link_to "JPOP", "/items/11/genre_index" %></li>
-          <li><%= link_to "ROCK", "/items/1/genre_index" %></li>
-          <li><%= link_to "K-POP", "/items/8/genre_index" %></li>
-          <li><%= link_to "アニソン", "/items/9/genre_index" %></li>
-          <li><%= link_to "洋楽", "/items/10/genre_index" %></li>
-          <li><%= link_to "卍", "/items/12/genre_index" %></li>
+          <li><%= link_to "J-POP", genres_index_path(1) %></li>
+          <li><%= link_to "ROCK", genres_index_path(2) %></li>
+          <li><%= link_to "K-POP", genres_index_path(3) %></li>
+          <li><%= link_to "アニソン", genres_index_path(4) %></li>
+          <li><%= link_to "洋楽", genres_index_path(5) %></li>
         </ul>
-        <!-- ジャンルURLは要編集 -->
       </div>
 
       <div class="new_items col-md-5">
         <h2>新商品入荷！卍</h2>
         <div class="new_item_info">
-          <!-- 投稿機能実装後、attachment_image_tagで表示予定 -->
           <% @items_new.first(2).each do |item| %>
             <div class="new_item_block col-sm-5" >
               <%= link_to item_path(item.id) do %><%= attachment_image_tag item, :image, :fill, 180, 180, format:'jpg', fallback:'no_image.jpg', class: "new_item_image" %>

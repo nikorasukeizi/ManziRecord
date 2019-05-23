@@ -40,12 +40,19 @@ class ArtistsLabelsGenresController < ApplicationController
          end
       end
 
-  	  genre = Genre.new(genre_params)
-  	  if genre.name.present?
-  	  genre.save
+  	  @genre = Genre.new(genre_params)
+  	  if @genre.name.present?
+
+  	     if @genre.save
+         else
+            @artist = Artist.new
+            @label = Label.new
+            render :new
+            return
+         end
       end
 
-      if @artist.name.present? or @label.name.present? or genre.name.present?
+      if @artist.name.present? or @label.name.present? or @genre.name.present?
       redirect_to new_item_path
 
       else
