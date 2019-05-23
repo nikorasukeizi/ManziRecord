@@ -6,6 +6,8 @@ class BuyInfo < ApplicationRecord
     has_many :buy_items
     belongs_to :user, optional: true
 
+    accepts_nested_attributes_for :buy_items
+
     validates :addressee, presence: true
     validates :delivery_postcode, presence: true, format:{with: /\A\d{7}\z/}
     validates :delivery_address, presence: true

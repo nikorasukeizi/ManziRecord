@@ -32,7 +32,7 @@
 			    
 
 	       		<p>数量：<%= buyitem.buy_count %>枚<br>
-	       		   単価：<%= buyitem.price %>円（税込）<br>
+	       		   単価：<%= tax_included(buyitem.price) %>円（税込）<br>
 	       		   <!-- 小計：<%= buyitem.price * buyitem.buy_count %>円（税込） -->
 	       		</p>
 
@@ -48,11 +48,11 @@
 
 		<h3>購入情報</h3>
 
-        <ul class="list-group" style="margin-top: 50px;>
+        <ul class="list-group" style="margin-top: 50px;">
 
              <%= link_to user_path(@user.id) do %>
 			 <li class="list-group-item">購入者：<%= @user.last_name %>　<%= @user.first_name %></li><% end %>
-			 <li class="list-group-item">合計価格：<%= buy_info_price(@buyinfo) %>　円（税込）</li>
+			 <li class="list-group-item">合計価格：<%= tax_included(buy_info_price(@buyinfo)) %>　円（税込）</li>
 			 <li class="list-group-item">購入日時：<%= @buyinfo.created_at.strftime('%Y/%m/%d %H時%M分') %></li>
 			 <li class="list-group-item">送付先　　<%= @buyinfo.addressee %><br>
 			   〒　<%= @buyinfo.delivery_postcode %><br>
