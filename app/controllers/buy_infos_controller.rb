@@ -1,6 +1,6 @@
 class BuyInfosController < ApplicationController
 
-  before_action :require_admin, only: [:index, :show, :edit, :update]
+  before_action :require_admin, only: [:index, :edit, :update]
 
   def complete
     if session[:buy_auth] == true
@@ -12,7 +12,11 @@ class BuyInfosController < ApplicationController
         buy_item.save #カートに入っているアイテム情報を、BuyItemsテーブルに保存する
         item = Item.find(cart_item.item_id)
         item.stock -= cart_item.buy_count
+        if item.stock <= 0
+           item.status = 1
+        end
         item.save #購入された商品の在庫を、購入された分減算して保存
+        
         cart_item.destroy #購入したユーザに紐づくCartItemテーブルのレコードを全削除
       end
       session[:buy_status] = nil
@@ -30,6 +34,11 @@ class BuyInfosController < ApplicationController
       @buyinfo = BuyInfo.find(params[:id])
       @user = @buyinfo.user
       @buyitems = @buyinfo.buy_items
+
+      if current_user.admin? or @user == current_user
+      else
+         redirect_to root_path
+      end
   end
 
   def update_buy_status
