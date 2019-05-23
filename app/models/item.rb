@@ -25,4 +25,13 @@ class Item < ApplicationRecord
      validates :status,   presence: true
      validates :price,   presence: true
 
+    def young_rank
+	    self.items
+	        .joins(:buy_counts)
+	        .where("buy_items.created_at Time.now.beginning_of_month..Time.now.end_of_month")
+	        .group(:item_id)
+	        .order("sum(buy_items.buy_count) desc, items.id")
+	        .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
+    end
+
 end
