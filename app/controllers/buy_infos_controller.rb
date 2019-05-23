@@ -24,18 +24,6 @@ class BuyInfosController < ApplicationController
 
   def index
       @buyinfos = BuyInfo.all
-
-      
-      @buyinfos.each do |buyinfo|
-        @buy_items = buyinfo.buy_items
-      
-
-      @total_price = 0
-      @buy_items.each do |buy_item|
-        @total_price = @total_price + buy_item.buy_count * buy_item.price
-      end
-      end
-
   end
 
   def show
@@ -51,16 +39,23 @@ class BuyInfosController < ApplicationController
   end
 
   def edit
+      @buyinfo = BuyInfo.find(params[:id])
   end
 
+
   def update
+      buyinfo = BuyInfo.find(params[:id])
+      buyinfo.update(buy_info_params)
+      redirect_to buy_info_path(buyinfo.id)
   end
 
   private
 
   def buy_info_params
-    params.require(:buy_info).permit(:user_id, :payments, :addressee, :delivery_postcode, :delivery_address, :buy_status)
+    params.require(:buy_info).permit(:user_id, :payments, :addressee, :delivery_postcode, :delivery_address, :buy_status,
+                                      buy_items_attributes: [:buy_count, :id, :_destroy])
   end
+
 
   def require_admin
           if user_signed_in?
