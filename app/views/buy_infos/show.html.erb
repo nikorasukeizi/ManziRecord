@@ -60,16 +60,22 @@
 			 <li class="list-group-item">支払方法：<%= @buyinfo.payments %></li>
 
 			 <li class="list-group-item">ステータス：
-			 	<%= form_for @buyinfo, url: edit_buy_status_path(@buyinfo.id) do |f| %>
-			 	  <%= f.select :buy_status, BuyInfo.buy_statuses.keys %>
-			 	  <%= f.submit 'ステータス変更', class: "btn btn-success btn-xs" %>
+			 	<% if current_user.admin? %>
+				 	<%= form_for @buyinfo, url: edit_buy_status_path(@buyinfo.id) do |f| %>
+				 	  	<%= f.select :buy_status, BuyInfo.buy_statuses.keys %>
+				 	 	 <%= f.submit 'ステータス変更', class: "btn btn-success btn-xs" %>
+				 	<% end %>
+				<% else %>
+                    <%= @buyinfo.buy_status %>
 			 	<% end %>
 			 </li>
 
 	    </ul>
 
          <div class=row style="margin-top: 100px;">
-		   <%= link_to "受注情報変更", edit_buy_info_path(@buyinfo.id), class: "btn btn-primary" %>
+           <% if current_user.admin? %>
+		     <%= link_to "受注情報変更", edit_buy_info_path(@buyinfo.id), class: "btn btn-primary" %>
+		   <% end %>
 		 </div>
 
 	</div>
