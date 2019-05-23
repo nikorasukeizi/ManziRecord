@@ -1,9 +1,7 @@
 <div class="container-fluid">
 	<div class="row cart_main_visual">
 		<h1>カート商品一覧</h1>
-
 		<% if user_signed_in? %>
-
 			<% unless @user.items.present? %>
 				<h1 class="text-center">カート内に商品はまだありません。</h1>
 			<% else %>
@@ -22,17 +20,16 @@
 						<div class="subtotal">
 							<%= form_for CartItem.find_by(user_id: @user.id, item_id: item.id), url: item_cart_items_path(item.id) do |f| %>
 								<%= f.label :buy_count, "数量：" %>
-								<%= f.number_field :buy_count, class: "num_field"%>
+								<%= f.number_field :buy_count, min: 1, class: "num_field"%>
 								<%= f.submit "変更する", class:"btn btn-success" %>
 							<% end %>
 							<p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p>
 						</div>
 					</div>
-
 					<% if i == @user.items.length - 1 %>
-						<%= link_to "ご購入手続きへ", users_buy_path, class: "btn btn-danger col-md-6 col-md-offset-3" %>
+						<%= link_to "商品一覧へ", items_path, class: "btn btn-success col-md-4 col-md-offset-1" %>
+						<%= link_to "ご購入手続きへ", users_buy_path, class: "btn btn-danger col-md-4 col-md-offset-2" %>
 					<% end %>
-
 				<% end %>
 			<% end %>
 
@@ -44,7 +41,9 @@
 				<% session[:cart].each do |key, value| %>
 					<% item = Item.find(key.to_i) %>
 					<div class="cart_items col-md-10 col-md-offset-1 clearfix">
+						<%= link_to item_path(item.id) do %>
 						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<% end %>
 						<div class="cd_info ">
 							<p>CDタイトル：<%= item.name %></p>
 							<p>アーティスト名：<%= item.artist.name %></p>
@@ -55,17 +54,17 @@
 						<div class="subtotal">
 							<%= form_tag(item_cart_items_path(item.id), method: :patch) do %>
 								<%= label_tag :buy_count, "数量：" %>
-								<%= number_field_tag :buy_count, value["buy_count"], class: "num_field"%>
+								<%= number_field_tag :buy_count, value["buy_count"], min: 1, class: "num_field"%>
 								<%= submit_tag "変更する", class:"btn btn-success" %>
 							<% end %>
-
 							<p>小計： <%= value["buy_count"] * tax_included(item.price) %>円(税込) </p>
 						</div>
 					</div>
 				<% end %>
-				<%= link_to "ご購入手続きへ", users_buy_path, class: "btn btn-danger col-md-6 col-md-offset-3" %>
-			<% end %>
 
+				<%= link_to "商品一覧へ", items_path, class: "btn btn-success col-md-4 col-md-offset-1" %>
+				<%= link_to "ご購入手続きへ", users_buy_path, class: "btn btn-danger col-md-4 col-md-offset-2" %>
+			<% end %>
 		<% end %>
 	</div>
 </div>

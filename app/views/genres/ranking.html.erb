@@ -1,2 +1,51 @@
-<h1>Genres#ranking</h1>
-<p>Find me in app/views/genres/ranking.html.erb</p>
+<%= ranking(@genre.id) %>
+
+<div class="page_title">
+<h1><%= Date.today.prev_month.mon %>月度CD売上げ枚数ランキング</h1>
+</div>
+
+<div class="container-fluid">
+	<div class="row genre_link">
+		<%= link_to "総合", items_ranking_path, class: "col-md-1 btn btn-primary " %>
+		<%= link_to "J-POP", genres_ranking_path(1), class: "col-md-1 btn btn-success" %>
+		<%= link_to "ROCK", genres_ranking_path(2), class: "col-md-1 btn btn-info" %>
+		<%= link_to "K-POP", genres_ranking_path(3), class: "col-md-1 btn btn-warning" %>
+		<%= link_to "アニソン", genres_ranking_path(4), class: "col-md-1 btn btn-danger" %>
+		<%= link_to "洋楽", genres_ranking_path(5), class: "col-md-1 btn btn-primary" %>
+		<%= form_tag(items_ranking_path, method: :get) do %>
+		<%= hidden_field_tag :卍, "true" %>
+		<%= submit_tag "卍", class: "col-md-1 btn btn-success" %>
+		<% end %>
+	</div>
+	<div class="row">
+		<u><p class="h2">ジャンル：&nbsp;&nbsp;&nbsp;&nbsp;<%= @genre.name %></p></u>
+	</div>
+	<div class="row">
+
+		<% ranking(@genre.id).each_with_index do |(key, value), i| %>
+
+			<div class="CD_container col-lg-4" style="text-align: center; margin-top: 40px;">
+				<% item = Item.find(key) %>
+				<% if i == 0 %>
+					<div class="fas fa-crown" style="color: gold;"></div>
+				<% elsif i == 1 %>
+					<i class="fas fa-crown" style="color: silver;"></i>
+				<% elsif i == 2 %>
+					<i class="fas fa-crown" style="color: saddlebrown;"></i>
+				<% end %>
+				<p class="h3">Rank.<%= i + 1 %></p>
+				<div>
+					<%= link_to item_path(item.id) do %>
+						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+						<p>CD名：<%= item.name %></p>
+					<% end %>
+				</div>
+				<p>アーティスト名：<%= item.artist.name %></p>
+				<p>価格：<%= tax_included(item.price) %>円(税込)</p>
+				<p>売上げ数：<%= value %>枚</p>
+			</div>
+
+		<% end %>
+
+	</div>
+</div>

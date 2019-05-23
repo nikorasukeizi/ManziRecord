@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #Itemsコントローラルーティング
   get 'items/top'
   get 'items/search_result'
-  get 'items/ranking'
+  get 'items/ranking', as: 'items_ranking'
   get 'items/:id/genre_index' => 'items#genre_index', as: 'genres_index'
   resources :items do
     resource :cart_items, only: [:create, :destroy, :update] #cart_itemsをネスト

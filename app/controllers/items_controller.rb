@@ -39,6 +39,11 @@ class ItemsController < ApplicationController
   end
 
   def ranking
+    if params[:commit] == "卍"
+      @genre = "young"
+    else
+      @genre = "all"
+    end
   end
 
   def new

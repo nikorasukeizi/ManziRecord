@@ -12,7 +12,11 @@ class CartItemsController < ApplicationController
       end
     else
         item = { buy_count: params[:cart_item][:buy_count].to_i }
-        session[:cart][params[:item_id]] = item
+        if session[:cart].has_key?(params[:item_id])
+          session[:cart][params[:item_id]]["buy_count"] += params[:cart_item][:buy_count].to_i
+        else
+          session[:cart][params[:item_id]] = item
+        end
     end
     redirect_to users_cart_path
   end
