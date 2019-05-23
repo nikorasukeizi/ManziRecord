@@ -1,8 +1,9 @@
 class GenresController < ApplicationController
 
-  before_action :require_admin
+  before_action :require_admin, only: [:edit, :update, :destroy]
 
   def ranking
+    @genre = Genre.find(params[:id])
   end
 
   def edit
@@ -23,7 +24,6 @@ class GenresController < ApplicationController
 
 
      private
-     
 
       def genre_params
           params.require(:genre).permit(:name)
