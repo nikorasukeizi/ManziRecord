@@ -11,22 +11,18 @@
 		<%= link_to "K-POP", genres_ranking_path(3), class: "col-md-1 btn btn-warning" %>
 		<%= link_to "アニソン", genres_ranking_path(4), class: "col-md-1 btn btn-danger" %>
 		<%= link_to "洋楽", genres_ranking_path(5), class: "col-md-1 btn btn-primary" %>
-		<%= form_tag(items_ranking_path, method: :get) do %>
-		<%= hidden_field_tag :young, "true" %>
-		<%= submit_tag "卍", class: "col-md-1 btn btn-success" %>
-		<% end %>
+		<%= link_to "卍", items_ranking_path(young: "true"), class: "col-md-1 btn btn-success" %>
 	</div>
 
 	<% if @genre == "young" %>
 	<div class="row">
-		<u><p class="h2">ジャンル：&nbsp;&nbsp;&nbsp;&nbsp;卍</p></u>
+		<u><p class="h2">18years old or younger Ranking!!</p></u>
 	</div>
 	<div class="row">
 
-		<% ranking_comp(@genre).each_with_index do |(key, value), i| %>
+		<% ranking_younger.each_with_index do |item, i| %>
 
 			<div class="CD_container col-lg-4" style="text-align: center; margin-top: 40px;">
-				<% item = Item.find(key) %>
 				<% if i == 0 %>
 					<div class="fas fa-crown" style="color: gold;"></div>
 				<% elsif i == 1 %>
@@ -43,7 +39,7 @@
 				</div>
 				<p>アーティスト名：<%= item.artist.name %></p>
 				<p>価格：<%= tax_included(item.price) %>円(税込)</p>
-				<p>売上げ数：<%= value %>枚</p>
+				<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 			</div>
 		<% end %>
 	<% else %>
@@ -52,10 +48,9 @@
 		</div>
 		<div class="row">
 
-			<% ranking_comp(@genre).each_with_index do |(key, value), i| %>
+			<% ranking_comp.each_with_index do |item, i| %>
 
 				<div class="CD_container col-lg-4" style="text-align: center; margin-top: 40px;">
-					<% item = Item.find(key) %>
 					<% if i == 0 %>
 						<div class="fas fa-crown" style="color: gold;"></div>
 					<% elsif i == 1 %>
@@ -72,7 +67,7 @@
 					</div>
 					<p>アーティスト名：<%= item.artist.name %></p>
 					<p>価格：<%= tax_included(item.price) %>円(税込)</p>
-					<p>売上げ数：<%= value %>枚</p>
+					<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 				</div>
 			<% end %>
 		</div>
