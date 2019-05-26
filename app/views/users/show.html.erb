@@ -33,21 +33,17 @@
 
 	<div class="row">
 		<div class="col-xs-offset-5 col-xs-2">
-			<%= link_to "登録情報の変更", edit_user_path(@user.id), class:"btn btn-info btn-block" %>
+			<%= link_to "登録情報の変更", edit_user_path(@user.id), class:"btn btn-info btn-lg btn-block" %>
 		</div>
 	</div>
 
 	<div class="row">
-		<h3>購入履歴</h3>
+		<h3>最近の購入履歴</h3>
 
         <!-- 購入履歴がある場合 -->
 		<% if @user.buy_infos.present? %>
 			<div class="col-xs-3">
 				<h4>購入日<%= @user.buy_infos.order(:created_at).last.created_at.strftime('%Y/%m/%d') %></h4>
-			</div>
-
-			<div class="col-xs-offset-6 col-xs-3 buyhistory-mypage">
-			    <%= link_to "全ての購入履歴", user_buy_history_path(@user.id), class:"btn btn-success btn-lg btn-block" %>
 			</div>
 
 	        <div class="col-xs-12">
@@ -59,9 +55,14 @@
 						<% end %>
 					</div>
 				<% end %>
+
 				<% if @user.buy_infos.last.buy_items.count > 3 %>
 				  <h4 class="overcount">他 <%= @user.buy_infos.last.buy_items.count - 3 %>枚</h4>
 				<% end %>
+
+				<span class="buyhistory-mypage">
+			        <%= link_to "全ての購入履歴", user_buy_history_path(@user.id), class:"btn btn-success" %>
+			    </span>
 			</div>
 
 			<!-- 購入履歴がない場合 -->
@@ -74,8 +75,8 @@
     <% if current_user.admin == false %>
 
 		<div class="row">
-			<div class="col-xs-1">
-				<%= link_to "退会?", users_withdraw_view_path, class:"withdraw-btn btn btn-block" %>
+			<div class="col-xs-offset-11 col-xs-1">
+				<%= link_to "退会", users_withdraw_view_path, class:"withdraw-btn btn btn-block" %>
 			</div>
 		</div>
 
