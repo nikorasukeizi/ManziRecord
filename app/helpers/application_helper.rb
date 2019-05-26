@@ -19,6 +19,7 @@ module ApplicationHelper
 	    errors_html.html_safe
   	end
 
+
 	def ranking_younger
 	  items_manzirank = Item.joins({:buy_items => {:buy_info => :user}})
       .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
@@ -29,6 +30,7 @@ module ApplicationHelper
 
       return items_manzirank
 	end
+
 
 	def ranking_comp
 	  items_rank = Item.joins(:buy_items)

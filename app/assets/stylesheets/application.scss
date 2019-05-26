@@ -29,6 +29,8 @@ body {
 }
 .nav .btn {
 	margin-right: 20px;
+	color: #337ab7;
+	margin-top: 8px;
 }
 .form-group input {
 	width: 100%;
@@ -49,10 +51,17 @@ body {
 
 .search .field{
 	width: 45%;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 .search .search-btn{
 	width: 12%;
+}
+
+.search .input-group-btn{
+	display: inline-block;
+	position: relative; right: 4px;
 }
 
 // フラッシュメッセージ
