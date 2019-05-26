@@ -66,6 +66,10 @@
 	margin-left: 36px;
 }
 
+.mypage-edit .btn{
+	margin-top: 50px;
+}
+
 
 // エンドユーザ側マイページ画面
 .userinfo-table{
@@ -109,11 +113,11 @@
 }
 
 .buyhistory-mypage{
-	margin-top: 20px;
+	margin-left: 10%;
 }
 
 .buyhistory-mypage .btn{
-    width: 70%;
+    width: 16%;
 }
 
 .overcount{
@@ -123,15 +127,15 @@
 
 .withdraw-btn{
 	width: 10%;
-	height: 30px;
+	height: 32px;
 	padding: none;
 	font-size: 5px;
 	text-align: center;
 	color: #fff;
-	background-color: #ffc0cb;
+	background-color: #ffeeff;
 	border: none;
 	border-radius: 10px;
-	margin-top: 300px;
+	margin-top: 10px;
 }
 
 .withdraw-btn:hover{
@@ -214,6 +218,21 @@
 	content: "";
 	display: block;
 	clear: both;
+}
+
+// 退会画面
+.withdraw h2{
+	margin-bottom: 20px;
+}
+.withdraw p{
+	padding-left: 20px;
+}
+.withdraw .form{
+	margin-top: 30px;
+}
+
+.withdraw .btn{
+	margin-top: 50px;
 }
 
 /*  カート詳細画面レイアウト編集用  */

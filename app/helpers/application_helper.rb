@@ -22,9 +22,9 @@ module ApplicationHelper
 	def ranking(genre_id)
 		items_info = {}
 		items_by_genre = {}
-		buy_infos = BuyInfo.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month)
+		buy_infos = BuyInfo.all
 		buy_infos.each do |buy_info|
-			buy_info.buy_items.each do |buy_item|
+			buy_info.buy_items.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month).each do |buy_item|
 				if items_info.has_key?(buy_item.item_id)
 					items_info[buy_item.item_id] += buy_item.buy_count
 				else
@@ -51,9 +51,9 @@ module ApplicationHelper
 		if genre == "young"
 			young_users = User.where(age: -Float::INFINITY..18)
 			young_users.each do |user|
-				buy_infos = user.buy_infos.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month)
+				buy_infos = user.buy_infos.all
 				buy_infos.each do |buy_info|
-					buy_info.buy_items.each do |buy_item|
+					buy_info.buy_items.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month).each do |buy_item|
 						if items_info.has_key?(buy_item.item_id)
 							items_info[buy_item.item_id] += buy_item.buy_count
 						else
@@ -63,9 +63,9 @@ module ApplicationHelper
 				end
 			end
 		else
-			buy_infos = BuyInfo.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month)
+			buy_infos = BuyInfo.all
 			buy_infos.each do |buy_info|
-				buy_info.buy_items.each do |buy_item|
+				buy_info.buy_items.where(created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month).each do |buy_item|
 					if items_info.has_key?(buy_item.item_id)
 						items_info[buy_item.item_id] += buy_item.buy_count
 					else

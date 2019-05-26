@@ -26,10 +26,10 @@
           <div class="col-sm-6 search-form">
             <%= search_form_for @search, url: items_search_result_path, class:"search form-inline" do |f| %>
                 <%= f.label :genre_id_eq, 'ジャンル', class:"control-label" %>
-                <%= f.collection_select :genre_id_eq, @genres, :id, :name, :include_blank =>'指定なし', class:"selectbox" %>
+                <%= f.collection_select( :genre_id_eq, @genres, :id, :name, {include_blank: '指定なし'}, {class:"form-control"}) %>
                 <%= f.label :artist_name_or_name_cont, '商品名', class:"control-label" %>
-                <%= f.search_field :artist_name_or_name_cont, class:"form-control field" %>
-                  <%= button_tag sanitize('<i class="glyphicon glyphicon-search"></i>'), :type => "submit",:class =>"btn  btn-default" %>
+                <%= f.search_field :artist_name_or_name_cont, class:"form-control field", placeholder:"検索ワードを入力してください" %>
+                  <span class="input-group-btn"><%= button_tag sanitize('<i class="glyphicon glyphicon-search"></i>'), :type => "submit",:class =>"btn  btn-info" %></span>
             <% end %>
           </div>
 
@@ -38,25 +38,25 @@
             <% if user_signed_in? && current_user.admin == false %><!--ユーザがログインしたとき-->
             <div class="nav navbar-nav navbar-right nav-menu">
 
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button>
+              <%= link_to "マイページ", user_path(current_user.id), class:"btn btn-default" %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-default" %>
+              <%= link_to "カート", users_cart_path, class:"btn btn-default" %>
 
               </div>
 
             <% elsif user_signed_in? && current_user.admin == true %> <!--adminのとき-->
                 <div class="nav navbar-nav navbar-right nav-menu">
 
-                <button type="button" class="btn btn-default navbar-btn"><%= link_to "マイページ", user_path(current_user.id) %></button>
-                <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button>
+                <%= link_to "マイページ", user_path(current_user.id), class:"btn btn-default" %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-default" %>
 
                 </div>
 
             <% else %><!-- ゲストユーザのとき -->
               <div class="nav navbar-nav navbar-right nav-menu">
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "会員登録", new_user_registration_path %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_user_session_path %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "カート", users_cart_path %></button><!--ゲストユーザ用カートのルーティング要検討-->
+              <%= link_to "会員登録", new_user_registration_path, class:"btn btn-default" %>
+              <%= link_to "ログイン", new_user_session_path, class:"btn btn-default" %>
+              <%= link_to "カート", users_cart_path, class:"btn btn-default" %><!--ゲストユーザ用カートのルーティング要検討-->
             </div>
 
             <% end %>

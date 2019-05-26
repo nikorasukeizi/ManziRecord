@@ -12,8 +12,8 @@ before_action :require_admin, only:[:index]
   end
 
   def buy_history
-      @user = User.find(params[:id])
-      @buy_infos = @user.buy_infos.order('created_at desc')
+    @user = User.find(params[:id])
+    @buy_infos = @user.buy_infos.order('created_at desc')
   end
 
   def index
@@ -70,7 +70,7 @@ before_action :require_admin, only:[:index]
   def update
     @user = User.find(params[:id])
     if @user.update_without_current_password(user_params)
-      sign_in @user, bypass: true
+      bypass_sign_in(current_user)
       flash[:success] = 'ユーザ情報を編集しました'
       redirect_to user_path(@user.id)
     else
