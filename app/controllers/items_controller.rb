@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
           .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
 
     # 卍のランキング表示
+
     @items_manzirank = Item.joins({:buy_items => {:buy_info => :user}})
           .where(buy_items: {created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month})
           .where('users.age':0..18)
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def ranking
-    if params[:commit] == "卍"
+    if params[:young].present?
       @genre = "young"
     else
       @genre = "all"

@@ -53,14 +53,18 @@ before_action :require_admin, only:[:index]
   def buy_confirm
     @user = current_user
     if session[:buy_auth] == true
-       #session[:buy_status] = params[:buy_info]  if params[:buy_info]
-      if params[:buy_info][:select] == "0" #登録先が選択された場合
+      if defined?(params[:buy_info][:select]) #リロード時の判断
+        if params[:buy_info][:select] == "0"  #登録先が選択された場合
           @buy_info = BuyInfo.new(addressee: "#{current_user.last_name}#{current_user.first_name}", delivery_postcode: current_user.postcode,
                                   delivery_address: current_user.address, payments: params[:buy_info][:payments], user_id: current_user.id)
-      else
+        else
           @buy_info = BuyInfo.new(buy_info_params)
+        end
+        @buy_info.buy_status = 0 #ステータスに「受付」を代入
+        session[:buy_status] = @buy_info
+      else
+        @buy_info = BuyInfo.new(session[:buy_status])
       end
-      @buy_info.buy_status = 0 #ステータスに「受付」を代入
       @buy_info_new = BuyInfo.new
     else
       redirect_to root_path

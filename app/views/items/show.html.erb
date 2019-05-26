@@ -18,6 +18,13 @@
 	             <!-- 管理者権限・アドミンがtrueでないならば表示　＝管理者には表示しない -->
 	             <% unless current_user.admin? %>
 
+	               <% if @stock <= 0 or @item.status_before_type_cast == 1 %>
+
+	               <p class="text-danger">申し訳ございません。只今、取り扱いできません。</p>
+
+
+	               <% else %>
+
                         <ul class="list-group" style="margin-top: 30px;">
 
 	  　　　　             <li class="list-group-item" style="text-align: center; font-weight: bold;">
@@ -36,9 +43,19 @@
 
 				        </ul>
 
+				    <% end %>
+
 				 <% end %>
 
 			  <% else %>
+
+　　　　　　　　　　<% if @stock <= 0 or @item.status_before_type_cast == 1 %>
+
+	               <p class="text-danger">申し訳ございません。只今、取り扱いできません。</p>
+
+
+	               <% else %>
+
 			            <ul class="list-group" style="margin-top: 30px;">
 
 			              <li class="list-group-item" style="text-align: center; font-weight: bold;">
@@ -55,6 +72,9 @@
 
 			               <% end %>
 			            </ul>
+
+　　　　　　　　　　 <% end %>
+
 			  <% end %>
 
 
