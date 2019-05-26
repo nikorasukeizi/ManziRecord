@@ -54,7 +54,7 @@
            <div class="col-lg-4">
               <%= f.label 'アーティスト名' %>
               <%= f.text_field :name %><br>
-              <%= f.label 'かな（記号不可）' %>
+              <%= f.label 'カナ（記号不可）' %>
               <%= f.text_field :rubi_name %>
           </div>
 
@@ -63,8 +63,8 @@
             <!-- 関連性のない別のモデルを入れ込む表示 -->
             <%= fields_for @label, artists_labels_genres_new_path do |c| %>
             <%= c.label 'レーベル名' %>
-            <%= c.text_field :name %>
-            <%= c.label 'labelかな（記号不可）' %>
+            <%= c.text_field :name %><br>
+            <%= c.label 'カナ（記号不可）' %>
             <%= c.text_field :rubi_name %>
             <% end %>
         </div>
