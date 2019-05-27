@@ -27,7 +27,7 @@ class BuyInfosController < ApplicationController
   end
 
   def index
-      @buyinfos = BuyInfo.all
+      @buyinfos = BuyInfo.all.order("status")
   end
 
   def show

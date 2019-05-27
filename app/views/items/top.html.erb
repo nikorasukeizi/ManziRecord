@@ -2,7 +2,7 @@
 
   <!-- ランキング表示 -->
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="padding-top: 50px;">
       <div class="col-md-12">
       <div class="headline">
         <h1><strong>~ Monthly Ranking ~</strong></h1>
@@ -126,12 +126,12 @@
   </div>
 
 
-  <div class="container-fluid bottom-contents">
+  <div class="container-fluid bottom-contents" style="padding-bottom: 100px;">
     <div class="row">
 
       <div class="items_link col-md-2">
         <%= link_to "商品一覧", items_path, class: "item_contents" %>
-        <h2>ジャンル</h2>
+        <h3>ジャンル</h3>
         <ul class="item_genres">
           <li><%= link_to "J-POP", genres_index_path(1) %></li>
           <li><%= link_to "ROCK", genres_index_path(2) %></li>
