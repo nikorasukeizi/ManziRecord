@@ -27,7 +27,7 @@ class BuyInfosController < ApplicationController
   end
 
   def index
-      @buyinfos = BuyInfo.all.order("status")
+      @buyinfos = BuyInfo.all.order(:buy_status, :created_at)
   end
 
   def show
