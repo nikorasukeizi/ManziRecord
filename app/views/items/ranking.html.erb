@@ -42,9 +42,9 @@
 				<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 			</div>
 		<% end %>
-
-		<%= paginate @items_manzirank %>
-
+		<div class="row" style="text-align: center;">
+			<%= paginate @items_manzirank %>
+		</div>
 	<% else %>
 		<div class="row">
 			<u><p class="h2">ジャンル：&nbsp;&nbsp;&nbsp;&nbsp;総合</p></u>
@@ -73,9 +73,9 @@
 					<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 				</div>
 			<% end %>
-      
-			<%= paginate @item_rank %>
-      
+			<div class="row" style="text-align: center;">
+				<%= paginate @item_rank %>
+			</div>
 		</div>
 	<% end %>
 
