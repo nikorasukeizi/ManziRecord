@@ -73,29 +73,28 @@
 
 
       <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="row container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbarfooter">
-            </button>
-            <%= link_to "卍Record", root_path, class: "navbar-brand 卍footer" %>
-          </div>
+        <div class="container-fluid">
+          <div class="row">
 
-          <div class="collapse navbar-collapse" id="navbarfooter">
+            <div class="collapse navbar-collapse" id="navbarfooter">
 
-            <div class="footer-terms">
-                <a>利用規約</a>
-                <span>|</span>
-                <a>プライバシー規約</a>
+              <div class="footer-terms col-md-2 col-md-offset-5">
+                  <a>利用規約</a>
+                  <span>|</span>
+                  <a>プライバシー規約</a>
+              </div>
+
+              <div class="col-md-2 pull-right">
+                <% if user_signed_in? %>
+                  <span class="navbar-text navbar-right welcome-message">ようこそ <%= current_user.last_name %>さん</span>
+                <% else %>
+                <span class="navbar-text navbar-right welcome-message">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん</span>
+                <% end %>
+              </div>
+
+              <!-- devise導入後、ログインユーザ名が表示されるようにする予定 -->
             </div>
-
-            <% if user_signed_in? %>
-              <span class="navbar-text navbar-right welcome-message">ようこそ <%= current_user.last_name %>さん</span>
-            <% else %>
-            <span class="navbar-text navbar-right welcome-message">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん</span>
-            <% end %>
-
-            <!-- devise導入後、ログインユーザ名が表示されるようにする予定 -->
-          </div>
+        </div>
         </div>
       </nav>
 
