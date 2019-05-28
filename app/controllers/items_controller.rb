@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-      @items = Item.all
+      @items = Item.page(params[:page]).per(12)
   end
 
   def genre_index
@@ -57,10 +57,30 @@ class ItemsController < ApplicationController
   def ranking
     if params[:young].present?
       @genre = "young"
+      @item_rank = ranking_younger.page(params[:page]).per(9)
     else
       @genre = "all"
+      @item_rank = ranking_comp.page(params[:page]).per(9)
+    end
+    @rank_num = {}
+    page_offset = 0
+    if params[:page].to_i >= 2
+      page_offset = (params[:page].to_i - 1) * 9
+    end
+    @item_rank.each_with_index do |item,i|
+      @rank_num[item.id] = i + 1 + page_offset
     end
   end
+
+  #後日修正します byすけ
+  # def get_ranking
+  #   # Ajaxから送られたPOSTパラメータのpageの値取得
+  #   # page = 2
+  #   # DBから値を取得
+  #   @rank_comp = ranking_comp.page(page).per(9)
+  #   # jsonに変換
+  #   # @rank_json = {}
+  # end
 
   def new
       @item = Item.new

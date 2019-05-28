@@ -4,6 +4,16 @@ class GenresController < ApplicationController
 
   def ranking
     @genre = Genre.find(params[:id])
+    @items = @genre.items.page(params[:page]).per(12)
+    @genre_rank = ranking_comp.where(genre_id: @genre.id).page(params[:page]).per(9)
+    @rank_num = {}
+    page_offset = 0
+    if params[:page].to_i >= 2
+      page_offset = (params[:page].to_i - 1) * 9
+    end
+    @genre_rank.each_with_index do |item,i|
+      @rank_num[item.id] = i + 1 + page_offset
+    end
   end
 
   def edit

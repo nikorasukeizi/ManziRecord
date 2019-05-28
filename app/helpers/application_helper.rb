@@ -21,25 +21,27 @@ module ApplicationHelper
 
 
 	def ranking_younger
-	  items_manzirank = Item.joins({:buy_items => {:buy_info => :user}})
+	  @items_manzirank = Item.joins({:buy_items => {:buy_info => :user}})
       .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
       .where(buy_items: {created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month})
       .where('users.age':0..18)
       .group("item_id")
       .order("sum(buy_items.buy_count) desc, items.id")
+      .page(params[:page]).per(12)
 
-      return items_manzirank
+      return @items_manzirank
 	end
 
 
 	def ranking_comp
-	  items_rank = Item.joins(:buy_items)
+	  @items_rank = Item.joins(:buy_items)
       .where(buy_items: {created_at: Time.now.prev_month.beginning_of_month..Time.now.prev_month.end_of_month})
       .group("item_id")
       .order("sum(buy_items.buy_count) desc, items.id")
       .select("items.*,sum(buy_items.buy_count) as sum_buy_count")
+      .page(params[:page]).per(12)
 
-      return items_rank
+      return @items_rank
 	end
 
 end

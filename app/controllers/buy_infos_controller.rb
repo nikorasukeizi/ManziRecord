@@ -27,7 +27,9 @@ class BuyInfosController < ApplicationController
   end
 
   def index
-      @buyinfos = BuyInfo.page(params[:page]).per(12)
+
+      @buyinfos = BuyInfo.all.order(:buy_status, :created_at).page(params[:page]).per(12)
+
   end
 
   def show
