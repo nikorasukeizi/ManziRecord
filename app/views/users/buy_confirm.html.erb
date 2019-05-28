@@ -1,38 +1,41 @@
-<div class="container-fluid">
-	<div class="row">
-		<h1 class="text-center buy_headline">卍注文内容を確認してください卍</h1>
-		<% @user.items.each_with_index do |item, i| %>
-			<div class="buy_items col-md-10 col-md-offset-1 clearfix">
-				<%= link_to item_path(item.id) do %>
-				<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
-				<% end %>
-				<div class="cd_info ">
-					<p>CDタイトル：<%= item.name %></p>
-					<p>アーティスト名：<%= item.artist.name %></p>
-					<p>レーベル名：<%= item.label.name %></p>
-					<p>価格：<%= tax_included(item.price) %>円(税込)</p>
+<div class="container">
+
+	<div class="row buy-box">
+		<div class="row">
+			<h1 class="text-center buy_headline">卍注文内容を確認してください卍</h1>
+			<% @user.items.each_with_index do |item, i| %>
+				<div class="buy_items col-md-10 col-md-offset-1 clearfix">
+					<%= link_to item_path(item.id) do %>
+					<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+					<% end %>
+					<div class="cd_info ">
+						<p>CDタイトル：<%= item.name %></p>
+						<p>アーティスト名：<%= item.artist.name %></p>
+						<p>レーベル名：<%= item.label.name %></p>
+						<p>価格：<%= tax_included(item.price) %>円(税込)</p>
+					</div>
+					<div class="subtotal">
+						<p>数量：<%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count %>個</p>
+						<u><p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p></u>
+					</div>
 				</div>
-				<div class="subtotal">
-					<p>数量：<%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count %>個</p>
-					<u><p>小計： <%= CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count * tax_included(item.price) %>円(税込) </p></u>
+				<div class="col-md-4 col-md-offset-8">
+					<% if CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count > item.stock %>
+						<p class="text-danger">在庫が<%= "#{CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count - item.stock}" %>個不足している為、お取り寄せ後の発送になります。</p>
+					<% end %>
 				</div>
-			</div>
-			<div class="col-md-4 col-md-offset-8">
-				<% if CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count > item.stock %>
-					<p class="text-danger">在庫が<%= "#{CartItem.find_by(user_id: @user.id, item_id: item.id).buy_count - item.stock}" %>個不足している為、お取り寄せ後の発送になります。</p>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-	<div class="row">
-		<div class="col-md-2 col-md-offset-9 shipping_fee ">
-			<p>+送料:500円</p>
+			<% end %>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3 col-md-offset-8 t-price">
-			<span><strong>総額:</strong></span>
-			<u><span><%= total_price(@user) %>円(税込)</span></u>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-9 shipping_fee ">
+				<p>+送料:500円</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-md-offset-8 t-price">
+				<span><strong>総額:</strong></span>
+				<u><span><%= total_price(@user) %>円(税込)</span></u>
+			</div>
 		</div>
 	</div>
 
