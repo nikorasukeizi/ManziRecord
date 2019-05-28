@@ -18,7 +18,7 @@
 
 					<div class="CD-container" style="width: 300px; text-align: center;">
 						<%= link_to(item_path(i.object.item)) do %>
-							<%= attachment_image_tag i.object.item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+							<%= attachment_image_tag i.object.item, :image, :fill, 300, 300, format: 'jpeg', fallback: '/images/no_image.jpg' %>
 						<% end %>
 						<br>
 
