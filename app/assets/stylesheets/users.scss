@@ -268,6 +268,13 @@
 }
 
 /*  購入画面レイアウト調整用  */
+.buy-box{
+	margin-top: 50px;
+    border: 1px solid #000;
+    background-color: #fafafa;
+}
+
+
 .delivery_address {
 	height: 500px;
 }
@@ -282,12 +289,17 @@
 }
 .t-price span{
 	font-size: 30px;
+	margin-left: none;
 }
 .delivery_target {
+	margin-top: 50px;
 	border: 1px solid #000;
+	background-color: #fafafa;
 }
 .payments {
+	margin-top: 50px;
 	border: 1px solid #000;
+	background-color: #fafafa;
 }
 .filed {
 	margin-bottom: 2rem;
