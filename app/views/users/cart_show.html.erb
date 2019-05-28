@@ -8,7 +8,7 @@
 				<% @user.items.each_with_index do |item, i| %>
 					<div class="cart_items col-md-10 col-md-offset-1 clearfix">
 						<%= link_to item_path(item.id) do %>
-						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: '/images/no_image.jpg', class: "pull-left" %>
 						<% end %>
 						<div class="cd_info ">
 							<p>CDタイトル：<%= item.name %></p>
@@ -42,7 +42,7 @@
 					<% item = Item.find(key.to_i) %>
 					<div class="cart_items col-md-10 col-md-offset-1 clearfix">
 						<%= link_to item_path(item.id) do %>
-						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "pull-left" %>
+						<%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg', fallback: '/images/no_image.jpg', class: "pull-left" %>
 						<% end %>
 						<div class="cd_info ">
 							<p>CDタイトル：<%= item.name %></p>
