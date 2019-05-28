@@ -51,24 +51,27 @@ a:active { color: black; }
   display: block;
   padding: 20px;
   text-align: center;
-  border: 1px solid #000;
-  border-bottom: none;
+  // border: 1px solid #000;
+  border-bottom: 5px solid lightgray;
   border-radius: 10px;
   font-family: Comic Sans MS,"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
-  // border-color: salmon;
+  // background-color: white;
 }
 
 #tab-menu .active {
-  background: #fff;
-  color: #000;
+  background-color: transparent;
+  border-bottom: none;
+
 }
 
 #tab-contents .tab {
   padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
+  background-color: #fff;
+  // border: 1px solid #000;
   border-radius: 10px;
   border-top: none;
+  background-image: image-url("Ranking_img.jpeg");
+  background-size: cover;
   // border-color: salmon;
 }
 
@@ -79,6 +82,7 @@ a:active { color: black; }
 	text-align: center;
 	margin-left: 5%;
 	display: inline-block;
+	font-family: Comic Sans MS,"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
 }
 .rank h1 {
 	margin: 5px 0;
@@ -173,6 +177,7 @@ a:active { color: black; }
 	background-image: image-url("store.jpeg");
 	background-size: cover;
 	display: inline-block;
+	border-radius: 10px;
 }
 .map_image {
 	width: 40%;
@@ -183,6 +188,7 @@ a:active { color: black; }
 	background-image: image-url("map.png");
 	background-size: cover;
 	display: inline-block;
+	border-radius: 10px;
 }
 .store_info p {
 	font-size: 20px;
