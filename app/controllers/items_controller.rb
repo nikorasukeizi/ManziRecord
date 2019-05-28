@@ -47,6 +47,7 @@ class ItemsController < ApplicationController
 
   def genre_index
       @genre = Genre.find(params[:id])
+      @items = @genre.items.page(params[:page]).per(12)
   end
 
   def search_result

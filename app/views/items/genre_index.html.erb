@@ -8,7 +8,7 @@
 
 
 
-<% @genre.items.each do |item| %>
+<% @items.each do |item| %>
 
 	<div class="CD_container col-lg-3" style="text-align: center; margin-top: 40px;">
 		<%= link_to item_path(item.id) do %>
@@ -20,4 +20,11 @@
 	</div>
 
 <% end %>
+</div>
+
+<%= paginate @items %>
+
+</div>
+
+
 
