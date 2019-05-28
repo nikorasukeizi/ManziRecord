@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
 	def  set_search
     	@search = Item.includes(:artist).ransack(params[:q])
-    	@search_items = @search.result(distinct: true).order(id: :desc)
+    	@search_items = @search.result(distinct: true).order(id: :desc).page(params[:page]).per(12)
     	@genres = Genre.all
     end
 

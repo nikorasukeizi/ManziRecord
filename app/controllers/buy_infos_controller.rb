@@ -27,7 +27,7 @@ class BuyInfosController < ApplicationController
   end
 
   def index
-      @buyinfos = BuyInfo.all
+      @buyinfos = BuyInfo.page(params[:page]).per(12)
   end
 
   def show

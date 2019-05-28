@@ -3,7 +3,7 @@
 		<div class="col-xs-12">
 			<h2 class="userindex-title">ユーザ一覧</h2>
 
-			<table class="userindex jscroll">
+			<table class="userindex">
 				<thead>
 					<tr>
 						<th>ユーザID</th>
@@ -15,9 +15,19 @@
 						<th>権限</th>
 					</tr>
 				</thead>
-				<tbody class="page">
-					<%= render partial:'user', collection: @users %>
-                </tbody>
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= user.id %></td>
+						<td class="name"><%= user.last_name %> <%= user.first_name %></td>
+						<td><% if user.status == false %>（退会済み）<% end %></td>
+						<td><%= link_to "詳細", user_path(user.id) %></td>
+						<td><%= link_to "編集", edit_user_path(user.id) %></td>
+						<td><% if user.admin == false && user.status == true %><%= link_to "強制退会", user_withdraw_path(user.id), method: :patch, data:{confirm:"本当に退会させますか?"} %><% end %></td>
+						<td><% if user.admin == true %>管理者<% end %></td>
+					</tr>
+					<% end %>
+			    </tbody>
 			</table>
 
 			<%= paginate @users %>
@@ -25,5 +35,3 @@
 		</div>
 	</div>
 </div>
-
-<%= javascript_include_tag "users.js" %>
