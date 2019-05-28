@@ -42,12 +42,12 @@ class ItemsController < ApplicationController
   end
 
   def index
-      @items = Item.page(params[:page]).per(12)
+      @items = Item.order(id: :desc).page(params[:page]).per(12)
   end
 
   def genre_index
       @genre = Genre.find(params[:id])
-      @items = @genre.items.page(params[:page]).per(12)
+      @items = @genre.items.order(id: :desc).page(params[:page]).per(12)
   end
 
   def search_result
