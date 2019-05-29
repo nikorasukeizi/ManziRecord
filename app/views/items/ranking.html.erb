@@ -37,7 +37,7 @@
 						<p>CD名：<%= item.name %></p>
 					<% end %>
 				</div>
-				<p>アーティスト名：<%= item.artist.name %></p>
+				<p><%= item.artist.name %></p>
 				<p>価格：<%= tax_included(item.price) %>円(税込)</p>
 				<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 			</div>
@@ -68,7 +68,7 @@
 							<p>CD名：<%= item.name %></p>
 						<% end %>
 					</div>
-					<p>アーティスト名：<%= item.artist.name %></p>
+					<p><%= item.artist.name %></p>
 					<p>価格：<%= tax_included(item.price) %>円(税込)</p>
 					<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 				</div>
