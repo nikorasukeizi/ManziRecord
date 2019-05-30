@@ -18,22 +18,16 @@
 
           <!-- ログインしているユーザーのみ管理者権限の判定を行う -->
         <% if user_signed_in? %>
-
 	      <!-- 管理者権限・アドミンがtrueならば -->
 	      <% if current_user.admin? %>
-
              <% if item.stock >= 11 %>
-
 	       		  <%= item.stock %>
-
 	         <% else %>
-                  <div style="color: red;">
-                    <%= item.stock %>
-                  </div>
+                <div style="color: red;">
+                  <%= item.stock %>
+                </div>
              <% end %>
-
 	      <% end %>
-
 	    <% end %>
 
 	</div>
