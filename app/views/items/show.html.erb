@@ -9,7 +9,7 @@
 	</div>
 
 	<div class="col-lg-3">
-	  <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: 'images/no_image.jpg' %><br>
+	  <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: '/images/no_image.jpg' %><br>
 
 	       　 <!-- ログインしているユーザーのみ管理者権限の判定を行う していない場合カートボタン表示-->
               <% if user_signed_in? %>

@@ -15,14 +15,16 @@
 			<%= attachment_image_tag item, :image, :fill, 150, 150, format: 'jpeg', fallback: '/images/no_image.jpg', size:'150x150' %>
 			<p>CD名：<%= item.name %></p>
 		<% end %>
-		<p>アーティスト名：<%= item.artist.name %></p>
+		<p><%= item.artist.name %></p>
 		<p>価格：<%= tax_included(item.price) %>円(税込)</p>
 	</div>
 
 <% end %>
 </div>
 
+<div class="row" style="text-align: center;">
 <%= paginate @items %>
+</div>
 
 </div>
 
