@@ -72,16 +72,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  #後日修正します byすけ
-  # def get_ranking
-  #   # Ajaxから送られたPOSTパラメータのpageの値取得
-  #   # page = 2
-  #   # DBから値を取得
-  #   @rank_comp = ranking_comp.page(page).per(9)
-  #   # jsonに変換
-  #   # @rank_json = {}
-  # end
-
   def new
       @item = Item.new
       @item.discs.build
