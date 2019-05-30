@@ -4,7 +4,6 @@ class GenresController < ApplicationController
 
   def ranking
     @genre = Genre.find(params[:id])
-    @items = @genre.items.page(params[:page]).per(12)
     @genre_rank = ranking_comp.where(genre_id: @genre.id).page(params[:page]).per(9)
     @rank_num = {}
     page_offset = 0
