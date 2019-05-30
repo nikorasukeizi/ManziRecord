@@ -6,8 +6,6 @@
 <div class="row">
 
 
-
-
 <% @items.each do |item| %>
 
 	<div class="CD_container col-lg-3" style="text-align: center; margin-top: 40px;">
@@ -18,7 +16,7 @@
 		<p><%= item.artist.name %></p>
 		<p>価格：<%= tax_included(item.price) %>円(税込)</p>
 
-　　　　  <!-- ログインしているユーザーのみ管理者権限の判定を行う -->
+        <!-- ログインしているユーザーのみ管理者権限の判定を行う -->
         <% if user_signed_in? %>
 	      <!-- 管理者権限・アドミンがtrueならば -->
 	      <% if current_user.admin? %>
@@ -40,7 +38,6 @@
 <div class="row" style="text-align: center;">
 <%= paginate @items %>
 </div>
-
 </div>
 
 
