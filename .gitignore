@@ -31,4 +31,5 @@
 /config/master.key
 vendor/bundle
 /config/database.yml
+.DS_Store
 
