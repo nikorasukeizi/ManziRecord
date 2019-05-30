@@ -17,6 +17,21 @@
 		<% end %>
 		<p><%= item.artist.name %></p>
 		<p>価格：<%= tax_included(item.price) %>円(税込)</p>
+
+　　　　  <!-- ログインしているユーザーのみ管理者権限の判定を行う -->
+        <% if user_signed_in? %>
+	      <!-- 管理者権限・アドミンがtrueならば -->
+	      <% if current_user.admin? %>
+             <% if item.stock >= 11 %>
+	       		<p>在庫：<%= item.stock %>枚</p>
+	         <% else %>
+                <div style="color: red;">
+                <p>在庫：<%= item.stock %>枚</p>
+                </div>
+             <% end %>
+	      <% end %>
+	    <% end %>
+
 	</div>
 
 <% end %>
