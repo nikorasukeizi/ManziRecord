@@ -1,6 +1,6 @@
 
 <div class="page_title">
-<h1><%= Date.today.prev_month.mon %>月度CD売上げ枚数ランキング</h1>
+	<h1><%= Date.today.prev_month.mon %>月度CD売上げ枚数ランキング</h1>
 </div>
 
 <div class="container-fluid">
@@ -73,10 +73,12 @@
 					<p>売上げ数：<%= item.sum_buy_count %>枚</p>
 				</div>
 			<% end %>
-			<div class="row" style="text-align: center;">
-				<%= paginate @item_rank %>
-			</div>
 		</div>
+	</div>
+	<div class="row" style="text-align: center;">
+		<%= paginate @item_rank %>
+	</div>
+
 	<% end %>
 
 </div>
