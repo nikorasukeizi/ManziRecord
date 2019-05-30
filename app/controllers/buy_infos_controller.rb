@@ -46,7 +46,7 @@ class BuyInfosController < ApplicationController
   def update_buy_status
       buyinfo = BuyInfo.find(params[:id])
       buyinfo.update(buy_info_params)
-      redirect_to buy_info_path(buyinfo.id)
+      redirect_to buy_infos_path
   end
 
   def edit
